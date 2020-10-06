@@ -1,0 +1,28 @@
+.main-header{
+    color: gray;
+    
+}
+
+@font-face{
+    font-family:bahnschrift;
+    src: url(fonts/BAHNSCHRIFT.TTF);
+}
+
+a
+{
+    color: #606062!important;
+    font-family: bahnschrift;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: .5rem;
+    margin-top: 18px;
+}
+
+
+
+body
+{
+    font-family: bahnschrift;
+    color: #5d0ef0;
+    background-image: "img/background.jpg";
+}
