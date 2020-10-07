@@ -1,5 +1,4 @@
 <footer class="container-fluid">
-            
 
             </div>
         </footer>
