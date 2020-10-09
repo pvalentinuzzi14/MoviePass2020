@@ -11,6 +11,9 @@ define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "layout/styles/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
 define("IMG_PATH", VIEWS_PATH . "img/");
 
+defined("API_KEY") ? null : define ("API_KEY",'2f0f4f905a5085a4cb6411b8c639165b');
+
+
 ?>
 
 
