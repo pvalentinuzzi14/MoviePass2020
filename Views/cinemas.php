@@ -3,12 +3,9 @@
 	<div>
         <?php
         echo "<pre>";
-        print_r($jsonAll);
+        print_r($cinemaArray);
         echo "<pre>";
-
         ?>
-
 	</div>
-	
 	</body>
 </main>

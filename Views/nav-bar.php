@@ -12,7 +12,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<?php echo FRONT_ROOT; ?>/Movie/GetAll">Listar Peliculas Actuales</a>
-          <a class="dropdown-item" href="#">Administrar Cines</a>
+          <a class="dropdown-item" href="<?php echo FRONT_ROOT; ?>/Cinema/GetAll">Administrar Cines</a>
         </div>
       </li>
     </ul>

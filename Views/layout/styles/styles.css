@@ -2,7 +2,9 @@
     color: gray;
     
 }
-
+body{
+    background-color: black!important;
+}
 @font-face{
     font-family:bahnschrift;
     src: url(fonts/BAHNSCHRIFT.TTF);
