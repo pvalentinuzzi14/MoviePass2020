@@ -1,23 +1,26 @@
 <?php
 
 namespace Controllers;
+use DAO\Movies as Movie;
+use DAO\Genres as Genre;
 
-use DAO\MoviesDAO as MoviesDAO;
-
-    class MovieController
-    {
-        public function getAll($message = "")
+    class MovieController{
+        private $movies,$genres;
+        public function __construct()
         {
-            $movieDAO = new MoviesDAO();
-            $json = $movieDAO->getAll();
-            require_once(VIEWS_PATH."movies.php");
-        }   
+            $this->movies = new Movie();
+            $this->genres = new Genre();
+        }
+        public function RefreshData($message = "")
+        {
+            $this->movies->RefreshData();
+            $this->genres->RefreshData();
+        }      
         
-        public function refreshData()
-        {
-            $movieDAO = new MoviesDAO();
-            $movieDAO->refreshData();
-            require_once(VIEWS_PATH."index.php");
+        public function GetAll(){
+            $movies = $this->movies->GetAll();
+            $genres = $this->genres->GetAll();
+            require_once(VIEWS_PATH."movies.php");
         }
     }
 ?>

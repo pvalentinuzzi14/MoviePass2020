@@ -1,10 +1,9 @@
 <?php 
 namespace DAO;
 
-
 use Models\Movie as Movie;
 
-class MoviesDAO{
+class Movies{
 	
 	private $list = array();
 
