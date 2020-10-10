@@ -1,5 +1,5 @@
-<main>
-  <div class="album py-5 bg-light">
+<main class="">
+  <div class="album py-5">
       <div class="container">
         <div class="row">
         <?php foreach($movies as $values){?>
