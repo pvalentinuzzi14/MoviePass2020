@@ -10,20 +10,17 @@ namespace Controllers;
 
     class AdminController{
 
+        public function __construct()
+        {
+            
+        }
 
         public function Index()
         {
-            if(($_POST['user'] == 'admin') && ($_POST['password'] == 'admin') )
-            {
-                $_SESSION['user'] = $_POST['user'];
-                $_SESSION['password'] = $_POST['password'];
                 $cinemaController = new CinemaCont();
-                $cinemaArray = $cinemaController->getAll2();
+                $cinemaArray = $cinemaController->getAll();
 
-                require_once(VIEWS_PATH."/adminContent.php");
-            }else{
-               
-            }
+               require_once(VIEWS_PATH."/adminContent.php");
           
         }
 

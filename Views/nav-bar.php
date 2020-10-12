@@ -12,13 +12,12 @@
         </a>
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/GetAll">Listar Peliculas Actuales</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Cinema/GetAll">Listar Cines</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Cinema/showAddView">Agregar Cines</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Cinema/ShowListView">Listar Cines</a>
         </div>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-    <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Login/Index">Login</a>
+    <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin/Index">ADMIN</a>
     </form>
     
    
