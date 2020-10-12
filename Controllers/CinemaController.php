@@ -12,21 +12,41 @@ namespace Controllers;
         {
             $this->_cinema = new Cinemas();
         }
-        public function add($id,$name,$address,$room)
+
+        public function add($id,$name,$address,$room,$price)
         {
-            $cinema = new Cinema($name,$address,$id,$room);
+            $rooms = array();
+            for ($i=1; $i < ($room+1) ; $i++) { 
+              array_push($rooms,$i);
+            }
+            $cinema = new Cinema($name,$address,$id,$rooms,$price);
             $this->_cinema->add($cinema);
-            require_once(VIEWS_PATH."cinemas.php");
+
+        $adminController = new AdminController();
+        $adminController->Index();
         }      
+
         public function remove($id)
         {
             $this->_cinema->remove($id);
-            require_once(VIEWS_PATH."cinemas.php");
+            $adminController = new AdminController();
+            $adminController->Index();
         }
+
+          
         public function GetAll(){
-            $cinemaArray = $this->_cinema->getAll();;
+            return $cinemaArray = $this->_cinema->getAll();
+        }
+
+        public function showListView(){
+            $cinemaArray = $this->_cinema->getAll();
             require_once(VIEWS_PATH."cinemas.php");
         }
 
+        public function showAddView(){
+            require_once(VIEWS_PATH."addCinema.php");
+        }
+
+        
     }
 ?>

@@ -7,7 +7,12 @@
             1,
             2,
             3
+<<<<<<< HEAD
         ]
+=======
+        ],
+        "price":50
+>>>>>>> PablitoBranch
     },
     {
         "id":2,
@@ -17,26 +22,56 @@
             1,
             2,
             3
+<<<<<<< HEAD
         ]
     },
     {
         "id":1,
+=======
+        ],
+        "price":120
+    },
+    {
+        "id":3,
+>>>>>>> PablitoBranch
         "name":"Aldrey",
         "address":"Sarmiento 2685",
         "room":[
             1,
             2,
             3
+<<<<<<< HEAD
         ]
     },
     {
         "id":1,
+=======
+        ],
+        "price":250
+    },
+    {
+        "id":4,
+>>>>>>> PablitoBranch
         "name":"Diagonal",
         "address":"Diagonal Pueyrredon 3058",
         "room":[
             1,
             2,
             3
+<<<<<<< HEAD
         ]
+=======
+        ],
+        "price":150
+    },{
+        "id":5,
+        "name":"Columbia",
+        "address":"Av. de los Pescadores 3050",
+        "room":[
+            1,
+            2
+        ],
+        "price":100
+>>>>>>> PablitoBranch
     }
 ]

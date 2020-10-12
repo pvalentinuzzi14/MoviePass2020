@@ -3,14 +3,16 @@
 
     class Cinema
     {
-        private $name,$address,$id,$room;
+        private $name,$address,$id,$room,$price;
 
-        public function __construct($name="",$address="",$id=0,$room="")
+        public function __construct($name="",$address="",$id=0,$room="",$price="")
         {
             $this->name = $name;
             $this->address = $address;
             $this->id = $id;
             $this->room = $room;
+            $this->price = $price;
+
         }
 
 
@@ -90,6 +92,26 @@
         public function setRoom($room)
         {
                 $this->room = $room;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of price
+         */ 
+        public function getPrice()
+        {
+                return $this->price;
+        }
+
+        /**
+         * Set the value of price
+         *
+         * @return  self
+         */ 
+        public function setPrice($price)
+        {
+                $this->price = $price;
 
                 return $this;
         }
