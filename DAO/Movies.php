@@ -30,7 +30,7 @@ class Movies{
             $valueArray['release_date'] = $movie->getRelease_date();
 			$valueArray['genre_ids'] = $movie->getGenre_ids();
 			$valueArray['id'] = $movie->getId();
-			$valueArray['poster_path'] = "http://image.tmdb.org/t/p/w500".$movie->getImage();
+			$valueArray['poster_path'] = "http://image.tmdb.org/t/p/w300".$movie->getImage();
 
 			array_push($arrayToEncode, $valueArray);
 			
@@ -63,7 +63,7 @@ class Movies{
 		
 		// if(file_exists(dirname(__DIR__).'/Data/movies.json')){
 			
-			$jsonContent =file_get_contents("https://api.themoviedb.org/3/discover/movie?api_key=2f0f4f905a5085a4cb6411b8c639165b&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1");
+			$jsonContent =file_get_contents("https://api.themoviedb.org/3/discover/movie?api_key=2f0f4f905a5085a4cb6411b8c639165b&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1");
 
 			$arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 

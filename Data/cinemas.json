@@ -1,54 +1,46 @@
 [
     {
-        "id":1,
-        "name":"Ambassador",
-        "address":"Cordoba 1673",
-        "room":[
-            1,
-            2,
-            3]
-    },
-    {
-        "id":2,
-        "name":"Gallegos",
-        "address":"Rivadavia 3050",
-        "room":[
+        "name": "Ambassador",
+        "id": 1,
+        "address": "Cordoba 1673",
+        "room": [
             1,
             2,
             3
         ],
-        "price":120
+        "price": 150
     },
     {
-        "id":3,
-        "name":"Aldrey",
-        "address":"Sarmiento 2685",
-        "room":[
+        "name": "Gallegos",
+        "id": 2,
+        "address": "Rivadavia 3050",
+        "room": [
             1,
             2,
             3
         ],
-        "price":250
+        "price": 120
     },
     {
-        "id":4,
-        "name":"Diagonal",
-        "address":"Diagonal Pueyrredon 3058",
-        "room":[
+        "name": "Aldrey",
+        "id": 3,
+        "address": "Sarmiento 2685",
+        "room": [
             1,
             2,
             3
         ],
-        "price":150
+        "price": 250
     },
     {
-        "id":5,
-        "name":"Columbia",
-        "address":"Av. de los Pescadores 3050",
-        "room":[
+        "name": "Diagonal",
+        "id": 4,
+        "address": "Diagonal Pueyrredon 3058",
+        "room": [
             1,
-            2
+            2,
+            3
         ],
-        "price":100
+        "price": 150
     }
 ]

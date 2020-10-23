@@ -1,15 +1,15 @@
 <?php
 
 namespace Controllers;
-use DAO\Movies as Movie;
-use DAO\Genres as Genre;
+use DAO\Movies as MovieDao;
+use DAO\Genres as GenreDao;
 
     class MovieController{
         private $movies,$genres;
         public function __construct()
         {
-            $this->movies = new Movie();
-            $this->genres = new Genre();
+            $this->movies = new MovieDao();
+            $this->genres = new GenreDao();
         }
         public function RefreshData($message = "")
         {

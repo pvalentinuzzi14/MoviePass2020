@@ -15,7 +15,7 @@ class Cinemas{
 	public function getAll(){
 		$this->retrieveData();
 		return $this->list;
-    }
+	}
 	public function saveData(){
 		$arrayToEncode = array();
 
@@ -23,13 +23,9 @@ class Cinemas{
 			$valueArray['name'] = $cinema->getName();
 			$valueArray['id'] = $cinema->getId();
             $valueArray['address'] = $cinema->getAddress();
-<<<<<<< HEAD
-            $valueArray['room'] = $cinema->getRoom();
-=======
 			$valueArray['room'] = $cinema->getRoom();
 			$valueArray['price'] = $cinema->getPrice();
 
->>>>>>> PablitoBranch
 			array_push($arrayToEncode, $valueArray);	
 		}
 		$jsonContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
@@ -46,11 +42,7 @@ class Cinemas{
 			$arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
 
 			foreach ($arrayToDecode as $valueArray) {
-<<<<<<< HEAD
-				$cinema = new Cinema($valueArray['name'],$valueArray['address'],$valueArray['id'],$valueArray['room']);
-=======
 				$cinema = new Cinema($valueArray['name'],$valueArray['address'],$valueArray['id'],$valueArray['room'],$valueArray['price']);
->>>>>>> PablitoBranch
 				array_push($this->list, $cinema);
 			}
 		}
