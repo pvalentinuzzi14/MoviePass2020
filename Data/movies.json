@@ -1,29 +1,58 @@
 [
     {
         "title": "2067",
-        "vote_average": 5.8,
+        "vote_average": 5.7,
         "overview": "El viaje de un hombre hacia el futuro para salvar un mundo moribundo.",
         "release_date": "2020-10-01",
         "genre_ids": [
-            18,
             878,
-            53
+            53,
+            18
         ],
         "id": 528085,
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/7D430eqZj8y3oVkLFfsWXGRcpEG.jpg"
     },
     {
+        "title": "Kimetsu no Yaiba Movie: Mugen Ressha-hen",
+        "vote_average": 8.2,
+        "overview": "Enmu, liberado recientemente de las c\u00e9lulas de Muzan, se propone atacar un misterioso tren en movimiento. En el curso del ataque, el demonio consume muchos pasajeros. Tanjiro Kamado viene al rescate, pero este tren en movimiento lleva m\u00e1s de un demonio desagradable para luchar.",
+        "release_date": "2020-10-16",
+        "genre_ids": [
+            28,
+            12,
+            16,
+            18,
+            14,
+            36
+        ],
+        "id": 635302,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/m9cn5mhW519QKr1YGpGxNWi98VJ.jpg"
+    },
+    {
         "title": "Welcome to Sudden Death",
-        "vote_average": 6.7,
+        "vote_average": 6.5,
         "overview": "Jesse Freeman es un ex oficial de las fuerzas especiales y experto en explosivos que ahora tiene un trabajo regular como guardia de seguridad en un estadio de baloncesto de \u00faltima generaci\u00f3n. Los problemas surgen cuando un grupo de terroristas expertos en tecnolog\u00eda secuestra al propietario del equipo y a la hija de Jesse durante la noche de apertura. Enfrentando un reloj en marcha y probabilidades imposibles, depende de Jesse no solo salvarlos, sino tambi\u00e9n a una casa llena de fan\u00e1ticos en este thriller de acci\u00f3n altamente cargado.",
         "release_date": "2020-09-29",
         "genre_ids": [
             28,
+            12,
             18,
             53
         ],
         "id": 741067,
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/elZ6JCzSEvFOq4gNjNeZsnRFsvj.jpg"
+    },
+    {
+        "title": "Hard Kill",
+        "vote_average": 4.7,
+        "overview": "El trabajo del multimillonario CEO de tecnolog\u00eda Donovan Chalmers es tan valioso que contrata mercenarios para protegerlo, y un grupo terrorista secuestra a su hija solo para conseguirlo.",
+        "release_date": "2020-10-23",
+        "genre_ids": [
+            28,
+            53
+        ],
+        "id": 724989,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg"
     },
     {
         "title": "Enola Holmes",
@@ -37,6 +66,33 @@
         ],
         "id": 497582,
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/8STWO9pUTqubPV04iXZ2R6SClME.jpg"
+    },
+    {
+        "title": "Love and Monsters",
+        "vote_average": 7.6,
+        "overview": "Un mundo posapocal\u00edptico. Joel Dawson es un joven que deber\u00e1 luchar contra monstruos, con tal de reunirse con Aimee, su amor del instituto. En el camino, tendr\u00e1 que desafiar peligrosos animales mutantes y encontrar\u00e1 amistades inesperadas y tambi\u00e9n algunos enemigos.",
+        "release_date": "2020-10-16",
+        "genre_ids": [
+            28,
+            12,
+            35,
+            878
+        ],
+        "id": 590223,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/r4Lm1XKP0VsTgHX4LG4syAwYA2I.jpg"
+    },
+    {
+        "title": "Un lugar tranquilo 2",
+        "vote_average": 0,
+        "overview": "Los Abbott est\u00e1n de vuelta. Despu\u00e9s de los eventos ocurridos en Un lugar tranquilo (2018) se enfrentar\u00e1n a los terrores del mundo exterior. Evelyn (Emily Blunt) junto con sus hijos Regan (Millicent Simmonds) y Marcus (Noah Jupe) adem\u00e1s de su beb\u00e9, se adentrar\u00e1n en los bosques, decididos a traspasar los l\u00edmites y adentrarse en lo desconocido.",
+        "release_date": "2021-04-21",
+        "genre_ids": [
+            18,
+            878,
+            53
+        ],
+        "id": 520763,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/2ixiP0rHnbxD3VMCv8WNkmSbzZp.jpg"
     },
     {
         "title": "Mul\u00e1n",
@@ -53,20 +109,8 @@
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/rd7ElSRYhN2CFqMcyH8rqrwLbd6.jpg"
     },
     {
-        "title": "Hard Kill",
-        "vote_average": 4.7,
-        "overview": "El trabajo del multimillonario CEO de tecnolog\u00eda Donovan Chalmers es tan valioso que contrata mercenarios para protegerlo, y un grupo terrorista secuestra a su hija solo para conseguirlo.",
-        "release_date": "2020-08-25",
-        "genre_ids": [
-            28,
-            53
-        ],
-        "id": 724989,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/ugZW8ocsrfgI95pnQ7wrmKDxIe.jpg"
-    },
-    {
         "title": "El avi\u00f3n del dinero",
-        "vote_average": 6.1,
+        "vote_average": 5.9,
         "overview": "Un ladr\u00f3n profesional con una deuda de 40 millones de d\u00f3lares a sus espaldas y la vida de su familia en peligro, se ve obligado a realizar un \u00faltimo golpe: robar un futurista casino a\u00e9reo cuya que tiene por clientes a los criminales m\u00e1s peligrosos del mundo.",
         "release_date": "2020-09-29",
         "genre_ids": [
@@ -76,41 +120,8 @@
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/v0BiswYPEZzZTYazvwktPTOTMpP.jpg"
     },
     {
-        "title": "Beckman",
-        "vote_average": 5.4,
-        "overview": "Un asesino a sueldo, se convierte en reverendo de una iglesia de Los \u00c1ngeles, hasta que un l\u00edder de una secta y sus secuaces secuestran a su hija. Cegado por la venganza, abre un camino sangriento a trav\u00e9s de la ciudad. Lo \u00fanico que puede detenerlo es su nueva fe.",
-        "release_date": "2020-09-10",
-        "genre_ids": [
-            28
-        ],
-        "id": 697064,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/z0r3YjyJSLqf6Hz0rbBAnEhNXQ7.jpg"
-    },
-    {
-        "title": "Rogue",
-        "vote_average": 5.9,
-        "overview": "Rogue es la historia de una peque\u00f1a unidad mercenaria de soldados que han sido contratados por el gobernador de un pa\u00eds africano para rescatar a su hija que ha sido secuestrada por una organizaci\u00f3n terrorista.",
-        "release_date": "2020-08-20",
-        "genre_ids": [
-            28
-        ],
-        "id": 718444,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg"
-    },
-    {
-        "title": "Santana",
-        "vote_average": 5.6,
-        "overview": "Dos hermanos, uno narcotraficante y el otro general, descubren finalmente la identidad del capo de la droga que asesin\u00f3 a sus padres hace d\u00e9cadas. Pueden matarse entre s\u00ed antes de capturar a los malos.",
-        "release_date": "2020-08-28",
-        "genre_ids": [
-            28
-        ],
-        "id": 734309,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/9Rj8l6gElLpRL7Kj17iZhrT5Zuw.jpg"
-    },
-    {
         "title": "Ava",
-        "vote_average": 5.9,
+        "vote_average": 5.8,
         "overview": "Ava es una mort\u00edfera asesina a sueldo que trabaja para una organizaci\u00f3n de operaciones encubiertas, que viaja por todo el mundo acabando con aquellos objetivos que nadie m\u00e1s puede derribar. Cuando uno de sus encargos sale mal, Ava tendr\u00e1 que luchar por una vida.",
         "release_date": "2020-07-02",
         "genre_ids": [
@@ -123,7 +134,36 @@
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/qzA87Wf4jo1h8JMk9GilyIYvwsA.jpg"
     },
     {
-        "title": "American Pie Presenta: Las chicas mandan",
+        "title": "\u00a1Feliz Halloween, Scooby-Doo!",
+        "vote_average": 7.9,
+        "overview": "Con toda clase de monstruos falsos y montones de caramelos por doquier, Halloween es un para\u00edso para los amantes de la comida. Este a\u00f1o, sin embargo, su fiesta por excelencia se transforma en una pesadilla a causa de un huerto de calabazas que ha sido infectado por un extra\u00f1o flujo t\u00f3xico, generando un ej\u00e9rcito imparable de \"jack-o-lanterns\" que arrasan todo lo que encuentran a su paso. S\u00f3lo Scooby-Doo y su grupo de amigos podr\u00e1n resolver este misterioso caso y salvar Caleta Crystal.",
+        "release_date": "2020-10-06",
+        "genre_ids": [
+            16,
+            35,
+            80,
+            9648,
+            10751
+        ],
+        "id": 721656,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/5aL71e0XBgHZ6zdWcWeuEhwD2Gw.jpg"
+    },
+    {
+        "title": "Rogue",
+        "vote_average": 5.9,
+        "overview": "Rogue es la historia de una peque\u00f1a unidad mercenaria de soldados que han sido contratados por el gobernador de un pa\u00eds africano para rescatar a su hija que ha sido secuestrada por una organizaci\u00f3n terrorista.",
+        "release_date": "2020-08-20",
+        "genre_ids": [
+            28,
+            12,
+            18,
+            53
+        ],
+        "id": 718444,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/uOw5JD8IlD546feZ6oxbIjvN66P.jpg"
+    },
+    {
+        "title": "American Pie: Las chicas mandan",
         "vote_average": 6.6,
         "overview": "\u00a1Es el \u00faltimo a\u00f1o! Annie, Kayla, Michelle y Stephanie deciden finalmente aprovechar su poder femenino y unirse para conseguir lo que quieren. Los chicos no sabr\u00e1n qu\u00e9 los golpe\u00f3 cuando sus atrevidas novias son las que est\u00e1n tomando las decisiones.",
         "release_date": "2020-10-06",
@@ -132,6 +172,30 @@
         ],
         "id": 660982,
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/ov1sd4gvHpoVheHuJHCXJjadeIT.jpg"
+    },
+    {
+        "title": "Beckman",
+        "vote_average": 4.8,
+        "overview": "Un asesino a sueldo, se convierte en reverendo de una iglesia de Los \u00c1ngeles, hasta que un l\u00edder de una secta y sus secuaces secuestran a su hija. Cegado por la venganza, abre un camino sangriento a trav\u00e9s de la ciudad. Lo \u00fanico que puede detenerlo es su nueva fe.",
+        "release_date": "2020-09-10",
+        "genre_ids": [
+            28
+        ],
+        "id": 697064,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/z0r3YjyJSLqf6Hz0rbBAnEhNXQ7.jpg"
+    },
+    {
+        "title": "Santana",
+        "vote_average": 5.6,
+        "overview": "Dos hermanos, uno narcotraficante y el otro general, descubren finalmente la identidad del capo de la droga que asesin\u00f3 a sus padres hace d\u00e9cadas. Pueden matarse entre s\u00ed antes de capturar a los malos.",
+        "release_date": "2020-08-28",
+        "genre_ids": [
+            28,
+            18,
+            53
+        ],
+        "id": 734309,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/9Rj8l6gElLpRL7Kj17iZhrT5Zuw.jpg"
     },
     {
         "title": "Train To Busan 2: Peninsula",
@@ -145,6 +209,20 @@
         ],
         "id": 581392,
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/ew1lAU8yV66JbivBU1Zh4Wj4pOB.jpg"
+    },
+    {
+        "title": "Consejos de una canguro para cazar monstruos",
+        "vote_average": 6.2,
+        "overview": "Tras ser reclutada por una sociedad secreta de canguros, una chica se enfrenta a un ser maligno y sus monstruos cuando atrapan al ni\u00f1o que est\u00e1 cuidando en Halloween.",
+        "release_date": "2020-10-14",
+        "genre_ids": [
+            12,
+            35,
+            14,
+            10751
+        ],
+        "id": 624963,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/bkld8Me0WiLWipLORRNfF1yIPHu.jpg"
     },
     {
         "title": "Or\u00edgenes secretos",
@@ -174,85 +252,15 @@
         "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/mhDdx7o7hhrxrikq8aqPLLnS9w8.jpg"
     },
     {
-        "title": "\u00a1Feliz Halloween, Scooby-Doo!",
-        "vote_average": 7.7,
-        "overview": "Con toda clase de monstruos falsos y montones de caramelos por doquier, Halloween es un para\u00edso para los amantes de la comida. Este a\u00f1o, sin embargo, su fiesta por excelencia se transforma en una pesadilla a causa de un huerto de calabazas que ha sido infectado por un extra\u00f1o flujo t\u00f3xico, generando un ej\u00e9rcito imparable de \"jack-o-lanterns\" que arrasan todo lo que encuentran a su paso. S\u00f3lo Scooby-Doo y su grupo de amigos podr\u00e1n resolver este misterioso caso y salvar Caleta Crystal.",
-        "release_date": "2020-10-06",
-        "genre_ids": [
-            16,
-            35,
-            80,
-            9648,
-            10751
-        ],
-        "id": 721656,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/5aL71e0XBgHZ6zdWcWeuEhwD2Gw.jpg"
-    },
-    {
-        "title": "Archive",
-        "vote_average": 5.6,
-        "overview": "2038: George Almore est\u00e1 trabajando en una verdadera IA equivalente a la humana. Su \u00faltimo prototipo est\u00e1 casi listo. Esta fase sensible tambi\u00e9n es la m\u00e1s arriesgada. Especialmente porque tiene un objetivo que debe ocultarse a toda costa: reunirse con su esposa muerta",
-        "release_date": "2020-08-13",
+        "title": "After: en mil pedazos",
+        "vote_average": 6.5,
+        "overview": "Ha pasado el tiempo, y Hardin todav\u00eda no se sabe si es realmente el chico profundo y reflexivo del que Tessa se enamor\u00f3, o ha sido un extra\u00f1o todo este tiempo. Ella quiere alejarse, pero no es tan f\u00e1cil. Tessa se ha centrado en sus estudios y comienza a trabajar como becaria en Vance Publishing. All\u00ed conoce a Trevor, un nuevo y atractivo compa\u00f1ero de trabajo que es exactamente el tipo de persona con la que deber\u00eda estar. Pero Hardin sabe que cometi\u00f3 un error, posiblemente el m\u00e1s grande de su vida y quiere corregir sus errores y vencer a sus demonios... Secuela de la pel\u00edcula 'After'.",
+        "release_date": "2020-09-02",
         "genre_ids": [
             18,
-            878,
-            53
+            10749
         ],
-        "id": 606234,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/eDnHgozW8vfOaLHzfpHluf1GZCW.jpg"
-    },
-    {
-        "title": "Una Noche en Bangkok",
-        "vote_average": 7.2,
-        "overview": "El mejor asesino del negocio hace su 500\u00ba asesinato y decide retirarse. En cambio, se ve envuelto en una feroz batalla de ingenio con el enemigo perfecto.",
-        "release_date": "2020-08-25",
-        "genre_ids": [
-            28,
-            53
-        ],
-        "id": 721452,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/6K2uP9uhxVDYteUQLHhLUvEXbzL.jpg"
-    },
-    {
-        "title": "El club secreto de los no herederos al trono",
-        "vote_average": 6.9,
-        "overview": "Conocemos a Sam, una princesa nacida en segundo lugar. No es la t\u00edpica princesa y no encaja en ese mundo. Cuando su madre, la reina, la env\u00eda a clases de verano en un internado, Sam averigua que es una tapadera: ella y los dem\u00e1s alumnos descubren que tienen superpoderes y que est\u00e1n ah\u00ed para entrenar y entrar a formar parte del club secreto de los no herederos al trono. \u00bfSer\u00e1n capaces de aprender a usar sus poderes para salvar sus reinos?",
-        "release_date": "2020-09-25",
-        "genre_ids": [
-            28,
-            12,
-            35,
-            14
-        ],
-        "id": 621870,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/gKLvBS6eGIAzaFNjW9JRszwEs40.jpg"
-    },
-    {
-        "title": "Proyecto Power",
-        "vote_average": 6.6,
-        "overview": "Comienza a correrse la voz por las calles de Nueva Orleans de una misteriosa pastilla nueva que le confiere superpoderes \u00fanicos a cada persona que la consume. \u00bfLa trampa? No sabes qu\u00e9 puede pasar hasta que la tomas... Algunos adquieren una piel a prueba de balas, invisibilidad y fuerza sobrehumana, mientras que otros padecen una reacci\u00f3n m\u00e1s letal. Con la llegada de la pastilla, la tasa de delitos de la ciudad escala a niveles peligrosos, por lo que un polic\u00eda local (Joseph Gordon-Levitt) se une a una traficante de drogas adolescente (Dominique Fishback) y a un exsoldado motivado por un plan de venganza secreto (Jamie Foxx) para enfrentar con poder al poder. Tanto es as\u00ed, que se arriesgan a tomar la pastilla con el objetivo de encontrar y detener al grupo responsable de su elaboraci\u00f3n.",
-        "release_date": "2020-08-14",
-        "genre_ids": [
-            28,
-            80,
-            878
-        ],
-        "id": 605116,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/goz3AVYFjLNKuC787HowcxWM6cZ.jpg"
-    },
-    {
-        "title": "We Bare Bears: The Movie",
-        "vote_average": 7.7,
-        "overview": "Cuando el amor de Grizz, Panda y Ice Bear por los camiones de comida y los videos virales se fue de las manos, llama la atenci\u00f3n del Agente Trout del National Wildlife Control, quien se compromete a restaurar el \"orden natural\" separ\u00e1ndolos para siempre. Alejados de su hogar, los Bears se embarcan en un viaje \u00e9pico por carretera mientras buscan refugio en Canad\u00e1, con su viaje lleno de nuevos amigos, obst\u00e1culos peligrosos y grandes fiestas. El arriesgado viaje tambi\u00e9n obliga a los Bears a enfrentar c\u00f3mo se conocieron y se convirtieron en hermanos, para evitar que su v\u00ednculo familiar se separe.",
-        "release_date": "2020-06-30",
-        "genre_ids": [
-            12,
-            16,
-            35,
-            9648,
-            10751
-        ],
-        "id": 677638,
-        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/kPzcvxBwt7kEISB9O4jJEuBn72t.jpg"
+        "id": 613504,
+        "poster_path": "http:\/\/image.tmdb.org\/t\/p\/w300\/3k4TvOWxJZyeMJtbjHQELKIEhpb.jpg"
     }
 ]

@@ -10,6 +10,11 @@ class Movie
     private $genre_ids;
     private $id;
     private $image;
+   
+    private $background;
+    private $idBd;
+    private $score;
+
 
     public function __construct($title="",$vote_average="",$overview="",$release_date="",$genre_ids="",$id="",$image="")   
     {
@@ -158,6 +163,66 @@ class Movie
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of background
+     */ 
+    public function getBackground()
+    {
+        return $this->background;
+    }
+
+    /**
+     * Set the value of background
+     *
+     * @return  self
+     */ 
+    public function setBackground($background)
+    {
+        $this->background = $background;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idBd
+     */ 
+    public function getIdBd()
+    {
+        return $this->idBd;
+    }
+
+    /**
+     * Set the value of idBd
+     *
+     * @return  self
+     */ 
+    public function setIdBd($idBd)
+    {
+        $this->idBd = $idBd;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of score
+     */ 
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * Set the value of score
+     *
+     * @return  self
+     */ 
+    public function setScore($score)
+    {
+        $this->score = $score;
 
         return $this;
     }
