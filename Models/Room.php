@@ -2,7 +2,7 @@
 namespace Models;
 class Room {
     private $id;
-    private $movieTheater;
+    private $cinema;
     private $state;
     private $name;
     private $capacity;
@@ -20,13 +20,7 @@ class Room {
         $this->id = $id;
     }
 
-    public function getMovieTheater() {
-        return $this->movieTheater;
-    }
-
-    public function setMovieTheater($movieTheater) {
-        $this->movieTheater = $movieTheater;
-    }
+   
 
     public function getState() {
         return $this->state;
@@ -68,6 +62,26 @@ class Room {
         else
             $return = 0;
         return $return;
+    }
+
+    /**
+     * Get the value of cinema
+     */ 
+    public function getCinema()
+    {
+        return $this->cinema;
+    }
+
+    /**
+     * Set the value of cinema
+     *
+     * @return  self
+     */ 
+    public function setCinema($cinema)
+    {
+        $this->cinema = $cinema;
+
+        return $this;
     }
 }
 ?>

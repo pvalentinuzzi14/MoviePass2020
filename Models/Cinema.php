@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-class MovieTheater {
+class Cinema {
     private $id;
     private $state;
     private $name;
@@ -9,7 +9,12 @@ class MovieTheater {
     private $closingTime;
     private $rooms;
 
-    public function __construct() {
+    public function __construct($name="",$address="",$openingTime="",$closingTime="",$rooms="") {
+        $this->name = $name;
+        $this->address = $address;
+        $this->openingTime = $openingTime;
+        $this->closingTime = $closingTime;
+        $this->rooms = $rooms;
 
     }
 

@@ -2,25 +2,21 @@
 
 namespace Controllers;
 
-    use DAO\Cinemas as Cinemas;
-    use Models\Cinema as Cinema;
+    use DAO\Cinemas as D_cinema;
+    use Models\Cinema as M_cinema;
     class CinemaController{
 
         private $_cinema;
 
         public function __construct()
         {
-            $this->_cinema = new Cinemas();
+            $this->_cinema = new D_Cinema();
         }
 
-        public function add($id,$name,$address,$room,$price)
+        public function add($name,$address,$openingTime,$closingTime)
         {
-            $rooms = array();
-            for ($i=1; $i < ($room+1) ; $i++) { 
-              array_push($rooms,$i);
-            }
-            $cinema = new Cinema($name,$address,$id,$rooms,$price);
-            $this->_cinema->add($cinema);
+            $cinema = new M_cinema($name,$address,$openingTime,$closingTime);
+            $this->D_cinema->add($cinema);
 
         $adminController = new AdminController();
         $adminController->Index();
@@ -35,7 +31,7 @@ namespace Controllers;
 
           
         public function GetAll(){
-            return $cinemaArray = $this->_cinema->getAll();
+            return $this->_cinema->getAll();
         }
 
         public function showListView(){
