@@ -13,7 +13,6 @@
            <th>Nombre</th>
            <th>Direccion</th>
            <th>Cantidad de Salas</th>
-           <th>Precio Ticket</th>
            <th>Remover</th>
 
       </tr>
@@ -26,8 +25,7 @@
              <td> <?php echo $value->getId(); ?></td>
              <td> <?php echo $value->getName(); ?> </td>  
              <td> <?php echo $value->getAddress() ; ?> </td>
-             <td> <?php echo count ($value->getRoom());?> </td>
-             <td> <?php echo $value->getPrice() ;?> </td>
+             <td> <?php echo $value->getRooms();?> </td>
              <td>
             <form  action="<?php echo FRONT_ROOT ;?>/Cinema/Remove" method="POST"> 
                 <input type="hidden" name="deleteID" value='<?php echo $value->getId(); ?>'>
