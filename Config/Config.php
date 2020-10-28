@@ -13,6 +13,11 @@ define("IMG_PATH", VIEWS_PATH . "img/");
 
 defined("API_KEY") ? null : define ("API_KEY",'2f0f4f905a5085a4cb6411b8c639165b');
 
+define("DB_HOST", "localhost");
+define("DB_NAME", "moviepass");
+define("DB_USER", "root");
+define("DB_PASS", "");
+
 
 ?>
 

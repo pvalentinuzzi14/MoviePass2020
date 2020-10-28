@@ -1,6 +1,6 @@
 <?php
 namespace Models;
-class MovieTheater {
+class Cinema {
     private $id;
     private $state;
     private $name;
