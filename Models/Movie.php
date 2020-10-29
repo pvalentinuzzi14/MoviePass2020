@@ -10,21 +10,14 @@ class Movie
     private $genre_ids;
     private $id;
     private $image;
-   
     private $background;
     private $idBd;
     private $score;
 
 
-    public function __construct($title="",$vote_average="",$overview="",$release_date="",$genre_ids="",$id="",$image="")   
+    public function __construct()   
     {
-        $this->setTitle($title);
-        $this->setVote_average($vote_average);
-        $this->setOverview($overview);
-        $this->setRelease_date($release_date);
-        $this->setGenre_ids($genre_ids);
-        $this->setId($id);
-        $this->setImage($image);
+        $this->genre_ids=array();
     }
 
     /**

@@ -2,9 +2,9 @@
 namespace Models;
 
 class Genre{
-    private $id,$name;
+    private $id,$name,$idBd;
 
-    public function __construct($id="",$name="")
+    public function __construct()
     {
         
     }
@@ -45,6 +45,26 @@ class Genre{
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of idBd
+     */ 
+    public function getIdBd()
+    {
+        return $this->idBd;
+    }
+
+    /**
+     * Set the value of idBd
+     *
+     * @return  self
+     */ 
+    public function setIdBd($idBd)
+    {
+        $this->idBd = $idBd;
 
         return $this;
     }
