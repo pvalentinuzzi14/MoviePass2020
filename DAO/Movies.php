@@ -14,7 +14,8 @@ class Movies{
 	{
 		$value=0;
 			try {
-				$query = "INSERT INTO cinemas (id_api_movie,name_movie,overview,poster,background,score,uploading_date) VALUES (:id_api_movie,:name_movie,:overview,:poster,:background,:score,:uploading_date)";
+				$query = "INSERT INTO cinemas (id_api_movie,name_movie,overview,poster,background,score,uploading_date) 
+				VALUES (:id_api_movie,:name_movie,:overview,:poster,:background,:score,:uploading_date)";
 				$parameters["id_api_movie"] = $item->getId();
 				$parameters["name_movie"] = $item->getTitle();
 				$parameters["overview"] = $item->getOverview();

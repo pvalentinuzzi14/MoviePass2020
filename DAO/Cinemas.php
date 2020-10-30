@@ -45,10 +45,38 @@ class Cinemas{
 		$cinemasList = array();
 
 		try {
-			//$sql = "SELECT * FROM cinemas ";
 			$sql = "SELECT * FROM cinemas c INNER JOIN (
 			SELECT id_cinema,COUNT(id_cinema) AS 'quantity_rooms' FROM rooms GROUP BY id_cinema
 			) rxc ON c.`idCinemas`=rxc.id_cinema";
+			
+				
+			
+			$this->connection = Connection::getInstance();
+			
+			$statement = $this->connection->execute($sql);
+
+			if(!empty($statement))
+			{
+				foreach ($statement as $value) {
+					$cineAux = $this->create($value);
+					array_push($cinemasList,$cineAux);
+				}
+			}
+		} catch (PDOException $e) {
+			throw $e;
+		}
+
+		return $cinemasList;
+	}
+
+	public function getAllAvaible()
+	{
+		$cinemasList = array();
+
+		try {
+			$sql = "SELECT * FROM cinemas c INNER JOIN (
+			SELECT id_cinema,COUNT(id_cinema) AS 'quantity_rooms' FROM rooms GROUP BY id_cinema
+			) rxc ON c.`idCinemas`=rxc.id_cinema WHERE c.state=1" ;
 			
 				
 			
@@ -178,7 +206,9 @@ class Cinemas{
 		try {
             $parameters['newState'] = $newState;
 			$parameters ['id'] = $id;
-			$query = "UPDATE cinemas SET (state = :newState) WHERE idRooms = :id";		
+			$query = "UPDATE cinemas 
+						SET state = :newState 
+						WHERE idCinemas = :id";		
 			
 			$this->connection = Connection::getInstance();
 			$value = $this->connection->executeNonQuery($query,$parameters);

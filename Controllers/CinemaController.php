@@ -13,7 +13,7 @@ namespace Controllers;
             $this->_cinema = new D_Cinema();
         }
 
-        public function add($name,$address,$openingTime,$closingTime)
+        public function add($name,$address,$openingTime="",$closingTime="")
         {
             $cinema = new M_cinema($name,$address,$openingTime,$closingTime);
             $this->D_cinema->add($cinema);
@@ -34,13 +34,24 @@ namespace Controllers;
             return $this->_cinema->getAll();
         }
 
+        public function GetAllAvaible(){
+            return $this->_cinema->getAllAvaible();
+        }
+
         public function showListView(){
-            $cinemaArray = $this->_cinema->getAll();
+            $cinemaArray = $this->_cinema->getAllAvaible();
             require_once(VIEWS_PATH."cinemas.php");
         }
 
         public function showAddView(){
             require_once(VIEWS_PATH."addCinema.php");
+        }
+
+        public function updateState($id)
+        {
+            $this->_cinema->updateState($id,'1');
+            $adminController = new AdminController();
+            $adminController->Index();
         }
 
         

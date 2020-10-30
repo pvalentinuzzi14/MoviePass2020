@@ -9,12 +9,13 @@ class Cinema {
     private $closingTime;
     private $rooms;
 
-    public function __construct($name="",$address="",$openingTime="",$closingTime="",$rooms="") {
+    public function __construct($name="",$address="",$openingTime="",$closingTime="",$rooms="",$state=1) {
         $this->name = $name;
         $this->address = $address;
         $this->openingTime = $openingTime;
         $this->closingTime = $closingTime;
         $this->rooms = $rooms;
+        $this->state = $state;
 
     }
 
