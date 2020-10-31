@@ -13,13 +13,14 @@ use DAO\Genres as GenreDao;
         }
         public function RefreshData($message = "")
         {
-            $this->movies->RetrieveDataFromApi();
-            $this->genres->RetrieveDataFromApi();
+            $this->movies->insertFromApiToDb();
+            $this->genres->insertFromApiToDb();
         }      
         
         public function GetAll(){
-            $movies = $this->movies->RetrieveDataFromApi();
-            $genres = $this->genres->RetrieveDataFromApi();
+            $movies = $this->movies->RetrieveDB();
+            $genres = $this->genres->RetrieveDB();
+            
             require_once(VIEWS_PATH."movies.php");
         }
     }

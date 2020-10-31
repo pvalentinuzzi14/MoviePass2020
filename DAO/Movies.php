@@ -3,6 +3,8 @@ namespace DAO;
 
 use Models\Movie as Movie;
 use DAO\Connection;
+use DAO\Genres as D_genres;
+use Models\Genre;
 use PDOException;
 
 class Movies{
@@ -14,7 +16,7 @@ class Movies{
 	{
 		$value=0;
 			try {
-				$query = "INSERT INTO cinemas (id_api_movie,name_movie,overview,poster,background,score,uploading_date) 
+				$query = "INSERT INTO movies (id_api_movie,name_movie,overview,poster,background,score,uploading_date) 
 				VALUES (:id_api_movie,:name_movie,:overview,:poster,:background,:score,:uploading_date)";
 				$parameters["id_api_movie"] = $item->getId();
 				$parameters["name_movie"] = $item->getTitle();
@@ -29,12 +31,17 @@ class Movies{
 				$arrayOfGenres = $item->getGenre_ids();
 				foreach($arrayOfGenres as $genre) {
          
-					$queryIdBd = "SELECT p.id_movie FROM movies p where p.id_api_movie=" . $item->getID();
+					$queryIdBd = "SELECT m.id_movie FROM movies m where m.id_api_movie=" . $item->getId();
 					$resultSet = $this->connection->execute($queryIdBd);
 					$idBd = $resultSet[0]["id_movie"];
-	
+
+					$queryIdGenre = "SELECT g.id_genre FROM genres g where g.id_api_genre=" . $genre;
+					$resultSetGenre = $this->connection->execute($queryIdGenre);
+					$idBdGenre = $resultSetGenre[0]["id_genre"];
+
+
 					$parametersGenres["id_movie"] = $idBd;
-					$parametersGenres["id_genre"] = $genre->getIdBd();
+					$parametersGenres["id_genre"] = $idBdGenre;
 	
 					$queryGenres = "INSERT INTO genres_per_movie (id_movie, id_genre) VALUES (:id_movie, :id_genre)";
 	
@@ -74,12 +81,12 @@ class Movies{
 	private function getGenresById($id)
 	{
 		$array = array();
-		$parameters['id'] = $id;
-		$sql= "SELECT * FROM genres_per_movie WHERE id_movie = :id";
+		//$parameters['id']=$id;
+		$sql= "SELECT g.id_api_genre FROM genres_per_movie gxm INNER JOIN genres g ON gxm.id_genre = g.id_genre WHERE gxm.id_movie =".$id;
 		$this->connection = Connection::getInstance();
 		$statement = $this->connection->execute($sql);
 		foreach($statement as $genreNumber){
-			array_push($array,$genreNumber);
+			array_push($array,$genreNumber['id_api_genre']);
 		}
 		return $array;
 	}
@@ -87,6 +94,7 @@ class Movies{
 	//crea model movie 
 	private function create($statementRes)
 	{
+		$array = array();
 		$movie = new Movie();
 		$movie->setId($statementRes['id_api_movie']);
 		$movie->setScore($statementRes['score']);
@@ -95,7 +103,8 @@ class Movies{
 		$movie->setBackground($statementRes['background']);
 		$movie->setRelease_date($statementRes['uploading_date']);
 		$movie->setImage($statementRes['poster']);
-		$movie->setGenre_ids($this->getGenresById($statementRes['id_movie']));
+		$array = $this->getGenresById($statementRes['id_movie']);
+		$movie->setGenre_ids($array);
 		return $movie;
 	}
 
@@ -104,7 +113,7 @@ class Movies{
 		$movie = null;
 
 		try {
-			$parameters['id_movie'] = $id; 
+			$parameters['id'] = $id; 
 
 			$sql = "SELECT * FROM movie WHERE id_movie=:id";
 			
@@ -126,18 +135,15 @@ class Movies{
 
 
 	/*----------------------------- API -----------------------------*/
-	public function RetrieveDataFromApi() 
+	public function insertFromApiToDb() 
 	{
 		$jsonContent = file_get_contents("https://api.themoviedb.org/3/discover/movie?api_key=2f0f4f905a5085a4cb6411b8c639165b&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1");
 		$arrayToDecode =($jsonContent) ? json_decode($jsonContent,true) : array();
-		$arrayOfMovies = array();
 		
 		foreach($arrayToDecode['results'] as $value):
 			$movie =$this->createFromApi($value);
-			array_push($arrayOfMovies,$movie);
+			$this->add($movie);
 		endforeach;	
-
-		return $arrayOfMovies;
 	}
 
 	private function createFromApi($statementRes)
