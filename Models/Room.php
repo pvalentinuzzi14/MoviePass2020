@@ -8,8 +8,12 @@ class Room {
     private $capacity;
     private $ticketPrice;
 
-    public function __construct() {
-
+    public function __construct($cinema="",$name="",$capacity=" ",$ticketPrice=" ",$state=1) {
+        $this->name = $name;
+        $this->cinema = $cinema;
+        $this->capacity = $capacity;
+        $this->ticketPrice = $ticketPrice;
+        $this->state = $state;
     }
 
     public function getId() {

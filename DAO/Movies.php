@@ -9,6 +9,23 @@ class Movies{
 	
 	private $connection;
 
+	public function retrieveDurationOneMovieFromApi($id) {
+        $json = file_get_contents("https://api.themoviedb.org/3/movie/" . $id . "?api_key=" . API_KEY);
+        $APIDataArray = json_decode($json, true);
+        $runtime = $APIDataArray["runtime"];
+        if($runtime == null) {
+            $runtime = 90;
+        }
+        return $runtime;
+    }
+
+    public function retrieveTrailerOneMovieFromApi($id) {
+        $json = file_get_contents("https://api.themoviedb.org/3/movie/" . $id . "/videos?api_key=" . API_KEY);
+        $APIDataArray = json_decode($json, true);
+        $link = $APIDataArray["results"][0]["key"];
+        return "https://www.youtube.com/embed/" . $link;
+    }
+
 	/*----------------------------- DB -----------------------------*/
 	public function add(Movie $item)
 	{

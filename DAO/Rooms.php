@@ -33,6 +33,8 @@ class Rooms{
 		$room->setName($statementRes['room_name']);
 		$room->setCapacity($statementRes['capacity']);
 		$room->setTicketPrice($statementRes['ticket_price']);
+		$room->setCinema($statementRes['cinema_name']);
+
 		return $room;
 	}
 
@@ -41,7 +43,8 @@ class Rooms{
 		$roomsList = array();
 
 		try {
-			$sql = "SELECT * FROM rooms";
+			$sql = "SELECT r.idRooms,r.room_name,r.state,r.capacity,r.ticket_price,c.cinema_name 
+			FROM rooms r INNER JOIN cinemas c ON c.idCinemas=r.id_cinema";
 			$this->connection = Connection::getInstance();
 			
 			$statement = $this->connection->execute($sql);
@@ -60,6 +63,33 @@ class Rooms{
 		return $roomsList;
 	}
 
+	public function getAllAvaible()
+	{
+		$cinemasList = array();
+
+		try {
+			$sql = "SELECT r.idRooms,r.room_name,r.state,r.capacity,r.ticket_price,c.cinema_name 
+			FROM rooms r INNER JOIN cinemas c ON c.idCinemas=r.id_cinema
+			WHERE r.state=1" ;
+			
+			$this->connection = Connection::getInstance();
+			
+			$statement = $this->connection->execute($sql);
+
+			if(!empty($statement))
+			{
+				foreach ($statement as $value) {
+					$cineAux = $this->create($value);
+					array_push($cinemasList,$cineAux);
+				}
+			}
+		} catch (PDOException $e) {
+			throw $e;
+		}
+
+		return $cinemasList;
+	}
+
 	public function getOne($id)
 	{
 		$room = null;
@@ -67,7 +97,9 @@ class Rooms{
 		try {
 			$parameters['id'] = $id; 
 
-			$sql = "SELECT * FROM rooms WHERE idRooms=:id";
+			$sql = "SELECT r.idRooms,r.room_name,r.state,r.capacity,r.ticket_price,c.cinema_name 
+			FROM rooms r INNER JOIN cinemas c ON c.idCinemas=r.id_cinema
+			WHERE idRooms=:id";
 			
 			$this->connection = Connection::getInstance();
 			
@@ -89,7 +121,7 @@ class Rooms{
 		$parameters['id'] = $id; 
         $parameters['delete_state'] = 0; 
 
-        $sql = "UPDATE rooms SET (state= :delete_state) WHERE idRooms=:id";
+        $sql = "UPDATE rooms SET state= :delete_state WHERE idRooms=:id";
 		$statement = 0;
 		try {
 		$this->connection = Connection::getInstance();
@@ -106,7 +138,7 @@ class Rooms{
 		try {
             $parameters['newState'] = $newState;
 			$parameters ['id'] = $id;
-			$query = "UPDATE rooms SET (state = :newState) WHERE idRooms = :id";		
+			$query = "UPDATE rooms SET state = :newState WHERE idRooms = :id";		
 			
 			$this->connection = Connection::getInstance();
 			$value = $this->connection->executeNonQuery($query,$parameters);
@@ -122,7 +154,7 @@ class Rooms{
 		try {
             $parameters['room'] = $nombre;
 			$parameters ['id'] = $id;
-			$query = "UPDATE rooms SET (room_name = :room) WHERE idRooms = :id";		
+			$query = "UPDATE rooms SET room_name = :room WHERE idRooms = :id";		
 			
 			$this->connection = Connection::getInstance();
 			$value = $this->connection->executeNonQuery($query,$parameters);
@@ -138,7 +170,7 @@ class Rooms{
 		try {
             $parameters['new'] = $idroom;
 			$parameters ['id'] = $id;
-			$query = "UPDATE rooms SET (id_room = :new) WHERE idRooms = :id";		
+			$query = "UPDATE rooms SET id_room = :new WHERE idRooms = :id";		
 			
 			$this->connection = Connection::getInstance();
 			$value = $this->connection->executeNonQuery($query,$parameters);
@@ -154,7 +186,7 @@ class Rooms{
 		try {
             $parameters['newCapacity'] = $newCapacity;
 			$parameters ['id'] = $id;
-			$query = "UPDATE rooms SET (capacity = :newCapacity) WHERE idRooms = :id";		
+			$query = "UPDATE rooms SET capacity = :newCapacity WHERE idRooms = :id";		
 			
 			$this->connection = Connection::getInstance();
 			$value = $this->connection->executeNonQuery($query,$parameters);
@@ -170,7 +202,7 @@ class Rooms{
 		try {
             $parameters['newPrice'] = $newPrice;
 			$parameters ['id'] = $id;
-			$query = "UPDATE rooms SET (ticket_price = :newPrice) WHERE idRooms = :id";		
+			$query = "UPDATE rooms SET ticket_price = :newPrice WHERE idRooms = :id";		
 			
 			$this->connection = Connection::getInstance();
 			$value = $this->connection->executeNonQuery($query,$parameters);

@@ -1,8 +1,18 @@
 <div class="container bg-light m-auto p-3" style="opacity: 0.8;" >
+<div class="row">
+  <div class="col-md-10">
+    <h1 class="page-header">
+    Cinemas
+    </h1>
+  </div>
+  <div class="col-md-1">
+  <button type="button" class="btn btn-primary btn-lg "><a class="text-light" href="<?php echo FRONT_ROOT ;?>/Cinema/showAddView">Agregar</a>
+  </button>
+  </div>
+ 
+</div>
 
-<h1 class="page-header">
-   Cinemas
-</h1>
+
 <table class="table table-hover p-5">
 
 
@@ -12,11 +22,13 @@
            <th>Id</th>
            <th>Nombre</th>
            <th>Direccion</th>
-           <th>Cantidad de Salas</th>
+           <th>Cant. Salas</th>
            <th>Disponibilidad</th>
-           <th>Editar</th>
-           <th>Habilitar</th>
-           <th>Deshabilitar</th>
+           <th>Apertura</th>
+           <th>Cierre</th>
+           <th></th>
+           <th></th>
+           <th></th>
 
       </tr>
     </thead>
@@ -30,6 +42,14 @@
              <td> <?php echo $value->getAddress(); ?> </td>
              <td> <?php echo $value->getRooms();?> </td>
              <td> <?php echo ($value->getState() == 1)? "Disponible":"Fuera de Servicio";?> </td>
+             <td> <?php              
+             $open_time_date=strtotime($value->getOpeningTime());
+             echo date("h:i A", $open_time_date);
+             ?> </td>
+             <td> <?php
+              $close_time_date=strtotime($value->getClosingTime());
+              echo date("h:i A", $close_time_date); 
+            ?> </td>
              <td>
               <form  action="<?php echo FRONT_ROOT ;?>/Cinema/update" method="POST"> 
                   <input type="hidden" name="deleteID" value='<?php echo $value->getId(); ?>'>

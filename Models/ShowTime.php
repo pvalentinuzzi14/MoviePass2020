@@ -8,7 +8,7 @@ class Showtime {
     private $ticketsSold;
     private $totalTickets;
     private $ticketPrice;
-    private $auditorium;
+    private $room;
     private $movie;
 
     public function __construct() {
@@ -87,12 +87,12 @@ class Showtime {
         $this->ticketPrice = $ticketPrice;
     }
     
-    public function getAuditorium() {
-        return $this->auditorium;
+    public function getroom() {
+        return $this->room;
     }
 
-    public function setAuditorium($auditorium) {
-        $this->auditorium = $auditorium;
+    public function setroom($room) {
+        $this->room = $room;
     }
 
     public function getMovie() {
