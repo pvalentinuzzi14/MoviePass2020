@@ -11,8 +11,9 @@ class Rooms{
 	public function add(Room $item)
 	{
 			try {
-				$query = "INSERT INTO rooms (state,room_name,capacity,ticket_price) VALUES (:state,:room_name,:capacity,:ticket_price)";
+				$query = "INSERT INTO rooms (state,id_cinema,room_name,capacity,ticket_price) VALUES (:state,:id_cinema,:room_name,:capacity,:ticket_price)";
 				$parameters["state"] = $item->getState();
+				$parameters["id_cinema"] = $item->getCinema();
 				$parameters["room_name"] = $item->getName();
 				$parameters["capacity"] = $item->getcapacity();
 				$parameters["ticket_price"] = $item->getTicketPrice();				
