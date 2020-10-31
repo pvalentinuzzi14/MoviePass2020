@@ -64,13 +64,8 @@ class Cinema {
     }
 
     public function setClosingTime($closingTime) {
-        $return = 1;
-        if($closingTime != "00:00")
-            $this->closingTime = $closingTime;
-        else
-            $return = 0;
-        return $return;
-    }
+        $this->closingTime = $closingTime;
+   }
 
     public function getRooms()
     {

@@ -35,8 +35,13 @@ class Cinemas{
 		$cinema->setName($statementRes['cinema_name']);
 		$cinema->setAddress($statementRes['address']);
 		$cinema->setOpeningTime($statementRes['opening_time']);
-		$cinema->setOpeningTime($statementRes['closing_time']);
-		$cinema->setRooms($statementRes['quantity_rooms']);
+		$cinema->setClosingTime($statementRes['closing_time']);
+		if($statementRes['quantity_rooms'] != null)
+		{
+			$cinema->setRooms($statementRes['quantity_rooms']);
+		}else{
+			$cinema->setRooms(0);
+		}
 		return $cinema;
 	}
 
@@ -45,11 +50,10 @@ class Cinemas{
 		$cinemasList = array();
 
 		try {
-			$sql = "SELECT * FROM cinemas c INNER JOIN (
+			$sql = "SELECT * FROM cinemas c LEFT OUTER JOIN (
 			SELECT id_cinema,COUNT(id_cinema) AS 'quantity_rooms' FROM rooms GROUP BY id_cinema
 			) rxc ON c.`idCinemas`=rxc.id_cinema";
-			
-				
+
 			
 			$this->connection = Connection::getInstance();
 			
@@ -74,7 +78,7 @@ class Cinemas{
 		$cinemasList = array();
 
 		try {
-			$sql = "SELECT * FROM cinemas c INNER JOIN (
+			$sql = "SELECT * FROM cinemas c LEFT OUTER JOIN (
 			SELECT id_cinema,COUNT(id_cinema) AS 'quantity_rooms' FROM rooms GROUP BY id_cinema
 			) rxc ON c.`idCinemas`=rxc.id_cinema WHERE c.state=1" ;
 			
@@ -142,7 +146,7 @@ class Cinemas{
 	public function updateName($id,$nombre)
 	{
 		try {
-			$query = "UPDATE cinemas SET (cinema_name = :cinema) WHERE idCinemas = :id";		
+			$query = "UPDATE cinemas SET cinema_name = :cinema WHERE idCinemas = :id";		
 			$parameters['cinema'] = $nombre;
 			$parameters ['id'] = $id;
 
@@ -158,7 +162,7 @@ class Cinemas{
 	public function updateAddress($id,$newAddress)
 	{
 		try {
-			$query = "UPDATE cinemas SET (address = :address_param) WHERE idCinemas = :id";		
+			$query = "UPDATE cinemas SET address = :address_param WHERE idCinemas = :id";		
 			$parameters['address_param'] = $newAddress;
 			$parameters ['id'] = $id;
 
@@ -173,7 +177,7 @@ class Cinemas{
 	public function updateOpeningTime($id,$newOpenTime)
 	{
 		try {
-			$query = "UPDATE cinemas SET (opening_time = :openTime) WHERE idCinemas = :id";		
+			$query = "UPDATE cinemas SET opening_time = :openTime WHERE idCinemas = :id";		
 			$parameters['openTime'] = $newOpenTime;
 			$parameters ['id'] = $id;
 
@@ -188,7 +192,7 @@ class Cinemas{
 	public function updateClosingTime($id,$newCloseTime)
 	{
 		try {
-			$query = "UPDATE cinemas SET (closing_time = :closeTime) WHERE idCinemas = :id";		
+			$query = "UPDATE cinemas SET closing_time = :closeTime WHERE idCinemas = :id";		
 			$parameters['closeTime'] = $newCloseTime;
 			$parameters ['id'] = $id;
 

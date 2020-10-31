@@ -29,8 +29,8 @@ CREATE TABLE Users (idUsers INT AUTO_INCREMENT NOT NULL,
             cinema_name VARCHAR(40),
             state TINYINT(1),
             address VARCHAR(40),
-            opening_time VARCHAR(10),
-            closing_time VARCHAR(10),
+            opening_time TIME(4),
+            closing_time TIME(4),
             CONSTRAINT pk_cinemas PRIMARY KEY(idCinemas),
             CONSTRAINT unq_cinemas UNIQUE(cinema_name));
  
