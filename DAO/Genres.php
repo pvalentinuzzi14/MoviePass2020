@@ -63,9 +63,9 @@
             $genre = null;
     
             try {
-                $parameters['id_api_genre'] = $id; 
+                $parameters['id_genre'] = $id; 
     
-                $sql = "SELECT * FROM genres WHERE id_api_genre=:id";
+                $sql = "SELECT * FROM genres WHERE id_genre=:id";
                 
                 $this->connection = Connection::getInstance();
                 
@@ -73,13 +73,13 @@
     
                 if(!empty($statement))
                 {
-                    $genre = $this->create($statement[0]);
+                    $movie = $this->create($statement[0]);
                 }
             } catch (PDOException $e) {
                 throw $e;
             }
     
-            return $genre;
+            return $movie;
         }
       
 
@@ -92,7 +92,7 @@
         return $genre;
     }
 
-    public function insertFromApiToDb() 
+    public function RetrieveDataFromApi() 
 	{
 		$jsonContent = file_get_contents("https://api.themoviedb.org/3/genre/movie/list?api_key=2f0f4f905a5085a4cb6411b8c639165b&language=es-ES");
 		$arrayToDecode =($jsonContent) ? json_decode($jsonContent,true) : array();
@@ -100,9 +100,10 @@
         
 		foreach($arrayToDecode['genres'] as $value):
 			$genre =$this->createFromApi($value);
-			$this->add($genre);
+			array_push($arrayOfGenres,$genre);
 		endforeach;	
 
+		return $arrayOfGenres;
 	}
 }
 ?>
