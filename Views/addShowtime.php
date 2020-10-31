@@ -7,34 +7,21 @@
             <div class="col-md">
                     <label class="text-light" for="movieShowtime">Pelicula</label>
                     <select class="form-control" name="movieShowtime" id="movieShowtime">
-                        <?php  ?>    
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <?php foreach ($moviesArray as $value): ?> 
+                           <option value="<?php echo $value->getId();?>">
+                                <?php echo $value->getTitle();?>
+                            </option>
+                        <?php endforeach;  ?>    
                     </select>                
                 </div>
-                <div class="col-md">
-                    <label class="text-light" for="cinema">Cine</label>
-                    <select class="form-control" name="cinema" id="cinema">
-                        <?php  ?>    
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>                    
-                </div>
-                <div class="col-md">
+                  <div class="col-md">
                     <label class="text-light" for="roomShowtime">Sala</label>
                     <select class="form-control" name="roomShowtime" id="roomShowtime">
-                        <?php  ?>    
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                       <?php foreach ($roomsArray as $value3): ?> 
+                           <option value="<?php echo $value3->getId();?>">
+                                <?php echo $value3->getName();?>
+                            </option>
+                        <?php endforeach;  ?>    
                     </select>                    
                 </div>
                 <div class="col-md">

@@ -1,5 +1,7 @@
 <nav class="navbar-expand-lg navbar navbar-dark bg-dark mb-5">
-  <a class="navbar-brand text-light" href="<?php echo FRONT_ROOT; ?>/Home/Index">Movie Pass 2020</a>
+  <a class="navbar-brand text-light" href="<?php echo FRONT_ROOT; ?>/Home/Index">
+  <img src="<?php echo FRONT_ROOT; ?>/layout/logo.png" alt="logo" height="60rem" class="p-1">
+</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
