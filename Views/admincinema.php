@@ -51,8 +51,8 @@
               echo date("h:i A", $close_time_date); 
             ?> </td>
              <td>
-              <form  action="<?php echo FRONT_ROOT ;?>/Cinema/update" method="POST"> 
-                  <input type="hidden" name="deleteID" value='<?php echo $value->getId(); ?>'>
+              <form  action="<?php echo FRONT_ROOT ;?>/Cinema/updateCinema" method="POST"> 
+                  <input type="hidden" name="updateID" value='<?php echo $value->getId(); ?>'>
                   <button type="submit" class='btn btn-warning text-dark mt-0' value="1"> 
                     <span><i class="fa fa-edit"></i></span>   
                   </button>

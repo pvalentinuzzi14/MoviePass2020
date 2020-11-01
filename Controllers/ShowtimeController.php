@@ -1,5 +1,4 @@
 <?php
-
 namespace Controllers;
 
     use DAO\Showtimes as D_showtime;

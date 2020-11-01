@@ -53,6 +53,38 @@ namespace Controllers;
             $adminController = new AdminController();
             $adminController->Index();
         }
+        public function updateCinema($id)
+        {
+            $cinema = $this->_cinema->getOne($id);
+            require_once(VIEWS_PATH."updateCinema.php");
+        }
+        public function updateName($id,$name)
+        {
+            $this->_cinema->updateName($id,$name);
+            $adminController = new AdminController();
+            $adminController->Index();
+        }
+
+        public function updateAddress($id, $address)
+        {
+            $this->_cinema->updateAddress($id,$address);
+            $adminController = new AdminController();
+            $adminController->Index();
+        }
+
+        public function updateOpeningTime($id,$openingTime)
+        {
+            $this->_cinema->updateOpeningTime($id,$openingTime);
+            $adminController = new AdminController();
+            $adminController->Index();
+        }
+
+        public function updateClosingTime($id,$closingTime)
+        {
+            $this->_cinema->updateName($id,$closingTime);
+            $adminController = new AdminController();
+            $adminController->Index();
+        }
         
 
         

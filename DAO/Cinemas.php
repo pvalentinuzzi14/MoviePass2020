@@ -105,13 +105,12 @@ class Cinemas{
 	public function getOne($id)
 	{
 		$cinema = null;
-
+	
 		try {
-			$parameters['id'] = $id; 
-
+			$parameters['id'] = $id; 		
 			$sql = "SELECT * FROM cinemas c INNER JOIN (
 				SELECT id_cinema,COUNT(id_cinema) AS 'quantity_rooms' FROM rooms GROUP BY id_cinema
-				) rxc ON c.`idCinemas`=rxc.id_cinema WHERE idCinemas=:id";
+			) rxc ON c.`idCinemas`=rxc.id_cinema WHERE idCinemas= $id";
 			
 			$this->connection = Connection::getInstance();
 			
@@ -124,8 +123,8 @@ class Cinemas{
 		} catch (PDOException $e) {
 			throw $e;
 		}
-
 		return $cinema;
+
 	}
 
 	public function remove($id)
