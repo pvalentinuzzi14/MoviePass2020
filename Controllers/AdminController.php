@@ -29,7 +29,6 @@ namespace Controllers;
                require_once(VIEWS_PATH."/adminContent.php");
           
         }
-
         
 
     }

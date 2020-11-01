@@ -6,7 +6,7 @@
       
 
   <div class="col-sm text-center">         
-      <form class="" action="<?php echo FRONT_ROOT;?>/Admin/Index" method="post" >
+      <form class="" action="<?php echo FRONT_ROOT;?>/User/Login" method="post" >
       
       <h4 class="text-center text-danger"><?php 
         if (isset($_GET['error']))
@@ -27,5 +27,6 @@
           <div class="form-group">
             <input type="submit" name="submit" class="btn btn-primary" >
           </div>
+          <p>No se encuentra registrado?</p><a class="text-primary" href="<?php echo FRONT_ROOT;?>/User/Register">Registrarse</a>
       </form>
   </div>  

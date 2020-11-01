@@ -79,6 +79,25 @@ class Users{
     }
     return $userList;
 }
+
+public function checkUserList()
+{
+    try
+    {
+        $query = "SELECT COUNT(*) as quantity FROM users";
+
+        $this->connection = Connection::getInstance();
+
+        $resultSet = $this->connection->execute($query);  //traigo users
+
+    }
+    catch (PDOException $e)
+    {
+        throw $e;
+    }
+    return $resultSet[0]['quantity'];
+}
+
 /* Devuelve un user a partir del id*/
 public function retrieveOne($id)
  {
@@ -138,6 +157,24 @@ public function updateLastName($id, $lastName)
     {
         $this->connection = Connection::getInstance();
         $value = $this->connection->executeNonQuery($query, $parameters);
+    }
+    catch(PDOException $e)
+    {
+        throw $e;
+    }
+    return $value;
+}
+
+public function checkUserToLogin($email,$password)
+{
+    $parameters['email'] = $email;
+    $parameters['password'] = $password;
+    $query = "SELECT u.idUsers,u.email FROM users u WHERE u.email=:email AND u.password =:password";
+
+    try
+    {
+        $this->connection = Connection::getInstance();
+        $value = $this->connection->execute($query, $parameters);
     }
     catch(PDOException $e)
     {

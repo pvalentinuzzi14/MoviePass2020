@@ -19,9 +19,19 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-    <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin/Index">ADMIN</a>
+    <?php if(!isset($_SESSION['userName'])){ 
+      echo"<a class='dropdown-item text-light item' href=" .FRONT_ROOT. "/login/Index>LOG IN</a>";
+    }else{?>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?php echo $_SESSION['userName'];?>
+        </a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/changeProfile">Modificar Perfil</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
+        </div>
+      </li> 
+    <?php }?>
     </form>
-    
-   
   </div>
 </nav>

@@ -12,7 +12,7 @@ class UsersRole {
 
         try
         {
-            $query = "INSERT INTO user_roles (id, description) VALUES (:id, :description)";
+            $query = "INSERT INTO userrole (id, description) VALUES (:id, :description)";
             $parameters["id"] = $userRole->getId();
             $parameters["description"] = $userRole->getDescription();
 
@@ -39,7 +39,7 @@ class UsersRole {
 
         try
         {
-            $query = "SELECT * FROM user_roles";
+            $query = "SELECT * FROM userrole";
 
             $this->connection = Connection::getInstance();
 
@@ -67,7 +67,7 @@ class UsersRole {
         {
             $parameters['id'] = $id;
 
-            $query = "SELECT * FROM user_roles WHERE id=:id";
+            $query = "SELECT * FROM userrole WHERE id=:id";
 
             $this->connection = Connection::getInstance();
 
