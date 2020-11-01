@@ -21,25 +21,40 @@ namespace Controllers;
             $this->_movies = new D_Movies();
         }
 
-        public function add($name,$address,$openingTime="",$closingTime="")
+        public function add($id,$id3,$date,$time)
         {
-            $cinema = new M_showtime($name,$address,$openingTime,$closingTime);
-          //  $this->showtime->add($cinema);
+            $showtime = new M_showtime();
+            $dato = $this->_rooms->getOne($id3);
+            $showtime->setRoom($dato);
+            $movieData = $this->_movies->getOne($id);
+            $showtime->setMovie($movieData);
+            $showtime->setTotalTickets($dato->getCapacity());
+            $showtime->setTicketPrice($dato->getTicketPrice());
+            $showtime->setOpeningTime($time);
+            $showtime->setTicketsSold(0);
+            $showtime->setClosingTime($time);
+            $showtime->setDate($date);
 
-        $adminController = new AdminController();
-        $adminController->Index();
-        }      
+            $this->showtime->create($showtime);
+
+           $adminController = new AdminController();
+           $adminController->Index();
+        } 
+        public function getAll()
+        {
+            return $this->showtime->retrieveAll();
+        }   
 
         public function remove($id)
         {
-          //  $this->showtime->remove($id);
+            $this->showtime->remove($id);
             $adminController = new AdminController();
             $adminController->Index();
         }
 
 
         public function showAddView(){
-            $roomsArray = $this->_rooms->getAll();
+            $roomsArray = $this->_rooms->getAllAvaible();
             $moviesArray= $this->_movies->RetrieveDB();
 
             require_once(VIEWS_PATH."addshowtime.php");

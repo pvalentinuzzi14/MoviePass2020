@@ -80,8 +80,8 @@ CREATE TABLE movies
  CREATE TABLE showtimes
             (id INT AUTO_INCREMENT,
             date_showtime VARCHAR(15),
-            opening_time VARCHAR(10),
-            closing_time VARCHAR(10),
+            opening_time TIME(4),
+            closing_time TIME(4),
             tickets_sold INT,
             total_tickets INT,
             ticket_price INT,

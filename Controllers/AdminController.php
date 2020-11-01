@@ -6,6 +6,7 @@ namespace Controllers;
     use Models\Cinema as Cinema;
     use Controllers\CinemaController as CinemaCont;
     use Controllers\RoomController as RoomCont;
+    use Controllers\ShowtimeController as ShowTimeCont;
     use DAO\Movies as Movies;
     use Models\Movie as Movie;
 
@@ -20,9 +21,10 @@ namespace Controllers;
         {
                 $roomController = new RoomCont();
                 $cinemaController = new CinemaCont();
+                $showtimeController = new ShowTimeCont();
                 $cinemaArray = $cinemaController->getAll();
                 $roomsArray = $roomController->getAll();
-
+                $showtimeList = $showtimeController->getAll();
 
                require_once(VIEWS_PATH."/adminContent.php");
           

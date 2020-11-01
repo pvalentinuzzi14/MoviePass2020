@@ -15,8 +15,6 @@
 
 
 <table class="table table-hover p-5">
-
-
     <thead>
 
       <tr>
@@ -36,27 +34,18 @@
     </thead>
     <tbody>
     <?php
-       // foreach ($cinemaArray as $value):?>
-
+          foreach ($showtimeList as $value):?>
           <tr>
-             <td> <?php //echo $value->getId(); ?></td>
-             <td> <?php //echo $value->getName(); ?> </td>  
-             <td> <?php //echo $value->getAddress(); ?> </td>
-             <td> <?php //echo $value->getRooms();?> </td>
-             <td> <?php  ?> </td>
-             <td> <?php              
-             /*$open_time_date=strtotime($value->getOpeningTime());
-             echo date("h:i A", $open_time_date);*/
-             ?> </td>
-             <td> </td>
-             <td>
-             
-            </td>
+             <td> <?php echo $value->getId(); ?></td>
+             <td> <?php echo $value->getdate(); ?> </td>  
+             <td> <?php echo $value->getmovie()->getTitle(); ?> </td>
+             <td> <?php echo $value->getRoom()->getCinema();?> </td>
+             <td> <?php echo $value->getRoom()->getName(); ?> </td>
+             <td> <?php echo $value->getTicketPrice();?> </td>
+             <td> <?php echo $value->getTotalTickets();?> </td>
+             <td> <?php echo $value->getTicketsSold();?> </td>
             <td>
-             
-            </td>
-            <td>
-              <form  action="<?php echo FRONT_ROOT ;?>/Cinema/Remove" method="POST"> 
+              <form  action="<?php echo FRONT_ROOT ;?>/showTime/Remove" method="POST"> 
                   <input type="hidden" name="deleteID" value='<?php echo $value->getId(); ?>'>
                   <button type="submit" class='btn btn-danger text-light mt-0' value="1"> 
                   <span><i class="fa fa-times-circle"></i></span>   
@@ -68,11 +57,8 @@
           </tr>
   
 
-        <?php //endforeach; ?>
-
+        <?php endforeach; ?>
   </tbody>
+  
 </table>
-
-
-
 </div>

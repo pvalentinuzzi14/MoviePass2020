@@ -8,7 +8,7 @@
                     <label class="text-light" for="movieShowtime">Pelicula</label>
                     <select class="form-control" name="movieShowtime" id="movieShowtime">
                     <?php foreach ($moviesArray as $value): ?> 
-                           <option value="<?php echo $value->getId();?>">
+                           <option value="<?php echo $value->getIdBd();?>">
                                 <?php echo $value->getTitle();?>
                             </option>
                         <?php endforeach;  ?>    
@@ -18,15 +18,21 @@
                     <label class="text-light" for="roomShowtime">Sala</label>
                     <select class="form-control" name="roomShowtime" id="roomShowtime">
                        <?php foreach ($roomsArray as $value3): ?> 
-                           <option value="<?php echo $value3->getId();?>">
-                                <?php echo $value3->getName();?>
+                           <option value="<?php echo $value3->getId();?>">                              
+                                <?php 
+                                    echo $value3->getCinema()."-". $value3->getName();
+                                ?>
                             </option>
                         <?php endforeach;  ?>    
                     </select>                    
                 </div>
                 <div class="col-md">
                     <label class="text-light" for="dateShowtime">Fecha</label>
-                    <input type="datetime-local" name="dateShowtime" class="form-control m-auto" id="dateShowtime" placeholder="Ingrese una fecha" required>
+                    <input type="date" name="date" class="form-control m-auto" id="dateShowtime" placeholder="Ingrese una fecha" required>
+                </div>
+                <div class="col-md">
+                    <label class="text-light" for="dateShowtime">Hora</label>
+                    <input type="time" name="time" class="form-control m-auto" id="dateShowtime" placeholder="Ingrese una fecha" required>
                 </div>
             </div>
             <div class="row align-right p-2">

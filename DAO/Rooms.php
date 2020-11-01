@@ -104,7 +104,7 @@ class Rooms{
 			
 			$this->connection = Connection::getInstance();
 			
-			$statement = $this->connection->execute($sql);
+			$statement = $this->connection->execute($sql,$parameters);
 
 			if(!empty($statement))
 			{

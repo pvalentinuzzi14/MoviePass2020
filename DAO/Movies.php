@@ -97,6 +97,7 @@ class Movies{
 		$array = array();
 		$movie = new Movie();
 		$movie->setId($statementRes['id_api_movie']);
+		$movie->setIdBd($statementRes['id_movie']);
 		$movie->setScore($statementRes['score']);
 		$movie->setTitle($statementRes['name_movie']);
 		$movie->setOverview($statementRes['overview']);
@@ -115,11 +116,11 @@ class Movies{
 		try {
 			$parameters['id'] = $id; 
 
-			$sql = "SELECT * FROM movie WHERE id_movie=:id";
+			$sql = "SELECT * FROM movies WHERE id_movie=:id";
 			
 			$this->connection = Connection::getInstance();
 			
-			$statement = $this->connection->execute($sql);
+			$statement = $this->connection->execute($sql,$parameters);
 
 			if(!empty($statement))
 			{

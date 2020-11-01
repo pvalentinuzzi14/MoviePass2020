@@ -105,16 +105,16 @@ class Cinemas{
 	public function getOne($id)
 	{
 		$cinema = null;
-	
+		
 		try {
 			$parameters['id'] = $id; 		
 			$sql = "SELECT * FROM cinemas c INNER JOIN (
 				SELECT id_cinema,COUNT(id_cinema) AS 'quantity_rooms' FROM rooms GROUP BY id_cinema
-			) rxc ON c.`idCinemas`=rxc.id_cinema WHERE idCinemas= $id";
+			) rxc ON c.`idCinemas`=rxc.id_cinema WHERE idCinemas= :id";
 			
 			$this->connection = Connection::getInstance();
 			
-			$statement = $this->connection->execute($sql);
+			$statement = $this->connection->execute($sql,$parameters);
 
 			if(!empty($statement))
 			{

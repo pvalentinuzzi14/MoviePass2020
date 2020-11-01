@@ -11,12 +11,12 @@ class Showtimes {
 
     private $connection;
 
-    public function create(M_showtime $showtime) {
+    public function create(M_showtime $showtime) 
+    {
         $value = 0;
-
         try
         {
-            $query = "INSERT INTO showtimes (date, opening_time, closing_time, id_Room, id_movie, tickets_sold, total_tickets, ticket_price) VALUES (:date, :openingTime, :closingTime, :idRoom, :idMovie, :ticketsSold, :totalTickets, :ticketPrice)";
+            $query = "INSERT INTO showtimes (date_showtime, opening_time, closing_time, id_rooms, id_movie, tickets_sold, total_tickets, ticket_price) VALUES (:date, :openingTime, :closingTime, :idRoom, :idMovie, :ticketsSold, :totalTickets, :ticketPrice)";
             $parameters["date"] = $showtime->getDate();
             $parameters["openingTime"] = $showtime->getOpeningTime();
             $parameters["closingTime"] = $showtime->getClosingTime();
@@ -39,8 +39,9 @@ class Showtimes {
 
     private function read($row) {
         $showtime = new M_Showtime();
+
         $showtime->setID($row["id"]);
-        $showtime->setDate($row["date"]);
+        $showtime->setDate($row["date_showtime"]);
         $showtime->setOpeningTime($row["opening_time"]);
         $showtime->setClosingTime($row["closing_time"]);
         $showtime->setTicketsSold($row["tickets_sold"]);
@@ -54,7 +55,7 @@ class Showtimes {
 
         try
         {
-            $query = "SELECT * FROM showtimes ORDER BY date,opening_time";
+            $query = "SELECT * FROM showtimes ORDER BY date_showtime,opening_time";
 
             $this->connection = Connection::getInstance();
 
@@ -64,7 +65,7 @@ class Showtimes {
                 foreach ($resultSet as $row) {
                     $showtime = $this->read($row);
 
-                    $idRoom = $row["id_Room"];
+                    $idRoom = $row["id_rooms"];
                     $idMovie = $row["id_movie"];
 
                     $RoomDAO = new D_Rooms();
@@ -234,7 +235,6 @@ class Showtimes {
         $parameters['id'] = $id;
         $parameters['ticketsSold'] = $ticketsSold;
         $query = "UPDATE showtimes SET tickets_sold=:ticketsSold WHERE id=:id";
-  
         $value = 0;
 
         try
@@ -248,5 +248,19 @@ class Showtimes {
         }
         return $value;
     }
+    public function remove($id)
+	{
+		$parameters['id'] = $id; 
+		$sql = "DELETE from showtimes WHERE id =:id";
+		$statement = 0;
+		try {
+		$this->connection = Connection::getInstance();
+		$statement = $this->connection->executeNonQuery($sql,$parameters);		
+		}catch (PDOException $ex) {
+			throw $ex;
+		}
+
+		return $statement;
+	}
 
 }

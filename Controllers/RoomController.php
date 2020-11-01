@@ -39,13 +39,13 @@ namespace Controllers;
         public function GetAll(){
             return $this->_room->getAll();
         }
-
+        /*CAMBIALO JUAN*/
         public function GetAllAvaible(){
             return $this->_room->getAllAvaible();
         }
 
         public function showAddView(){
-            $cinemaArray = $this->_cinema->getAll();
+            $cinemaArray = $this->_cinema->getAllAvaible();
             require_once(VIEWS_PATH."addRoom.php");
         }
 
