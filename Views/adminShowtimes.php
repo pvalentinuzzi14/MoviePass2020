@@ -20,6 +20,7 @@
       <tr>
            <th>Id</th>
            <th>Fecha</th>
+           <th>Hora</th>
            <th>Nombre Pelicula</th>
            <th>Cine</th>
            <th>Sala</th>
@@ -38,6 +39,10 @@
           <tr>
              <td> <?php echo $value->getId(); ?></td>
              <td> <?php echo $value->getdate(); ?> </td>  
+             <td> <?php 
+             $open_time_date=strtotime($value->getOpeningTime());
+             echo date("h:i A", $open_time_date);
+              ?> </td>  
              <td> <?php echo $value->getmovie()->getTitle(); ?> </td>
              <td> <?php echo $value->getRoom()->getCinema();?> </td>
              <td> <?php echo $value->getRoom()->getName(); ?> </td>

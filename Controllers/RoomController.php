@@ -16,7 +16,6 @@ namespace Controllers;
         {
             $this->_room = new D_Rooms();
             $this->_cinema = new D_Cinemas();
-
         }
 
         public function add($cinema="",$name="",$capacity="",$ticketPrice="")

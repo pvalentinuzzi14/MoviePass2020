@@ -52,10 +52,9 @@ class Showtimes {
 
     public function retrieveAll() {
         $showtimeList = array();
-
         try
         {
-            $query = "SELECT * FROM showtimes ORDER BY date_showtime,opening_time";
+            $query = "SELECT * FROM showtimes sh WHERE DATEDIFF(sh.date_showtime,CURDATE()) ORDER BY date_showtime,opening_time";
 
             $this->connection = Connection::getInstance();
 
@@ -88,13 +87,53 @@ class Showtimes {
         return $showtimeList;
     }
 
+    public function retrieveAllAvailable() {
+        $showtimeList = array();
+        try
+        {
+            $query = "SELECT *,COUNT(s.id_movie) FROM showtimes s INNER JOIN 
+            movies m ON m.`id_movie` = s.`id_movie` GROUP BY s.id_movie
+            ";
+
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($query);
+
+            if(!empty($resultSet)) {
+                foreach ($resultSet as $row) {
+                    $showtime = $this->read($row);
+
+                    $idRoom = $row["id_rooms"];
+                    $idMovie = $row["id_movie"];
+
+                    $RoomDAO = new D_Rooms();
+                    $Room = $RoomDAO->getOne($idRoom);
+
+                    $movieDAO = new D_Movies();
+                    $movie = $movieDAO->getOne($idMovie);
+
+                    $showtime->setRoom($Room);
+                    $showtime->setMovie($movie);
+
+                    array_push($showtimeList, $showtime);
+                }
+            }
+        }
+        catch (PDOException $e)
+        {
+            throw $e;
+        }
+        return $showtimeList;
+    }
+
+
     public function retrieveAllByDate($date) {
         $showtimeList = array();
 
         try
         {
             $parameters['date'] = $date;
-            $query = "SELECT * FROM showtimes where date=:date ORDER BY date,opening_time";
+            $query = "SELECT * FROM showtimes where date_showtime=:date ORDER BY date_showtime,opening_time";
 
             $this->connection = Connection::getInstance();
 
@@ -104,7 +143,7 @@ class Showtimes {
                 foreach ($resultSet as $row) {
                     $showtime = $this->read($row);
 
-                    $idRoom = $row["id_Room"];
+                    $idRoom = $row["id_rooms"];
                     $idMovie = $row["id_movie"];
 
                     $RoomDAO = new D_Rooms();
@@ -261,6 +300,32 @@ class Showtimes {
 		}
 
 		return $statement;
-	}
+    }
 
+    public function getDateAvailable()
+	{
+		$datelist = array();
+        try
+        {
+            $query = "SELECT date_showtime AS 'fecha',COUNT(date_showtime) FROM showtimes GROUP BY date_showtime";
+
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($query);
+
+            if(!empty($resultSet)) {
+                foreach ($resultSet as $row) {
+					$date = $row['fecha'];
+                    array_push($datelist, $date);
+                }
+            }
+        }
+        catch (PDOException $e)
+        {
+            throw $e;
+        }
+        return $datelist;
+    	
+	}
+ 
 }

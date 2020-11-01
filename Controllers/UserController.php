@@ -53,15 +53,14 @@ namespace Controllers;
             if($flag!=null){
                 $_SESSION['userID']=$flag[0]['idUsers'];
                 $_SESSION['userName']=$flag[0]['email'];
-                $admin = new AdminCont();
-                $admin->Index();
+               header("location:../Admin/index");
+               
             }
         }
 
         public function logout(){
             session_destroy();
-            $home = new Home();
-            $home->Index();
+            header("location:../index.php");
         }
 
     }
