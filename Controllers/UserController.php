@@ -51,10 +51,10 @@ namespace Controllers;
         {
             $flag = $this->usersDao->checkUserToLogin($userName,$password);
             if($flag!=null){
+                $user = $this->usersDao->retrieveOne($flag[0]['idUsers']);
                 $_SESSION['userID']=$flag[0]['idUsers'];
-                $_SESSION['userName']=$flag[0]['email'];
+                $_SESSION['userName']=$user->getFirstName();
                header("location:../Admin/index");
-               
             }
         }
 

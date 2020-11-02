@@ -107,7 +107,7 @@ public function retrieveOne($id)
     {
         $parameters['id'] = $id;
 
-        $query = "SELECT * FROM users WHERE id=:id";
+        $query = "SELECT * FROM users WHERE idUsers=:id";
 
         $this->connection = Connection::getInstance();
 
