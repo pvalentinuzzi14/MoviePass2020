@@ -45,6 +45,11 @@ namespace Controllers;
             return $this->showtime->retrieveAll();
         }   
 
+        public function getAlltoListAdmin()
+        {
+            return $this->showtime->retrieveAlltoList();
+        }   
+
         public function remove($id)
         {
             $this->showtime->remove($id);

@@ -29,6 +29,19 @@ namespace Controllers;
                require_once(VIEWS_PATH."/adminContent.php");
           
         }
+
+        public function AllFunctions()
+        {
+                $roomController = new RoomCont();
+                $cinemaController = new CinemaCont();
+                $showtimeController = new ShowTimeCont();
+                $cinemaArray = $cinemaController->getAll();
+                $roomsArray = $roomController->getAll();
+                $showtimeList = $showtimeController->getAlltoListAdmin();
+
+               require_once(VIEWS_PATH."/adminAllShowtimes.php");
+          
+        }
         
 
     }
