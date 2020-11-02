@@ -33,10 +33,14 @@ use DAO\Genres as GenreDao;
 
         public function GetAllbyDate($date){
             $genres = $this->genres->RetrieveDB();
+            if($date==(-1)){
+                $this->GetAll();
+            }else{
             $movies = $this->showtime->retrieveAllbyDate($date);
             $dates = $this->showtime->getDateAvailable();
-        
-            require_once(VIEWS_PATH."movies.php");
+            require_once(VIEWS_PATH."moviesdate.php");
+            }
+            
         }
 
 

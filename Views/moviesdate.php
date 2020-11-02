@@ -32,33 +32,20 @@
           foreach($movies as $values):
         ?>
                   <?php  
-                  if(isset($_GET['genre'])&&($_GET['genre']!=(-1))){
-                    foreach($values->getMovie()->getGenre_ids() as $moviesGenres):
-                      if($_GET['genre']==$moviesGenres){
+                  if(isset($_GET['date'])&&($_GET['date']!=(-1))){
+                    if($_GET['date']==$values->getDate()){
                   ?>
-                          <div class="col-md-4" >
-                            <div class="card mb-4 box-shadow bg-dark">
-                              <h5 class="text-light text-center"><?php echo $values->getMovie()->getTitle();?></h5>
-                              <a type="button" data-toggle="modal" data-target="#modal-id<?php echo $values->getMovie()->getId();?>">
-                              <img src="<?php echo $values->getMovie()->getImage();?>" alt="img" style="cursor:pointer;" class="card-img-top">
-                              </a>
-                            </div>
-                          </div>
-                  <?php 
-                      }
-                    endforeach;
-                    }else{
-                        ?>
-                        <div class="col-md-4" >
-                            <div class="card mb-4 box-shadow bg-dark">
-                              <h5 class="text-light text-center"><?php echo $values->getMovie()->getTitle();?></h5>
-                              <a type="button" data-toggle="modal" data-target="#modal-id<?php echo $values->getMovie()->getId();?>">
-                              <img src="<?php echo $values->getMovie()->getImage();?>" alt="img" style="cursor:pointer;" class="card-img-top">
-                              </a>
-                            </div>
-                          </div>
-                          <?php 
-                    }endforeach;  ?>
+                      <div class="col-md-4" >
+                        <div class="card mb-4 box-shadow bg-dark">
+                          <h5 class="text-light text-center"><?php echo $values->getMovie()->getTitle();?></h5>
+                          <a type="button" data-toggle="modal" data-target="#modal-id<?php echo $values->getMovie()->getId();?>">
+                          <img src="<?php echo $values->getMovie()->getImage();?>" alt="img" style="cursor:pointer;" class="card-img-top">
+                          </a>
+                        </div>
+                    </div>
+          <?php     }}
+              endforeach;
+        ?>
         </div>
       </div>
   </div>
