@@ -19,6 +19,9 @@ namespace Controllers;
 
         public function Index()
         {
+            if(isset($_SESSION['userID']))
+            {
+
                 $roomController = new RoomCont();
                 $cinemaController = new CinemaCont();
                 $showtimeController = new ShowTimeCont();
@@ -27,6 +30,22 @@ namespace Controllers;
                 $showtimeList = $showtimeController->getAll();
 
                require_once(VIEWS_PATH."/adminContent.php");
+            }else{
+                header("location:../index.php");
+            }
+          
+        }
+
+        public function AllFunctions()
+        {
+                $roomController = new RoomCont();
+                $cinemaController = new CinemaCont();
+                $showtimeController = new ShowTimeCont();
+                $cinemaArray = $cinemaController->getAll();
+                $roomsArray = $roomController->getAll();
+                $showtimeList = $showtimeController->getAlltoListAdmin();
+
+               require_once(VIEWS_PATH."/adminAllShowtimes.php");
           
         }
 
