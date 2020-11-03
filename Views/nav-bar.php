@@ -29,6 +29,7 @@
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin/Index">Administrar</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/changeProfile">Modificar Perfil</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/RefreshMovies">Actualizar Peliculas</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
         </div>
       </li> 

@@ -143,7 +143,10 @@ class Movies{
 		
 		foreach($arrayToDecode['results'] as $value):
 			$movie =$this->createFromApi($value);
-			$this->add($movie);
+			$flag = $this->controlMovie($movie->getId());
+			if($flag == false){
+				$this->add($movie);
+			}
 		endforeach;	
 	}
 
@@ -206,6 +209,28 @@ class Movies{
         return $showtimeList;
     }
 	
+	
+	private function controlMovie($id)
+	{
+		$flag=null;
+		
+		try{
+			$parameters['id'] = $id; 
+			$sql= "SELECT id_api_movie FROM movies WHERE id_api_movie = :id";
+			$this->connection = Connection::getInstance();
+			$row = $this->connection->execute($sql,$parameters);
+			if($row == null){
+				$flag = false;
+			}else{
+				$flag=true;
+			}
+			
+		}catch (PDOException $e)
+        {
+            throw $e;
+        }
+		return $flag;
+	}
 	
 
 }
