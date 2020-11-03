@@ -18,9 +18,13 @@ use DAO\Genres as GenreDao;
         public function RefreshData($message = "")
         {
             $this->genres->insertFromApiToDb();
-            $this->movies->insertFromApiToDb();
-           
-        }      
+            $this->movies->insertFromApiToDb(); 
+        }  
+        
+        public function RefreshMovies()
+        {
+            $this->movies->insertFromApiToDb(); 
+        }
         
         public function GetAll(){
             $genres = $this->genres->RetrieveDB();
