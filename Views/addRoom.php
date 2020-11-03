@@ -21,11 +21,11 @@
                 </div>
                 <div class="col-md">
                     <label class="text-light" for="capacity">Capacidad</label>
-                    <input type="number" name="capacity" class="form-control" id="capacity" placeholder="Indique la capacidad" required>
+                    <input min="1" max="999" type="number" name="capacity" class="form-control" id="capacity" placeholder="Indique la capacidad" required>
                 </div>
                 <div class="col-md">
                     <label class="text-light" for="ticketPrice">Precio</label>
-                    <input type="number" name="ticketPrice" class="form-control m-auto" id="ticketPrice" placeholder="Precio $$" required>
+                    <input type="number" min="100" name="ticketPrice" class="form-control m-auto" id="ticketPrice" placeholder="Precio $$" required>
                 </div>
                
             </div>

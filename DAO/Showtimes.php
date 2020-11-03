@@ -87,6 +87,43 @@ class Showtimes {
         return $showtimeList;
     }
 
+    public function retrieveAlltoList() {
+        $showtimeList = array();
+        try
+        {
+            $query = "SELECT * FROM showtimes ORDER BY date_showtime,opening_time";
+
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($query);
+
+            if(!empty($resultSet)) {
+                foreach ($resultSet as $row) {
+                    $showtime = $this->read($row);
+
+                    $idRoom = $row["id_rooms"];
+                    $idMovie = $row["id_movie"];
+
+                    $RoomDAO = new D_Rooms();
+                    $Room = $RoomDAO->getOne($idRoom);
+
+                    $movieDAO = new D_Movies();
+                    $movie = $movieDAO->getOne($idMovie);
+
+                    $showtime->setRoom($Room);
+                    $showtime->setMovie($movie);
+
+                    array_push($showtimeList, $showtime);
+                }
+            }
+        }
+        catch (PDOException $e)
+        {
+            throw $e;
+        }
+        return $showtimeList;
+    }
+
     public function retrieveAllAvailable() {
         $showtimeList = array();
         try
@@ -307,7 +344,7 @@ class Showtimes {
 		$datelist = array();
         try
         {
-            $query = "SELECT date_showtime AS 'fecha',COUNT(date_showtime) FROM showtimes GROUP BY date_showtime";
+            $query = "SELECT date_showtime AS 'fecha',COUNT(date_showtime) FROM showtimes sh WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1))GROUP BY date_showtime";
 
             $this->connection = Connection::getInstance();
 

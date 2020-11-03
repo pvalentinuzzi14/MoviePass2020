@@ -1,20 +1,16 @@
 <div class="container bg-light m-auto p-3" style="opacity: 0.8;" >
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-10">
     <h1 class="page-header">
      Funciones
     </h1>
   </div>
-  <div class="col-md-2">
-  <button type="button" class="btn btn-primary btn-lg ">
-   <a class="text-light" href="<?php echo FRONT_ROOT ;?>/Admin/AllFunctions">Mostrar todos</a>
-  </button>
-  </div>
   <div class="col-md-1">
   <button type="button" class="btn btn-primary btn-lg ">
-      <a class="text-light" href="<?php echo FRONT_ROOT ;?>/Showtime/showAddView">Agregar</a>
+   <a class="text-light" href="<?php echo FRONT_ROOT ;?>/Admin/Index">Volver</a>
   </button>
   </div>
+
  
 </div>
 
