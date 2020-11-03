@@ -54,7 +54,7 @@ class Showtimes {
         $showtimeList = array();
         try
         {
-            $query = "SELECT * FROM showtimes sh WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1)) ORDER BY date_showtime,opening_time";
+            $query = "SELECT * FROM showtimes sh WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1))  > 0  ORDER BY date_showtime,opening_time";
 
             $this->connection = Connection::getInstance();
 
@@ -344,7 +344,8 @@ class Showtimes {
 		$datelist = array();
         try
         {
-            $query = "SELECT date_showtime AS 'fecha',COUNT(date_showtime) FROM showtimes sh WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1))GROUP BY date_showtime";
+            $query = "SELECT date_showtime AS 'fecha',COUNT(date_showtime) FROM showtimes sh 
+            WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1)) > 0 GROUP BY date_showtime";
 
             $this->connection = Connection::getInstance();
 

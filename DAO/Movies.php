@@ -182,32 +182,7 @@ class Movies{
 	}
 	
 	
-    public function retrieveMoviesAvailable() {
-        $showtimeList = array();
-        try
-        {
-            $query = "SELECT * FROM movies m INNER JOIN (
-                SELECT date_showtime AS 'fecha',id_movie AS 'idMovie',COUNT(id_movie) 
-                FROM showtimes GROUP BY id_movie
-                ) disp ON m.id_movie = disp.idMovie WHERE DATEDIFF(disp.fecha,CURDATE())";
-
-            $this->connection = Connection::getInstance();
-
-            $resultSet = $this->connection->execute($query);
-
-            if(!empty($resultSet)) {
-                foreach ($resultSet as $row) {
-                    $showtime = $this->create($row);
-                    array_push($showtimeList, $showtime);
-                }
-            }
-        }
-        catch (PDOException $e)
-        {
-            throw $e;
-        }
-        return $showtimeList;
-    }
+   
 	
 	
 	private function controlMovie($id)
