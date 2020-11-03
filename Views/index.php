@@ -1,13 +1,37 @@
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="https://i.blogs.es/da62f5/dolby-cinema-2/1366_2000.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://www.adslzone.net/app/uploads/2019/11/pelicula-cine-cartelera-tiemp.jpg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="https://cdnmundo3.img.sputniknews.com/img/106290/75/1062907509_0:185:1024:738_1000x541_80_0_0_e7a171cb66555c14c2cb282c9eb61f48.jpg" alt="Third slide">
-    </div>
+      <img class="d-block w-100" src="<?php echo $movies[0]->getMovie()->getBackground();?>" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h5><?php echo $movies[0]->getMovie()->getTitle();?></h5>
+    <p><?php echo $movies[0]->getMovie()->getOverview();?></p>
   </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="<?php echo $movies[1]->getMovie()->getBackground();?>" alt="Second slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h5><?php echo $movies[1]->getMovie()->getTitle();?></h5>
+    <p><?php echo $movies[1]->getMovie()->getOverview();?></p>
+  </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="<?php echo $movies[2]->getMovie()->getBackground();?>" alt="Third slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h5><?php echo $movies[2]->getMovie()->getTitle();?></h5>
+    <p><?php echo $movies[2]->getMovie()->getOverview();?></p>
+  </div>
+    </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
