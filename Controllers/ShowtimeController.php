@@ -57,7 +57,6 @@ namespace Controllers;
             $adminController->Index();
         }
 
-
         public function showAddView(){
             $roomsArray = $this->_rooms->getAllAvaible();
             $moviesArray= $this->_movies->RetrieveDB();
@@ -65,7 +64,10 @@ namespace Controllers;
             require_once(VIEWS_PATH."addshowtime.php");
         }
 
-
+        public function getTrailer($id){
+            $url=$this->showtime->retrieveTrailerOneMovieFromApi($id);
+            return $url;
+        }
         
 
         
