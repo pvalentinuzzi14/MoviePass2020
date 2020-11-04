@@ -3,6 +3,7 @@
 namespace Controllers;
 use DAO\Movies as MovieDao;
 use DAO\Showtimes as ShowtimeDao;
+use Controllers\ShowtimeController as ST_Controller;
 
 use DAO\Genres as GenreDao;
 
@@ -13,7 +14,6 @@ use DAO\Genres as GenreDao;
             $this->movies = new MovieDao();
             $this->genres = new GenreDao();
             $this->showtime = new showtimeDao();
-
         }
         public function RefreshData($message = "")
         {
@@ -28,10 +28,9 @@ use DAO\Genres as GenreDao;
         
         public function GetAll(){
             $genres = $this->genres->RetrieveDB();
-           $movies = $this->showtime->retrieveAllAvailable();
-           $dates = $this->showtime->getDateAvailable();
-           
-            
+            $movies = $this->showtime->retrieveAllAvailable();
+            $dates = $this->showtime->getDateAvailable();
+            $showtimeCont = new ST_Controller();
             require_once(VIEWS_PATH."movies.php");
         }
 

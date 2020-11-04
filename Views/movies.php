@@ -67,7 +67,7 @@
       <?php foreach($movies as $values):?>
           <div class="modal fade" id="modal-id<?php echo $values->getMovie()->getId();?>" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content bg-dark text-light">
               <div class="modal-header">
               <h3 class="modal-title"><?php echo $values->getMovie()->getTitle();?></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -75,25 +75,24 @@
                 </button>
               </div>
               <div class="modal-body">
+              <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+              <iframe class="embed-responsive-item" src="<?php echo $showtimeCont->getTrailer($values->getMovie()->getId());?>"
+                allowfullscreen></iframe>
+              </div>
               <h5>Resumen:</h5>
               <p class="text-justify"><?php echo $values->getMovie()->getOverview();?></p>
-              <hr><br>
-              <p>Fecha Estreno: <?php echo $values->getMovie()->getRelease_date();?></p>
-              <br>
-              <p> Genero: 
+              <hr>              
+              </ul>
+              </div>
+              <p class="text-center"> 
               <?php foreach($values->getMovie()->getGenre_ids() as $genresId):?>
                 <?php foreach($genres as $valuesGenres):
                   if($genresId == $valuesGenres->getId()){
-                    echo $valuesGenres->getName()." ";
+                    echo $valuesGenres->getName()."|";
                   }
                 endforeach;?>
               <?php endforeach;?>
               </p>
-              </ul>
-              </div>
-              <div class="modal-footer">
-                <a type="button" class="btn-lg btn-secondary" href="#">Ver Trailer</a>
-              </div>
             </div>
             </div>
           </div>
