@@ -37,12 +37,11 @@ class Users{
  private function read($value) 
  {
     $user = new User();
-    $user->setId($value["id"]);
+    $user->setId($value["idUsers"]);
     $user->setEmail($value["email"]);
     $user->setPassword($value["password"]);
     $user->setFirstName($value["first_name"]);
     $user->setLastName($value["last_name"]);
-    $user->setPhoto($value["photo"]);
     $user->setIdFacebook($value["id_facebook"]);
 
     /*User Role*/
@@ -129,7 +128,7 @@ public function updateFirstName($id, $firstName)
 {
     $parameters['id'] = $id;
     $parameters['firstName'] = $firstName;
-    $query = "UPDATE users SET first_name=:firstName WHERE id=:id";
+    $query = "UPDATE users SET first_name=:firstName WHERE idUsers=:id";
 
     $value = 0;
 
@@ -149,7 +148,7 @@ public function updateLastName($id, $lastName)
 {
     $parameters['id'] = $id;
     $parameters['lastName'] = $lastName;
-    $query = "UPDATE users SET last_name=:lastName WHERE id=:id";
+    $query = "UPDATE users SET last_name=:lastName WHERE idUsers=:id";
 
     $value = 0;
 

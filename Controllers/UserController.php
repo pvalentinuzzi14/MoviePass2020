@@ -28,6 +28,11 @@ namespace Controllers;
             require_once(VIEWS_PATH."/register.php"); 
         }
 
+        public function Update(){
+            $user=$this->usersDao->retrieveOne($_SESSION['userID']);
+            require_once(VIEWS_PATH."/updateProfile.php"); 
+        }
+
         public function add($email,$password,$firstName,$lastName)
         {
             $user = new M_user();
@@ -54,13 +59,26 @@ namespace Controllers;
                 $user = $this->usersDao->retrieveOne($flag[0]['idUsers']);
                 $_SESSION['userID']=$flag[0]['idUsers'];
                 $_SESSION['userName']=$user->getFirstName();
-               header("location:../Admin/index");
+                $_SESSION['userRole']=$user->getUserRole()->getId();
+                if($user->getUserRole()->getId()==1){
+                    header("location:../Admin/index");
+                }else{
+                    header("location:../Home/index");
+                }
+               
             }
         }
 
         public function logout(){
             session_destroy();
             header("location:../index.php");
+        }
+
+        public function changeProfile($firstName,$lastName){
+            $this->usersDao->updateFirstName($_SESSION['userID'],$firstName);
+            $this->usersDao->updateLastName($_SESSION['userID'],$lastName);
+            $_SESSION['userName']=$firstName;
+            $this->Update();
         }
 
     }

@@ -8,32 +8,37 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Acciones
-        </a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/GetAll">Listar Peliculas Actuales</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Cinema/ShowListView">Listar Cines</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
+      <li class="nav-item"><a class="nav-link text-light" href="<?php echo FRONT_ROOT; ?>/Movie/GetAll">Pelicula</a> </li>
+      <li class="nav-item"><a class="nav-link text-light" href="<?php echo FRONT_ROOT; ?>/Cinema/ShowListView">Cines</a></li>
+    </div>
+    <form class="form-inline my-0 my-lg-0">
     <?php if(!isset($_SESSION['userName'])){ 
       echo"<a class='dropdown-item text-light item' href=" .FRONT_ROOT. "/login/Index>LOG IN</a>";
-    }else{?>
-      <li class="nav-item dropdown">
+    }else if($_SESSION['userRole']==1){?>
+      <label class="nav-item dropleft">
         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <?php echo $_SESSION['userName'];?>
         </a>
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin/Index">Administrar</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/changeProfile">Modificar Perfil</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/RefreshMovies">Actualizar Peliculas</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
         </div>
-      </li> 
-    <?php }?>
+      </label> 
+    <?php }else{?>
+      <label class="nav-item dropleft">
+        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?php echo $_SESSION['userName'];?>
+        </a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item text-light item" href="#">Comprar Entradas</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
+          <a class="dropdown-item text-light item" href="#">Actualizar Peliculas</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
+        </div>
+    </label> 
+      <?php }?>
     </form>
   </div>
 </nav>
