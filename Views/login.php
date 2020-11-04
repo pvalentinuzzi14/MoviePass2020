@@ -11,7 +11,7 @@
       <h4 class="text-center text-danger"><?php 
         if (isset($_GET['error']))
         {
-            echo "<p> {$_GET['error']}</p>";
+            echo "<p>Usuario/Contraseña incorrectos</p>";
         }
       ?></h4>
       
