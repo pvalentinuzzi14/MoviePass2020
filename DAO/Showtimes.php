@@ -54,7 +54,7 @@ class Showtimes {
         $showtimeList = array();
         try
         {
-            $query = "SELECT * FROM showtimes sh WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1)) ORDER BY date_showtime,opening_time";
+            $query = "SELECT * FROM showtimes sh WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1))>0 ORDER BY date_showtime,opening_time";
 
             $this->connection = Connection::getInstance();
 
@@ -365,6 +365,11 @@ class Showtimes {
     	
     }
     
-    
+    public function retrieveTrailerOneMovieFromApi($id) {
+        $json = file_get_contents("https://api.themoviedb.org/3/movie/" . $id . "/videos?api_key=" . API_KEY);
+        $APIDataArray = json_decode($json, true);
+        $link = $APIDataArray["results"][0]["key"];
+        return "https://www.youtube.com/embed/" . $link;
+	}
  
 }
