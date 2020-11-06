@@ -76,7 +76,7 @@
               </div>
               <div class="modal-body">
               <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-              <iframe class="embed-responsive-item" src="<?php echo $showtimeCont->getTrailer($values->getMovie()->getId());?>"
+              <iframe class="embed-responsive-item" src="<?php echo $values->getMovie()->getTrailer();?>"
                 allowfullscreen></iframe>
               </div>
               <h5>Resumen:</h5>

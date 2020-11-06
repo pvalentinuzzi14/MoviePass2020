@@ -30,7 +30,6 @@ use DAO\Genres as GenreDao;
             $genres = $this->genres->RetrieveDB();
             $movies = $this->showtime->retrieveAllAvailable();
             $dates = $this->showtime->getDateAvailable();
-            $showtimeCont = new ST_Controller();
             require_once(VIEWS_PATH."movies.php");
         }
 

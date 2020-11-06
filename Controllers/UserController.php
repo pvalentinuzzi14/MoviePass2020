@@ -4,8 +4,6 @@ namespace Controllers;
 
     use DAO\Users as D_user;
     use DAO\UsersRole as D_usersRole;
-    use Controllers\AdminController as AdminCont;
-    use Controllers\HomeController as Home;
     use Models\User as M_user;
     class UserController{
 

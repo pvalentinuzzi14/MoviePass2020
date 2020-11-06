@@ -106,6 +106,7 @@ class Movies{
 		$movie->setImage($statementRes['poster']);
 		$array = $this->getGenresById($statementRes['id_movie']);
 		$movie->setGenre_ids($array);
+		$movie->setTrailer($statementRes['id_api_movie']);
 		return $movie;
 	}
 

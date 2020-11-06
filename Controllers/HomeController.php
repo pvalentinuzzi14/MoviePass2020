@@ -14,7 +14,6 @@
         public function Index($message = "")
         {
             $movies = $this->showtime->getAll();
-            $showtime= $this->showtime;
             require_once(VIEWS_PATH."index.php");
         }        
     }

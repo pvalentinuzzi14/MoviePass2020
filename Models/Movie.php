@@ -13,6 +13,7 @@ class Movie
     private $background;
     private $idBd;
     private $score;
+    private $trailer;
 
 
     public function __construct()   
@@ -216,6 +217,33 @@ class Movie
     public function setScore($score)
     {
         $this->score = $score;
+
+        return $this;
+    }
+
+    public function retrieveTrailerOneMovieFromApi($id) {
+        $json = file_get_contents("https://api.themoviedb.org/3/movie/" . $id . "/videos?api_key=" . API_KEY);
+        $APIDataArray = json_decode($json, true);
+        $link = $APIDataArray["results"][0]["key"];
+        return "https://www.youtube.com/embed/" . $link;
+	}
+
+    /**
+     * Get the value of trailer
+     */ 
+    public function getTrailer()
+    {
+       return $this->trailer;
+    }
+
+    /**
+     * Set the value of trailer
+     *
+     * @return  self
+     */ 
+    public function setTrailer($id)
+    {
+        $this->trailer= $this->retrieveTrailerOneMovieFromApi($id);
 
         return $this;
     }
