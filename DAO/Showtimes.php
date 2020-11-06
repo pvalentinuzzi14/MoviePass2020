@@ -54,7 +54,10 @@ class Showtimes {
         $showtimeList = array();
         try
         {
-            $query = "SELECT * FROM showtimes sh WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1))  > 0  ORDER BY date_showtime,opening_time";
+            $query = "SELECT * FROM rooms r INNER JOIN (SELECT m.*,sh.`id`,sh.`date_showtime`,
+                      sh.`opening_time`,sh.`closing_time`,sh.`tickets_sold`,sh.`total_tickets`,sh.`id_rooms` FROM
+                      showtimes sh INNER JOIN movies m ON m.`id_movie`=sh.`id_movie` WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1))> 0) sub ON 
+                      r.`idRooms`=sub.id_rooms ORDER BY sub.date_showtime,sub.opening_time";
 
             $this->connection = Connection::getInstance();
 
@@ -64,16 +67,28 @@ class Showtimes {
                 foreach ($resultSet as $row) {
                     $showtime = $this->read($row);
 
-                    $idRoom = $row["id_rooms"];
-                    $idMovie = $row["id_movie"];
+                    $room = new M_room();
+                    $room->setID($row['id_rooms']);
+                    $room->setState($row['state']);
+                    $room->setName($row['room_name']);
+                    $room->setCapacity($row['capacity']);
+                    $room->setTicketPrice($row['ticket_price']);
+                    $room->setCinema($row['id_cinema']);
 
-                    $RoomDAO = new D_Rooms();
-                    $Room = $RoomDAO->getOne($idRoom);
+                    $movie = new M_movie();
+                    $movieDao = new D_Movies();
+                    $movie->setId($row['id_api_movie']);
+                    $movie->setIdBd($row['id_movie']);
+                    $movie->setScore($row['score']);
+                    $movie->setTitle($row['name_movie']);
+                    $movie->setOverview($row['overview']);
+                    $movie->setBackground($row['background']);
+                    $movie->setRelease_date($row['uploading_date']);
+                    $movie->setImage($row['poster']);
+                    $array = $movieDao->getGenresById($row['id_movie']);
+                    $movie->setGenre_ids($array);
 
-                    $movieDAO = new D_Movies();
-                    $movie = $movieDAO->getOne($idMovie);
-
-                    $showtime->setRoom($Room);
+                    $showtime->setRoom($room);
                     $showtime->setMovie($movie);
 
                     array_push($showtimeList, $showtime);
@@ -128,10 +143,11 @@ class Showtimes {
         $showtimeList = array();
         try
         {
-            $query = "SELECT *,COUNT(s.id_movie) FROM showtimes s INNER JOIN 
-            movies m ON m.`id_movie` = s.`id_movie` GROUP BY s.id_movie
-            ";
-
+            $query = "SELECT *,COUNT(sub.id_movie) FROM rooms r INNER JOIN (SELECT m.*,sh.`id`,sh.`date_showtime`,
+            sh.`opening_time`,sh.`closing_time`,sh.`tickets_sold`,sh.`total_tickets`,sh.`id_rooms` FROM
+            showtimes sh INNER JOIN movies m ON m.`id_movie`=sh.`id_movie` WHERE DATEDIFF(sh.date_showtime,(CURDATE()-1))> 0) sub ON 
+            r.`idRooms`=sub.id_rooms GROUP BY sub.id_movie ORDER BY sub.date_showtime,sub.opening_time";
+            
             $this->connection = Connection::getInstance();
 
             $resultSet = $this->connection->execute($query);
@@ -140,18 +156,29 @@ class Showtimes {
                 foreach ($resultSet as $row) {
                     $showtime = $this->read($row);
 
-                    $idRoom = $row["id_rooms"];
-                    $idMovie = $row["id_movie"];
+                    $room = new M_room();
+                    $room->setID($row['id_rooms']);
+                    $room->setState($row['state']);
+                    $room->setName($row['room_name']);
+                    $room->setCapacity($row['capacity']);
+                    $room->setTicketPrice($row['ticket_price']);
+                    $room->setCinema($row['id_cinema']);
 
-                    $RoomDAO = new D_Rooms();
-                    $Room = $RoomDAO->getOne($idRoom);
+                    $movie = new M_movie();
+                    $movieDao = new D_Movies();
+                    $movie->setId($row['id_api_movie']);
+                    $movie->setIdBd($row['id_movie']);
+                    $movie->setScore($row['score']);
+                    $movie->setTitle($row['name_movie']);
+                    $movie->setOverview($row['overview']);
+                    $movie->setBackground($row['background']);
+                    $movie->setRelease_date($row['uploading_date']);
+                    $movie->setImage($row['poster']);
+                    $array = $movieDao->getGenresById($row['id_movie']);
+                    $movie->setGenre_ids($array);
 
-                    $movieDAO = new D_Movies();
-                    $movie = $movieDAO->getOne($idMovie);
-
-                    $showtime->setRoom($Room);
+                    $showtime->setRoom($room);
                     $showtime->setMovie($movie);
-
                     array_push($showtimeList, $showtime);
                 }
             }

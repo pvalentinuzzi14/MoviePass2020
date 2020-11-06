@@ -8,7 +8,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link text-light" href="<?php echo FRONT_ROOT; ?>/Movie/GetAll">Pelicula</a> </li>
+      <li class="nav-item"><a class="nav-link text-light" href="<?php echo FRONT_ROOT; ?>/Movie">Pelicula</a> </li>
       <li class="nav-item"><a class="nav-link text-light" href="<?php echo FRONT_ROOT; ?>/Cinema/ShowListView">Cines</a></li>
     </div>
     <form class="form-inline my-0 my-lg-0">
@@ -20,7 +20,7 @@
           <?php echo $_SESSION['userName'];?>
         </a>
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin/Index">Administrar</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin">Administrar</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/RefreshMovies">Actualizar Peliculas</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
@@ -34,7 +34,6 @@
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class="dropdown-item text-light item" href="#">Comprar Entradas</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
-          <a class="dropdown-item text-light item" href="#">Actualizar Peliculas</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
         </div>
     </label> 

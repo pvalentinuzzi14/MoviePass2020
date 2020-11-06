@@ -26,7 +26,7 @@ use DAO\Genres as GenreDao;
             $this->movies->insertFromApiToDb(); 
         }
         
-        public function GetAll(){
+        public function Index(){
             $genres = $this->genres->RetrieveDB();
             $movies = $this->showtime->retrieveAllAvailable();
             $dates = $this->showtime->getDateAvailable();
@@ -37,7 +37,7 @@ use DAO\Genres as GenreDao;
         public function GetAllbyDate($date){
             $genres = $this->genres->RetrieveDB();
             if($date==(-1)){
-                $this->GetAll();
+                $this->Index();
             }else{
             $movies = $this->showtime->retrieveAllbyDate($date);
             $dates = $this->showtime->getDateAvailable();
