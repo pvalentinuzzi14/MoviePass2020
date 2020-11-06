@@ -1,4 +1,4 @@
-<main>
+<main class="container-fluid">
 	<body class="bodyAdministration">
 	<div class="bg-dark container rounded p-3">
     <h2 class="text-light">Actualizar Usuario</h2> 
