@@ -10,6 +10,13 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item"><a class="nav-link text-light" href="<?php echo FRONT_ROOT; ?>/Movie">Pelicula</a> </li>
       <li class="nav-item"><a class="nav-link text-light" href="<?php echo FRONT_ROOT; ?>/Cinema/ShowListView">Cines</a></li>
+      <li class="nav-item"><a class="nav-link text-light" href="<?php echo FRONT_ROOT; ?>/User/Contact">Contacto</a> </li>
+
+      <li class="nav-item">
+
+      
+      </li>
+
     </div>
     <form class="form-inline my-0 my-lg-0">
     <?php if(!isset($_SESSION['userName'])){ 

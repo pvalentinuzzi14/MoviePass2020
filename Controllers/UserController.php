@@ -81,5 +81,10 @@ namespace Controllers;
             $this->Update();
         }
 
+        public function contact()
+        {
+            require_once(VIEWS_PATH.'/contact.php');
+        }
+
     }
 ?>

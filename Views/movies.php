@@ -88,11 +88,22 @@
               <?php foreach($values->getMovie()->getGenre_ids() as $genresId):?>
                 <?php foreach($genres as $valuesGenres):
                   if($genresId == $valuesGenres->getId()){
-                    echo $valuesGenres->getName()."|";
+                    echo "• ".$valuesGenres->getName();
                   }
                 endforeach;?>
-              <?php endforeach;?>
-              </p>
+              <?php endforeach;?></p>
+              <br><br>
+              <div class="row p-1 mb-3">
+                <div class="col-2"></div>
+                <div class="col-7 text-center">
+              <button class="btn btn-primary" type="submit">
+                <a class="text-light" href="<?php echo FRONT_ROOT.'/Showtime/getTicket';?>">COMPRAR TICKET</a>
+              </button>
+              </div>
+                <div class="col-2"></div>
+
+                
+              </div>
             </div>
             </div>
           </div>
