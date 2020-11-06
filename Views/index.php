@@ -12,7 +12,7 @@
         <div class="carousel-caption d-none d-md-block">
       <h5><?php echo $movies[$i]->getMovie()->getTitle();?></h5>
       <p><?php echo $movies[$i]->getMovie()->getOverview();?></p>
-      <a class="btn btn-dark text-light" href="<?php echo $showtime->getTrailer($movies[$i]->getMovie()->getId());?>">Ver Trailer</a>
+      <a class="btn btn-dark text-light" href="<?php echo $movies[$i]->getMovie()->getTrailer();?>">Ver Trailer</a>
     </div>
       </div>
     <?php }?>

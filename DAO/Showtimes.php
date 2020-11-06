@@ -392,12 +392,5 @@ class Showtimes {
         return $datelist;
     	
     }
-    
-    public function retrieveTrailerOneMovieFromApi($id) {
-        $json = file_get_contents("https://api.themoviedb.org/3/movie/" . $id . "/videos?api_key=" . API_KEY);
-        $APIDataArray = json_decode($json, true);
-        $link = $APIDataArray["results"][0]["key"];
-        return "https://www.youtube.com/embed/" . $link;
-	}
  
 }
