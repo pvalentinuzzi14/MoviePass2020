@@ -78,7 +78,7 @@ class Movies{
     }
 
 	//busca en genres_per_movie segun id_movie y devuelve los id de generos incluidos en la pelicula
-	private function getGenresById($id)
+	public function getGenresById($id)
 	{
 		$array = array();
 		//$parameters['id']=$id;
