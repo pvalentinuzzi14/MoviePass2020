@@ -47,7 +47,13 @@ namespace Controllers;
 
                require_once(VIEWS_PATH."/adminAllShowtimes.php");
           
-        }        
+        }    
+        
+        public function getStats()
+        {
+             require_once(VIEWS_PATH."/adminStats.php");
+          
+        }    
 
     }
 ?>

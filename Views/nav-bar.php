@@ -28,6 +28,8 @@
         </a>
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin">Administrar</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin/getStats">Estadisticas</a>
+
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/RefreshMovies">Actualizar Peliculas</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
