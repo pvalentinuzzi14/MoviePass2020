@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
-<main class="container-fluid">
-	<body class="bodyAdministration">
-	<div class="bg-dark container rounded p-3">
-=======
 <?php require_once(VIEWS_PATH."header.php"); ?>
 
 <div class="bg-dark container rounded p-3">
->>>>>>> Stashed changes
     <h2 class="text-light">Actualizar Usuario</h2> 
     <div class="container rounded"> 
         <form class="mt-5" action="<?php echo FRONT_ROOT ;?>/User/ChangeProfile" method="POST">
