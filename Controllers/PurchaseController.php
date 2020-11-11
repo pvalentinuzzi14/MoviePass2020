@@ -38,5 +38,18 @@ class PurchaseController{
 
     }
 
+    public function confirm($id,$ticket){
+        $D_showtime = new D_Showtime();
+        if(isset($_SESSION['userName'])){
+            echo $ticket." ".$id;
+            $showtime = $D_showtime->retrieveShowtimesById($id);
+            $total = $ticket*$showtime->getTicketPrice();
+            require_once(VIEWS_PATH."confirm_ticket.php");
+        }else{
+            $userCont = new UserController();
+            $userCont->Index();
+        }
+    }
+
 
 }

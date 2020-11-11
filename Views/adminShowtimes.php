@@ -25,14 +25,15 @@
       <tr>
            <th>Id</th>
            <th>Fecha</th>
-           <th>Hora</th>
+           <th>Inicio</th>
+           <th>Fin</th>
            <th>Nombre Pelicula</th>
            <th>Cine</th>
            <th>Sala</th>
            <th>Precio Ticket</th>
            <th>Tickets disponibles</th>
            <th>Tickets vendidos</th>
-           <th></th>
+           
            <th></th>
            <th></th>
 
@@ -48,6 +49,10 @@
              $open_time_date=strtotime($value->getOpeningTime());
              echo date("h:i A", $open_time_date);
               ?> </td>  
+              <td> <?php 
+             $close_time_date=strtotime($value->getClosingTime());
+             echo date("h:i A", $close_time_date);
+              ?> </td> 
              <td> <?php echo $value->getmovie()->getTitle(); ?> </td>
              <td> <?php echo $value->getRoom()->getCinema();?> </td>
              <td> <?php echo $value->getRoom()->getName(); ?> </td>

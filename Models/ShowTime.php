@@ -104,5 +104,17 @@ class Showtime {
         $remaining = $this->getTotalTickets() - $this->getTicketsSold();
         return $remaining;
     }
+
+    /**
+     * Set the value of closingTime
+     *
+     * @return  self
+     */ 
+    public function setClosingTime($closingTime)
+    {
+        $this->closingTime = $closingTime;
+
+        return $this;
+    }
 }
 ?>

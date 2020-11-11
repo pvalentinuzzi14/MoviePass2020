@@ -31,8 +31,8 @@ namespace Controllers;
             $showtime->setTotalTickets($dato->getCapacity());
             $showtime->setTicketPrice($dato->getTicketPrice());
             $showtime->setOpeningTime($time);
+            $showtime->generateClosingTime($this->showtime->retrieveDurationOneMovieFromApi($movieData->getId()));
             $showtime->setTicketsSold(0);
-            $showtime->generateClosingTime($movieData->getId());
             $showtime->setDate($date);
 
             $this->showtime->create($showtime);
