@@ -43,7 +43,7 @@ class Showtimes {
         $showtime->setID($row["id"]);
         $showtime->setDate($row["date_showtime"]);
         $showtime->setOpeningTime($row["opening_time"]);
-        $showtime->generateClosingTime($this->retrieveDurationOneMovieFromApi($row["id"]));
+        $showtime->setClosingTime($row["closing_time"]);
         $showtime->setTicketsSold($row["tickets_sold"]);
         $showtime->setTotalTickets($row["total_tickets"]);
         $showtime->setTicketPrice($row["ticket_price"]);
@@ -66,6 +66,7 @@ class Showtimes {
             if(!empty($resultSet)) {
                 foreach ($resultSet as $row) {
                     $showtime = $this->read($row);
+                    //$showtime->generateClosingTime($this->retrieveDurationOneMovieFromApi($row["id_api_movie"]));
 
                     $room = new M_room();
                     $room->setID($row['id_rooms']);
@@ -128,7 +129,7 @@ class Showtimes {
 
                     $showtime->setRoom($Room);
                     $showtime->setMovie($movie);
-
+                    //$showtime->generateClosingTime($this->retrieveDurationOneMovieFromApi($movie->getId()));
                     array_push($showtimeList, $showtime);
                 }
             }
@@ -156,6 +157,7 @@ class Showtimes {
             if(!empty($resultSet)) {
                 foreach ($resultSet as $row) {
                     $showtime = $this->read($row);
+                    //$showtime->generateClosingTime($this->retrieveDurationOneMovieFromApi($row["id_api_movie"]));
 
                     $room = new M_room();
                     $room->setID($row['id_rooms']);
@@ -235,14 +237,14 @@ class Showtimes {
             $resultSet = $this->connection->execute($query,$parameters);
 
             if(!empty($resultSet)) {
-                $showtimeList=$this->read($resultSet[0]);
+                $showtime=$this->read($resultSet[0]);
             }
         }
         catch (PDOException $e)
         {
             throw $e;
         }
-        return $showtimeList;
+        return $showtime;
     }
 
 
