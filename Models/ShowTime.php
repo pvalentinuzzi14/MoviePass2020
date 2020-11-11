@@ -98,5 +98,11 @@ class Showtime {
     public function setMovie($movie) {
         $this->movie = $movie;
     }
+
+    public function getTicketsRemaining()
+    {
+        $remaining = $this->getTotalTickets() - $this->getTicketsSold();
+        return $remaining;
+    }
 }
 ?>
