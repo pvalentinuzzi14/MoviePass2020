@@ -43,10 +43,6 @@ class Showtime {
         return $this->closingTime;
     }
     
-    public function setClosingTime($closingTime) {
-        $this->closingTime = $closingTime;
-    }
-
     public function generateClosingTime(int $minutes) {
 
         $minutes += 15; //+15 min

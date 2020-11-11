@@ -43,7 +43,7 @@ class Showtimes {
         $showtime->setID($row["id"]);
         $showtime->setDate($row["date_showtime"]);
         $showtime->setOpeningTime($row["opening_time"]);
-        $showtime->setClosingTime($row["closing_time"]);
+        $showtime->generateClosingTime($this->retrieveDurationOneMovieFromApi($row["id"]));
         $showtime->setTicketsSold($row["tickets_sold"]);
         $showtime->setTotalTickets($row["total_tickets"]);
         $showtime->setTicketPrice($row["ticket_price"]);
@@ -191,6 +191,61 @@ class Showtimes {
         }
         return $showtimeList;
     }
+
+    public function retrieveShowtimesByMovieId($id) {
+        $showtimeList = array();
+        try
+        {
+            $parameters['id'] = $id;
+            $query = " SELECT cxs.cinema_name,cxs.room_name,sh.id,sh.date_showtime,sh.opening_time FROM showtimes sh
+            INNER JOIN (SELECT c.*,r.room_name,r.idRooms FROM cinemas c INNER JOIN rooms r ON r.id_cinema=c.idCinemas)cxs ON sh.id_rooms= cxs.idRooms
+             WHERE sh.id_movie=:id AND DATEDIFF(sh.date_showtime,CURDATE()-1)>0";
+            
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($query,$parameters);
+
+            if(!empty($resultSet)) {
+                for ($i=0; $i < count($resultSet) ; $i++){
+                    $showtimeList[$i]['id']=$resultSet[$i]['id'];
+                    $showtimeList[$i]['room_name']=$resultSet[$i]['room_name'];
+                    $showtimeList[$i]['cinema_name']=$resultSet[$i]['cinema_name'];
+                    $showtimeList[$i]['date_showtime']=$resultSet[$i]['date_showtime'];
+                    $showtimeList[$i]['opening_time']=$resultSet[$i]['opening_time'];
+                }
+            }
+        }
+        catch (PDOException $e)
+        {
+            throw $e;
+        }
+        return $showtimeList;
+    }
+
+
+    public function retrieveShowtimesById($id) {
+      
+        try
+        {
+            $parameters['id'] = $id;
+            $query = " SELECT *  FROM showtimes sh WHERE sh.id=:id ";
+            
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($query,$parameters);
+
+            if(!empty($resultSet)) {
+                $showtimeList=$this->read($resultSet[0]);
+            }
+        }
+        catch (PDOException $e)
+        {
+            throw $e;
+        }
+        return $showtimeList;
+    }
+
+
 
 
     public function retrieveAllByDate($date) {
@@ -393,6 +448,16 @@ class Showtimes {
         }
         return $datelist;
     	
+    }
+
+    public function retrieveDurationOneMovieFromApi($id) {
+        $json = file_get_contents("https://api.themoviedb.org/3/movie/" . $id . "?api_key=" . API_KEY);
+        $APIDataArray = json_decode($json, true);
+        $runtime = $APIDataArray["runtime"];
+        if($runtime == null) {
+            $runtime = 90;
+        }
+        return $runtime;
     }
  
 }

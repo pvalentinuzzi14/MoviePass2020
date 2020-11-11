@@ -97,7 +97,7 @@
                 <div class="col-2"></div>
                 <div class="col-7 text-center">
               <button class="btn btn-primary" type="submit">
-                <a class="text-light" href="<?php echo FRONT_ROOT.'/Showtime/getTicket';?>">COMPRAR TICKET</a>
+                <a class="text-light" href="<?php echo FRONT_ROOT.'/Purchase/selectFunction?id='.$values->getMovie()->getIdBd();?>">COMPRAR TICKET</a>
               </button>
               </div>
                 <div class="col-2"></div>

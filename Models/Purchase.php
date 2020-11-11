@@ -4,8 +4,7 @@ class Purchase {
     private $id;
     private $totalTickets;
     private $date;
-    private $discount; //%
-    private $qr;
+    private $discount;
     private $user;
     private $payment;
     private $tickets;
@@ -45,14 +44,6 @@ class Purchase {
 
     public function setDiscount($discount) {
         $this->discount = $discount;
-    }
-    
-    public function getQr() {
-        return $this->qr;
-    }
-
-    public function setQr($qr) {
-        $this->qr = $qr;
     }
 
     public function getUser() {

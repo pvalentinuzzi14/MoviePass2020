@@ -163,19 +163,6 @@ class Movies{
 		$movie->setGenre_ids($statementRes['genre_ids']);
 		return $movie;
 	}
-
-	public function retrieveDurationOneMovieFromApi($id) {
-        $json = file_get_contents("https://api.themoviedb.org/3/movie/" . $id . "?api_key=" . API_KEY);
-        $APIDataArray = json_decode($json, true);
-        $runtime = $APIDataArray["runtime"];
-        if($runtime == null) {
-            $runtime = 90;
-        }
-        return $runtime;
-    }
-	
-	
-   
 	
 	
 	private function controlMovie($id)

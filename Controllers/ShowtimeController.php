@@ -32,7 +32,7 @@ namespace Controllers;
             $showtime->setTicketPrice($dato->getTicketPrice());
             $showtime->setOpeningTime($time);
             $showtime->setTicketsSold(0);
-            $showtime->setClosingTime($time);
+            $showtime->generateClosingTime($movieData->getId());
             $showtime->setDate($date);
 
             $this->showtime->create($showtime);
@@ -62,8 +62,7 @@ namespace Controllers;
             $moviesArray= $this->_movies->RetrieveDB();
 
             require_once(VIEWS_PATH."addshowtime.php");
-        }
-        
+        }     
 
         
     }
