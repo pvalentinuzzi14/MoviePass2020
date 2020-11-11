@@ -85,6 +85,7 @@ class Showtimes {
                     $movie->setBackground($row['background']);
                     $movie->setRelease_date($row['uploading_date']);
                     $movie->setImage($row['poster']);
+                    $movie->setTrailer($row['id_api_movie']);
                     $array = $movieDao->getGenresById($row['id_movie']);
                     $movie->setGenre_ids($array);
 
@@ -174,6 +175,7 @@ class Showtimes {
                     $movie->setBackground($row['background']);
                     $movie->setRelease_date($row['uploading_date']);
                     $movie->setImage($row['poster']);
+                    $movie->setTrailer($row['id_api_movie']);
                     $array = $movieDao->getGenresById($row['id_movie']);
                     $movie->setGenre_ids($array);
 

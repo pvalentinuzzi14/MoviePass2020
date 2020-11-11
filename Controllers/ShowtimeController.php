@@ -63,11 +63,6 @@ namespace Controllers;
 
             require_once(VIEWS_PATH."addshowtime.php");
         }
-
-        public function getTrailer($id){
-            $url=$this->showtime->retrieveTrailerOneMovieFromApi($id);
-            return $url;
-        }
         
 
         

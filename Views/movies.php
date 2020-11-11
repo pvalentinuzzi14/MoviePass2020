@@ -1,6 +1,6 @@
 <main class="">
  <div class="nav navbar justify-content-center"> 
-   <form class="form ml-5" action="<?php echo FRONT_ROOT."/Movie/GetAll";?>" method="get">
+   <form class="form ml-5" action="<?php echo FRONT_ROOT."/Movie";?>" method="get">
       <label class="text-light mr-3" for="genre_movie">Genero: </label>
       <select class="form-control-sm" name="genre">
       <option value="-1"></option>
