@@ -14,7 +14,8 @@ class PurchaseController{
        
     }
 
-    public function selectFunction(){
+    public function selectFunction()
+    {     
         $D_showtime = new D_Showtime();
         if(isset($_SESSION['userName'])){
             try
@@ -51,14 +52,12 @@ class PurchaseController{
 
     }
 
-    public function confirm($id,$ticket){
-        $D_showtime = new D_Showtime();
+    public function confirm()
+    {
+       /* $D_showtime = new D_Showtime();    
         if(isset($_SESSION['userName'])){
             try{
-                echo $ticket." ".$id;
-                $showtime = $D_showtime->retrieveShowtimesById($id);
-                $total = $ticket*$showtime->getTicketPrice();
-                require_once(VIEWS_PATH."confirm_ticket.php");
+               require_once(VIEWS_PATH."confirm_ticket.php");
             }catch(PDOException $e){
                 $e->getMessage();
             }
@@ -66,6 +65,7 @@ class PurchaseController{
             $userCont = new UserController();
             $userCont->Index();
         }
+        */
     }
 
 

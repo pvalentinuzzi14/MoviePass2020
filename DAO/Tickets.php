@@ -27,4 +27,39 @@ class Tickets {
         }
         return $value;
     }
+    private function read($row) {
+        $ticket = new Ticket();
+        $ticket->setId($row["id_ticket"]);
+        $ticket->setIdPurchase($row["id_purchase"]);
+        $ticket->setNumber($row["number"]);
+        $ticket->setShowtime($row["id_showtime"]);
+        return $ticket;
+    }
+
+    public function getAll()
+    {
+        $paymentList = array();
+
+        try
+        {
+            $query = "SELECT * FROM tickets";
+
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($query);
+
+            if(!empty($resultSet)) {
+                foreach ($resultSet as $row) {
+                    $payment = $this->read($row);
+    
+                    array_push($paymentList, $payment);
+                }
+            }
+        }
+        catch (PDOException $e)
+        {
+            throw $e;
+        }
+        return $paymentList;
+    }
 }

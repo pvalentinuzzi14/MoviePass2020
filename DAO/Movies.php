@@ -104,13 +104,53 @@ class Movies{
 		$movie->setBackground($statementRes['background']);
 		$movie->setRelease_date($statementRes['uploading_date']);
 		$movie->setImage($statementRes['poster']);
+		//$movie->setTrailer($statementRes['id_api_movie']);
+                    
+		$array = $this->getGenresById($statementRes['id_movie']);
+		$movie->setGenre_ids($array);
+		return $movie;
+	}
+	private function createForDate($statementRes)
+	{
+		$array = array();
+		$movie = new Movie();
+		$movie->setId($statementRes['id_api_movie']);
+		$movie->setIdBd($statementRes['id_movie']);
+		$movie->setScore($statementRes['score']);
+		$movie->setTitle($statementRes['name_movie']);
+		$movie->setOverview($statementRes['overview']);
+		$movie->setBackground($statementRes['background']);
+		$movie->setRelease_date($statementRes['uploading_date']);
+		$movie->setImage($statementRes['poster']);
 		$movie->setTrailer($statementRes['id_api_movie']);
                     
 		$array = $this->getGenresById($statementRes['id_movie']);
 		$movie->setGenre_ids($array);
 		return $movie;
 	}
+	public function getOneDate($id)
+	{
+		$movie = null;
 
+		try {
+			$parameters['id'] = $id; 
+
+			$sql = "SELECT * FROM movies WHERE id_movie=:id";
+			
+			$this->connection = Connection::getInstance();
+			
+			$statement = $this->connection->execute($sql,$parameters);
+
+			if(!empty($statement))
+			{
+				$movie = $this->createForDate($statement[0]);
+			}
+		} catch (PDOException $e) {
+			$e->getMessage();
+		}
+
+		return $movie;
+	}
 	public function getOne($id)
 	{
 		$movie = null;

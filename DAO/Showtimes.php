@@ -273,7 +273,7 @@ class Showtimes {
                     $Room = $RoomDAO->getOne($idRoom);
 
                     $movieDAO = new D_Movies();
-                    $movie = $movieDAO->getOne($idMovie);
+                    $movie = $movieDAO->getOneDate($idMovie);
 
                     $showtime->setRoom($Room);
                     $showtime->setMovie($movie);
