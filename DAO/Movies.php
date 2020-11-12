@@ -104,6 +104,8 @@ class Movies{
 		$movie->setBackground($statementRes['background']);
 		$movie->setRelease_date($statementRes['uploading_date']);
 		$movie->setImage($statementRes['poster']);
+		$movie->setTrailer($statementRes['id_api_movie']);
+                    
 		$array = $this->getGenresById($statementRes['id_movie']);
 		$movie->setGenre_ids($array);
 		return $movie;
