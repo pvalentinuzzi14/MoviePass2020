@@ -106,7 +106,7 @@ class Cinemas{
 		
 		try {
 			$parameters['id'] = $id; 		
-			$sql = "SELECT * FROM cinemas c INNER JOIN (
+			$sql = "SELECT * FROM cinemas c LEFT OUTER JOIN (
 				SELECT id_cinema,COUNT(id_cinema) AS 'quantity_rooms' FROM rooms GROUP BY id_cinema
 			) rxc ON c.`idCinemas`=rxc.id_cinema WHERE idCinemas= :id";
 			
