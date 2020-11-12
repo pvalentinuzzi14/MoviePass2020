@@ -322,7 +322,7 @@ class Showtimes {
         }
         catch (PDOException $e)
         {
-            throw $e;
+            $e->getMessage();
         }
         return $showtime;
     }
@@ -344,7 +344,7 @@ class Showtimes {
         }
         catch (PDOException $e)
         {
-            throw $e;
+            $e->getMessage();
         }
         return $value;
     }
@@ -387,7 +387,7 @@ class Showtimes {
         }
         catch (PDOException $e)
         {
-            throw $e;
+             $e->getMessage();
         }
 
         return $showtimeList;
@@ -406,7 +406,7 @@ class Showtimes {
         }
         catch(PDOException $e)
         {
-            throw $e;
+            $e->getMessage();
         }
         return $value;
     }

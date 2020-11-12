@@ -82,8 +82,6 @@ class Cinemas{
 			SELECT id_cinema,COUNT(id_cinema) AS 'quantity_rooms' FROM rooms GROUP BY id_cinema
 			) rxc ON c.`idCinemas`=rxc.id_cinema WHERE c.state=1" ;
 			
-				
-			
 			$this->connection = Connection::getInstance();
 			
 			$statement = $this->connection->execute($sql);

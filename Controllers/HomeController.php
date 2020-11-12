@@ -1,9 +1,9 @@
 <?php
     namespace Controllers;
     use Controllers\ShowtimeController as Showtime;
+use PDOException;
 
-
-    class HomeController
+class HomeController
     {
         private $showtime;
 
@@ -13,7 +13,12 @@
         }
         public function Index($message = "")
         {
-            $movies = $this->showtime->getAll();
+            try{
+                $movies = $this->showtime->getAll();
+            }catch(PDOException $e){
+                $e->getMessage();
+            }
+            
             require_once(VIEWS_PATH."index.php");
         }        
     }

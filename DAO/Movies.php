@@ -127,7 +127,7 @@ class Movies{
 				$movie = $this->create($statement[0]);
 			}
 		} catch (PDOException $e) {
-			throw $e;
+			$e->getMessage();
 		}
 
 		return $movie;
@@ -140,14 +140,18 @@ class Movies{
 	{
 		$jsonContent = file_get_contents("https://api.themoviedb.org/3/discover/movie?api_key=2f0f4f905a5085a4cb6411b8c639165b&language=es-ES&sort_by=popularity.desc&include_adult=false&include_video=false&page=1");
 		$arrayToDecode =($jsonContent) ? json_decode($jsonContent,true) : array();
-		
-		foreach($arrayToDecode['results'] as $value):
-			$movie =$this->createFromApi($value);
-			$flag = $this->controlMovie($movie->getId());
-			if($flag == false){
-				$this->add($movie);
-			}
-		endforeach;	
+		try{
+			foreach($arrayToDecode['results'] as $value):
+				$movie =$this->createFromApi($value);
+				$flag = $this->controlMovie($movie->getId());
+				if($flag == false){
+					$this->add($movie);
+				}
+			endforeach;	
+		}catch(PDOException $e){
+			$e->getMessage();
+		}
+
 	}
 
 	private function createFromApi($statementRes)

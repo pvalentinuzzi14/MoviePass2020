@@ -9,8 +9,9 @@ namespace Controllers;
     use Controllers\ShowtimeController as ShowTimeCont;
     use DAO\Movies as Movies;
     use Models\Movie as Movie;
+use PDOException;
 
-    class AdminController{
+class AdminController{
 
         public function __construct()
         {
@@ -21,15 +22,17 @@ namespace Controllers;
         {
             if(isset($_SESSION['userID']))
             {
-
-                $roomController = new RoomCont();
-                $cinemaController = new CinemaCont();
-                $showtimeController = new ShowTimeCont();
-                $cinemaArray = $cinemaController->getAll();
-                $roomsArray = $roomController->getAll();
-                $showtimeList = $showtimeController->getAll();
-
-               require_once(VIEWS_PATH."/adminContent.php");
+                try{
+                    $roomController = new RoomCont();
+                    $cinemaController = new CinemaCont();
+                    $showtimeController = new ShowTimeCont();
+                    $cinemaArray = $cinemaController->getAll();
+                    $roomsArray = $roomController->getAll();
+                    $showtimeList = $showtimeController->getAll();
+                    require_once(VIEWS_PATH."/adminContent.php");
+                }catch(PDOException $e){
+                        $e->getMessage();
+                }              
             }else{
                 header("location:../index.php");
             }
@@ -38,15 +41,17 @@ namespace Controllers;
 
         public function AllFunctions()
         {
+            try{
                 $roomController = new RoomCont();
                 $cinemaController = new CinemaCont();
                 $showtimeController = new ShowTimeCont();
                 $cinemaArray = $cinemaController->getAll();
                 $roomsArray = $roomController->getAll();
                 $showtimeList = $showtimeController->getAlltoListAdmin();
-
                require_once(VIEWS_PATH."/adminAllShowtimes.php");
-          
+            }catch(PDOException $e){
+                $e->getMessage();
+            } 
         }        
 
     }

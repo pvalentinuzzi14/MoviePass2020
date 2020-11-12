@@ -76,14 +76,14 @@
                     $genre = $this->create($statement[0]);
                 }
             } catch (PDOException $e) {
-                throw $e;
+                 $e->getMessage();
             }
     
             return $genre;
         }
       
 
-    /*----------------------------- API -----------------------------*/
+    /*----------------------------- API ------------------------------*/
     public function createFromApi($valuesArray)
     {
         $genre = new Genre();
@@ -96,11 +96,15 @@
 	{
 		$jsonContent = file_get_contents("https://api.themoviedb.org/3/genre/movie/list?api_key=2f0f4f905a5085a4cb6411b8c639165b&language=es-ES");
 		$arrayToDecode =($jsonContent) ? json_decode($jsonContent,true) : array();
-        
-		foreach($arrayToDecode['genres'] as $value):
-			$genre =$this->createFromApi($value);
-			$this->add($genre);
-		endforeach;	
+        try{
+            foreach($arrayToDecode['genres'] as $value):
+                $genre =$this->createFromApi($value);
+                $this->add($genre);
+            endforeach;	
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+
 
 	}
 }

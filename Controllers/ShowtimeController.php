@@ -7,7 +7,9 @@ namespace Controllers;
 
 
     use Models\Showtime as M_showtime;
-    class ShowtimeController{
+use PDOException;
+
+class ShowtimeController{
 
         private $showtime;
         private $_rooms;
@@ -31,37 +33,60 @@ namespace Controllers;
             $showtime->setTotalTickets($dato->getCapacity());
             $showtime->setTicketPrice($dato->getTicketPrice());
             $showtime->setOpeningTime($time);
-            $showtime->generateClosingTime($this->showtime->retrieveDurationOneMovieFromApi($movieData->getId()));
+            try{
+                $showtime->generateClosingTime($this->showtime->retrieveDurationOneMovieFromApi($movieData->getId()));
+                $this->showtime->create($showtime);
+            }catch(PDOException $e){
+                $e->getMessage();
+            }  
             $showtime->setTicketsSold(0);
             $showtime->setDate($date);
-
-            $this->showtime->create($showtime);
 
            $adminController = new AdminController();
            $adminController->Index();
         } 
         public function getAll()
         {
-            return $this->showtime->retrieveAll();
+            try{
+                return $this->showtime->retrieveAll();
+            }catch(PDOException $e){
+                throw $e;
+            }
+            
         }   
 
         public function getAlltoListAdmin()
         {
-            return $this->showtime->retrieveAlltoList();
+            try{
+                return $this->showtime->retrieveAlltoList();
+            }catch(PDOException $e){
+                throw $e;
+            }
+           
         }   
 
         public function remove($id)
         {
-            $this->showtime->remove($id);
-            $adminController = new AdminController();
-            $adminController->Index();
+            try{
+                $this->showtime->remove($id);
+                $adminController = new AdminController();
+                $adminController->Index();
+            }catch(PDOException $e){
+                $e->getMessage();
+            }
+
         }
 
         public function showAddView(){
-            $roomsArray = $this->_rooms->getAllAvaible();
-            $moviesArray= $this->_movies->RetrieveDB();
+            try{
+                $roomsArray = $this->_rooms->getAllAvaible();
+                $moviesArray= $this->_movies->RetrieveDB();
+    
+                require_once(VIEWS_PATH."addshowtime.php");
+            }catch(PDOException $e){
+                $e->getMessage();
+            }
 
-            require_once(VIEWS_PATH."addshowtime.php");
         }     
 
         
