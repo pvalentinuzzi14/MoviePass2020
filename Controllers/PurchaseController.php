@@ -54,6 +54,8 @@ class PurchaseController{
 
     public function confirm()
     {
+        print_r($_POST); //tengo la cantidad
+        print_r($_GET);  //tengo el id
        /* $D_showtime = new D_Showtime();    
         if(isset($_SESSION['userName'])){
             try{

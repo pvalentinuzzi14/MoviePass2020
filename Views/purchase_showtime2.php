@@ -1,7 +1,7 @@
 <?php //include("header.php");?>
 	<div class="bg-dark container rounded p-3">
     <h2 class="text-light" >Tickets</h2>
-        <form  action="<?php echo FRONT_ROOT; ?>/Purchase/Confirm" method="POST"> 
+        <form  action="<?php echo FRONT_ROOT; ?>/Purchase/Confirm?id=<?php echo $id; ?>" method="POST"> 
             <div class="row m-auto mb-4">
             <div class="col-md">
             <label class="text-light" for="quantity">Cantidad de tickets</label> 
