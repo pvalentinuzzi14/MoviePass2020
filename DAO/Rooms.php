@@ -148,6 +148,22 @@ class Rooms{
 			throw $e;
 		}
 		return $value;
+	}
+	
+	public function updateCinema($id,$newCinema)
+	{
+		try {
+            $parameters['newCinema'] = $newCinema;
+			$parameters ['id'] = $id;
+			$query = "UPDATE rooms SET id_cinema = :newCinema WHERE idRooms = :id";		
+			
+			$this->connection = Connection::getInstance();
+			$value = $this->connection->executeNonQuery($query,$parameters);
+
+		} catch (PDOException $e) {
+			throw $e;
+		}
+		return $value;
     }
 
 	public function updateName($id,$nombre)

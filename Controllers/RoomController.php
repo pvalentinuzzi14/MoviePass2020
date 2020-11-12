@@ -4,6 +4,8 @@ namespace Controllers;
 
     use DAO\Rooms as D_Rooms;
     use DAO\Cinemas as D_Cinemas;
+    use PDOException;
+
 
     use Models\Room as M_Room;
     class RoomController{
@@ -55,6 +57,66 @@ namespace Controllers;
             $adminController->Index();
         }
 
-        
+        public function update($id)
+        {
+            try{
+                $cinema = $this->_room->getOne($id);
+                require_once(VIEWS_PATH."updateCinema.php");
+            }catch(PDOException $e){
+                $e->getMessage();
+            }
+        }
+        public function updateName($id,$name)
+        {
+            try{
+                $this->_room->updateName($id,$name);
+                $adminController = new AdminController();
+                $adminController->Index();
+            }catch(PDOException $e)
+            {
+                $e->getMessage();
+            }
+
+        }
+
+        public function updateTicketPrice($id,$newPrice)
+        {
+            try{
+                $this->_room->updateTicketPrice($id,$newPrice);
+                $adminController = new AdminController();
+                $adminController->Index();
+            }catch(PDOException $e)
+            {
+                $e->getMessage();
+            }
+
+        }
+        public function updateCapacity($id,$capacity)
+        {
+            try{
+                $this->_room->updateCapacity($id,$capacity);
+                $adminController = new AdminController();
+                $adminController->Index();
+            }catch(PDOException $e)
+            {
+                $e->getMessage();
+            }
+
+        }
+        public function updateCinema($id,$idCinema)
+        {
+            try{
+                $this->_room->updateCinema($id,$idCinema);
+                $adminController = new AdminController();
+                $adminController->Index();
+            }catch(PDOException $e)
+            {
+                $e->getMessage();
+            }
+
+        }
+
+
+
     }
 ?>
