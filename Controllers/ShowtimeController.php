@@ -4,9 +4,8 @@ namespace Controllers;
     use DAO\Showtimes as D_showtime;
     use DAO\Rooms as D_Rooms;
     use DAO\Movies as D_Movies;
-
-
-    use Models\Showtime as M_showtime;
+use Exception;
+use Models\Showtime as M_showtime;
 use PDOException;
 
 class ShowtimeController{
@@ -36,7 +35,7 @@ class ShowtimeController{
             try{
                 $showtime->generateClosingTime($this->showtime->retrieveDurationOneMovieFromApi($movieData->getId()));
                 $this->showtime->create($showtime);
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }  
             $showtime->setTicketsSold(0);
@@ -59,7 +58,7 @@ class ShowtimeController{
         {
             try{
                 return $this->showtime->retrieveAlltoList();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 throw $e;
             }
            
@@ -71,7 +70,7 @@ class ShowtimeController{
                 $this->showtime->remove($id);
                 $adminController = new AdminController();
                 $adminController->Index();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
 
@@ -83,7 +82,7 @@ class ShowtimeController{
                 $moviesArray= $this->_movies->RetrieveDB();
     
                 require_once(VIEWS_PATH."addshowtime.php");
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
 

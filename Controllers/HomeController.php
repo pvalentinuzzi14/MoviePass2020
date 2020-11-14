@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
     use Controllers\ShowtimeController as Showtime;
+use Exception;
 use PDOException;
 
 class HomeController
@@ -15,7 +16,7 @@ class HomeController
         {
             try{
                 $movies = $this->showtime->getAll();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
             

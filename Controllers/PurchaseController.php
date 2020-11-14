@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use DAO\Showtimes as D_Showtime;
+use Exception;
 use PDO;
 use PDOException;
 
@@ -23,7 +24,7 @@ class PurchaseController{
                 $id = $_GET['id'];
                 $showtime = $D_showtime->retrieveShowtimesByMovieId($id);
                 require_once(VIEWS_PATH."purchase_showtime.php");
-            }catch(PDOException $e)
+            }catch(Exception $e)
             {
                 $e->getMessage();
             }
@@ -41,7 +42,7 @@ class PurchaseController{
                 $id = $_GET['id'];
                 $showtime = $D_showtime->retrieveShowtimesById($id);
                 require_once(VIEWS_PATH."purchase_showtime2.php");
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
 
