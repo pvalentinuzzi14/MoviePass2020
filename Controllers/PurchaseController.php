@@ -53,22 +53,17 @@ class PurchaseController{
 
     }
 
-    public function confirm()
+    public function confirm($id,$quantity,$price)
     {
-        print_r($_POST); //tengo la cantidad
-        print_r($_GET);  //tengo el id
-       /* $D_showtime = new D_Showtime();    
-        if(isset($_SESSION['userName'])){
-            try{
-               require_once(VIEWS_PATH."confirm_ticket.php");
-            }catch(PDOException $e){
-                $e->getMessage();
-            }
-        }else{
-            $userCont = new UserController();
-            $userCont->Index();
+        $D_showtime = new D_Showtime();
+        $total = $quantity * $price;
+        $user = $_SESSION['userID'];
+        try{
+            $showtime = $D_showtime->retrieveOne($id);
+        }catch(Exception $e){
+            $e->getMessage();
         }
-        */
+        require_once(VIEWS_PATH."confirm_ticket.php");
     }
 
 
