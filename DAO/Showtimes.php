@@ -298,26 +298,44 @@ class Showtimes {
         {
             $parameters['id'] = $id;
 
-            $query = "SELECT * FROM showtimes WHERE id=:id";
+            $query = "SELECT * FROM rooms r INNER JOIN (SELECT m.*,sh.`id`,sh.`date_showtime`,
+            sh.`opening_time`,sh.`closing_time`,sh.`tickets_sold`,sh.`total_tickets`,sh.`id_rooms` FROM
+            showtimes sh INNER JOIN movies m ON m.`id_movie`=sh.`id_movie` WHERE id = 10) sub ON 
+            r.`idRooms`=sub.id_rooms ORDER BY sub.date_showtime,sub.opening_time";
 
             $this->connection = Connection::getInstance();
 
             $resultSet = $this->connection->execute($query, $parameters);
 
             if(!empty($resultSet)) {
-                $showtime = $this->read($resultSet[0]);
+                foreach($resultSet as $row):
+                $showtime = $this->read($row);
 
-                $idRoom = $resultSet[0]["id_Room"];
-                $idMovie = $resultSet[0]["id_movie"];
+                $room = new M_room();
+                    $room->setID($row['id_rooms']);
+                    $room->setState($row['state']);
+                    $room->setName($row['room_name']);
+                    $room->setCapacity($row['capacity']);
+                    $room->setTicketPrice($row['ticket_price']);
+                    $room->setCinema($row['id_cinema']);
 
-                $RoomDAO = new D_Rooms();
-                $Room = $RoomDAO->getOne($idRoom);
+                    $movie = new M_movie();
+                    $movieDao = new D_Movies();
+                    $movie->setId($row['id_api_movie']);
+                    $movie->setIdBd($row['id_movie']);
+                    $movie->setScore($row['score']);
+                    $movie->setTitle($row['name_movie']);
+                    $movie->setOverview($row['overview']);
+                    $movie->setBackground($row['background']);
+                    $movie->setRelease_date($row['uploading_date']);
+                    $movie->setImage($row['poster']);
+                    $movie->setTrailer($row['id_api_movie']);
+                    $array = $movieDao->getGenresById($row['id_movie']);
+                    $movie->setGenre_ids($array);
 
-                $movieDAO = new D_Movies();
-                //$movie = $movieDAO->retrieveOneNoCheckMovieDate($idMovie);
-
-                $showtime->setRoom($Room);
-                //$showtime->setMovie($movie);
+                    $showtime->setRoom($room);
+                    $showtime->setMovie($movie);
+                endforeach;
             }
         }
         catch (PDOException $e)
