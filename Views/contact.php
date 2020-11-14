@@ -31,7 +31,7 @@
                         <div class="row">
                                 <div class="col-md-auto"> </div>
                                 <div class="col-md-auto"> </div>
-                            <div class="col-md-auto ml-auto d-flex float-right" id="success"><input type="submit" class="color-red text-white p-2 d-block m-auto rounded" width="500px"  name="Enviar" value="ENVIAR"></div>
+                            <div class="col-md-auto ml-auto d-flex float-right" id="success"><input type="submit" class="btn btn-secondary p-2 d-block m-auto rounded" width="500px"  name="Enviar" value="ENVIAR"></div>
                             </div>
                     </form>
                 </div>

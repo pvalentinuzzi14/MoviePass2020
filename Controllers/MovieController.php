@@ -26,6 +26,7 @@ class MovieController{
         public function RefreshMovies()
         {
             $this->movies->insertFromApiToDb(); 
+            require_once(FRONT_ROOT);
         }
         
         public function Index(){

@@ -27,6 +27,8 @@ class AdminController{
                     $roomController = new RoomCont();
                     $cinemaController = new CinemaCont();
                     $showtimeController = new ShowTimeCont();
+                    $movieDao = new Movies();
+                    $moviesArray = $movieDao->RetrieveDB();
                     $cinemaArray = $cinemaController->getAll();
                     $roomsArray = $roomController->getAll();
                     $showtimeList = $showtimeController->getAll();

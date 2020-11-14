@@ -92,15 +92,12 @@
                   }
                 endforeach;?>
               <?php endforeach;?></p>
-              <br><br>
+              <div class="col text-center mb-4"><span><i class="fa fa-star"><?php echo " ".$values->getMovie()->getScore();?>/10</i></span></div>
               <div class="row p-1 mb-3">
-                <div class="col-2"></div>
-                <div class="col-7 text-center">
-              <button class="btn btn-primary" type="submit">
-                <a class="text-light" href="<?php echo FRONT_ROOT.'/Purchase/selectFunction?id='.$values->getMovie()->getIdBd();?>">COMPRAR TICKET</a>
-              </button>
+                <div class="col text-center mb-4">
+                <a type="submit" class="btn btn-primary text-light" href="<?php echo FRONT_ROOT.'/Purchase/selectFunction?id='.$values->getMovie()->getIdBd();?>">COMPRAR TICKET</a>
+                </div>
               </div>
-                <div class="col-2"></div>
 
                 
               </div>

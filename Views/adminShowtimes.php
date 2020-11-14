@@ -68,6 +68,15 @@
                 </button>
               </form> 
             </td>
+            <td>
+              <form  action="<?php echo FRONT_ROOT ;?>/showTime/Stats" method="POST"> 
+                  <input type="hidden" name="searchId" value='<?php echo $value->getId(); ?>'>
+                  <button type="submit" class='btn btn-primary text-light mt-0' value="1"> 
+                  <span><i class="fa fa-search"></i></span>   
+
+                </button>
+              </form> 
+            </td>
              
           </tr>
   
