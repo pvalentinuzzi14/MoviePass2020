@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Ambassador",
+        "id": 1,
+        "address": "Cordoba 1673",
+        "room": [
+            1,
+            2,
+            3
+        ],
+        "price": 150
+    },
+    {
+        "name": "Gallegos",
+        "id": 2,
+        "address": "Rivadavia 3050",
+        "room": [
+            1,
+            2,
+            3
+        ],
+        "price": 120
+    },
+    {
+        "name": "Aldrey",
+        "id": 3,
+        "address": "Sarmiento 2685",
+        "room": [
+            1,
+            2,
+            3
+        ],
+        "price": 250
+    },
+    {
+        "name": "Diagonal",
+        "id": 4,
+        "address": "Diagonal Pueyrredon 3058",
+        "room": [
+            1,
+            2,
+            3
+        ],
+        "price": 150
+    }
+]
