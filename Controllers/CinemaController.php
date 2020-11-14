@@ -3,7 +3,8 @@
 namespace Controllers;
 
     use DAO\Cinemas as D_cinema;
-    use Models\Cinema as M_cinema;
+use Exception;
+use Models\Cinema as M_cinema;
 use PDOException;
 
 class CinemaController{
@@ -23,7 +24,7 @@ class CinemaController{
                 $this->_cinema->add($cinema);
                 $adminController = new AdminController();
                 $adminController->Index();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
         }      
@@ -34,7 +35,7 @@ class CinemaController{
                 $this->_cinema->remove($id);
                 $adminController = new AdminController();
                 $adminController->Index();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();                
             }
         }
@@ -43,7 +44,7 @@ class CinemaController{
         public function GetAll(){
             try{
                 return $this->_cinema->getAll();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 throw $e;
             }
            
@@ -52,7 +53,7 @@ class CinemaController{
         public function GetAllAvaible(){
             try{
                 return $this->_cinema->getAllAvaible();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }      
         }
@@ -61,7 +62,7 @@ class CinemaController{
             try{
                 $cinemaArray = $this->_cinema->getAllAvaible();
                 require_once(VIEWS_PATH."cinemas.php");
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
 
@@ -77,7 +78,7 @@ class CinemaController{
                 $this->_cinema->updateState($id,'1');
                 $adminController = new AdminController();
                 $adminController->Index();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
 
@@ -87,7 +88,7 @@ class CinemaController{
             try{
                 $cinema = $this->_cinema->getOne($id);
                 require_once(VIEWS_PATH."updateCinema.php");
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
         }
@@ -97,7 +98,7 @@ class CinemaController{
                 $this->_cinema->updateName($id,$name);
                 $adminController = new AdminController();
                 $adminController->Index();
-            }catch(PDOException $e)
+            }catch(Exception $e)
             {
                 $e->getMessage();
             }
@@ -110,7 +111,7 @@ class CinemaController{
                 $this->_cinema->updateAddress($id,$address);
                 $adminController = new AdminController();
                 $adminController->Index();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
         }
@@ -121,7 +122,7 @@ class CinemaController{
                 $this->_cinema->updateOpeningTime($id,$openingTime);
                 $adminController = new AdminController();
                 $adminController->Index();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
         }
@@ -132,7 +133,7 @@ class CinemaController{
                 $this->_cinema->updateClosingTime($id,$closingTime);
                 $adminController = new AdminController();
                 $adminController->Index();
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             }
 

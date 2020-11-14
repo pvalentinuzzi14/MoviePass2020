@@ -6,6 +6,7 @@ use DAO\Showtimes as ShowtimeDao;
 use Controllers\ShowtimeController as ST_Controller;
 
 use DAO\Genres as GenreDao;
+use Exception;
 use PDOException;
 
 class MovieController{
@@ -33,7 +34,7 @@ class MovieController{
                 $movies = $this->showtime->retrieveAllAvailable();
                 $dates = $this->showtime->getDateAvailable();
                 require_once(VIEWS_PATH."movies.php");
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 throw $e;
             }
 
@@ -43,7 +44,7 @@ class MovieController{
             if($date==(-1)){
                 try{
                     $this->Index();
-                }catch(PDOException $e){
+                }catch(Exception $e){
                     $e->getMessage();
                 }             
             }else{
@@ -52,7 +53,7 @@ class MovieController{
                     $movies = $this->showtime->retrieveAllbyDate($date);
                     $dates = $this->showtime->getDateAvailable();
                     require_once(VIEWS_PATH."movies.php");
-                }catch(PDOException $e){
+                }catch(Exception $e){
                     $e->getMessage();
                 }
 

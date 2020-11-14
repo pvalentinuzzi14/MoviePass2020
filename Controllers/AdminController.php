@@ -8,7 +8,8 @@ namespace Controllers;
     use Controllers\RoomController as RoomCont;
     use Controllers\ShowtimeController as ShowTimeCont;
     use DAO\Movies as Movies;
-    use Models\Movie as Movie;
+use Exception;
+use Models\Movie as Movie;
 use PDOException;
 
 class AdminController{
@@ -30,7 +31,7 @@ class AdminController{
                     $roomsArray = $roomController->getAll();
                     $showtimeList = $showtimeController->getAll();
                     require_once(VIEWS_PATH."/adminContent.php");
-                }catch(PDOException $e){
+                }catch(Exception $e){
                         $e->getMessage();
                 }              
             }else{
@@ -49,7 +50,7 @@ class AdminController{
                 $roomsArray = $roomController->getAll();
                 $showtimeList = $showtimeController->getAlltoListAdmin();
                require_once(VIEWS_PATH."/adminAllShowtimes.php");
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 $e->getMessage();
             } 
         }        
