@@ -60,8 +60,8 @@ namespace Controllers;
         public function update($id)
         {
             try{
-                $cinema = $this->_room->getOne($id);
-                require_once(VIEWS_PATH."updateCinema.php");
+                $room = $this->_room->getOne($id);
+                require_once(VIEWS_PATH."updateRooms.php");
             }catch(PDOException $e){
                 $e->getMessage();
             }

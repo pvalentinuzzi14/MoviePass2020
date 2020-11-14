@@ -4,7 +4,7 @@ use Models\Payment as Payment;
 use DAO\Connection as Connection;
 use \PDOException as PDOException;
 
-class PaymentDAO {
+class Payments {
 
     private $connection;
 

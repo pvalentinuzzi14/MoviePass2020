@@ -292,7 +292,6 @@ class Showtimes {
     
 
     public function retrieveOne($id) {
-        $showtime = null;
 
         try
         {
@@ -300,7 +299,7 @@ class Showtimes {
 
             $query = "SELECT * FROM rooms r INNER JOIN (SELECT m.*,sh.`id`,sh.`date_showtime`,
             sh.`opening_time`,sh.`closing_time`,sh.`tickets_sold`,sh.`total_tickets`,sh.`id_rooms` FROM
-            showtimes sh INNER JOIN movies m ON m.`id_movie`=sh.`id_movie` WHERE id = 10) sub ON 
+            showtimes sh INNER JOIN movies m ON m.`id_movie`=sh.`id_movie` WHERE id = :id) sub ON 
             r.`idRooms`=sub.id_rooms ORDER BY sub.date_showtime,sub.opening_time";
 
             $this->connection = Connection::getInstance();

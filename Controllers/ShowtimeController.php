@@ -32,14 +32,15 @@ class ShowtimeController{
             $showtime->setTotalTickets($dato->getCapacity());
             $showtime->setTicketPrice($dato->getTicketPrice());
             $showtime->setOpeningTime($time);
+            $showtime->setTicketsSold(0);
+            $showtime->setDate($date);
             try{
                 $showtime->generateClosingTime($this->showtime->retrieveDurationOneMovieFromApi($movieData->getId()));
                 $this->showtime->create($showtime);
             }catch(Exception $e){
                 $e->getMessage();
             }  
-            $showtime->setTicketsSold(0);
-            $showtime->setDate($date);
+ 
 
            $adminController = new AdminController();
            $adminController->Index();
@@ -87,6 +88,19 @@ class ShowtimeController{
             }
 
         }     
+
+        
+    public function loadShowtimeById($id) {
+        try
+        {
+            $showtimeGet = $this->showtime->retrieveOne($id);
+        }
+        catch(PDOException $e)
+        {
+            $showtimeGet = null;
+        }
+        return $showtimeGet;
+    }
 
         
     }

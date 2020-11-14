@@ -57,7 +57,7 @@
              <td> <?php echo $value->getRoom()->getCinema();?> </td>
              <td> <?php echo $value->getRoom()->getName(); ?> </td>
              <td> <?php echo $value->getTicketPrice();?> </td>
-             <td> <?php echo $value->getTotalTickets();?> </td>
+             <td> <?php echo $value->getTotalTickets() - $value->getTicketsSold();?> </td>
              <td> <?php echo $value->getTicketsSold();?> </td>
             <td>
               <form  action="<?php echo FRONT_ROOT ;?>/showTime/Remove" method="POST"> 
