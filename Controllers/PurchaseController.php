@@ -136,8 +136,8 @@ function createPurchase($totalTickets = null, $total = null, $idUser = null, $id
                     $purchase->setUser($user);
                     $purchase->setPayment($payment);
 
-                    $idPurchase = $this->purchaseDAO->create($purchase);
-
+                    //$idPurchase = $this->purchaseDAO->create($purchase);
+                    require_once(VIEWS_PATH."ticket-view.php");
 
                     //Finally, we update the purchased tickets in the function
                     $updatedAmountOfTickets = $showtime->getTicketsSold()+$totalTickets;
@@ -147,19 +147,19 @@ function createPurchase($totalTickets = null, $total = null, $idUser = null, $id
                         $this->homeController->index($message, 1);*/
                     }
                     else {
-                        $message = "A database error ocurred";
+                        $message = "Ocurrio un error en la base de datos";
                         $this->homeController->index($message, 0);
                     }
                 }
                 else {
-                    $message = "The purchase could not be completed. There are not enough tickets available. Try again";
+                    $message = "La compra no puede ser realizada. No hay suficiente tickets disponibles. Intente nuevamente";
                     $messageType = 0;
                     $this->homeController->index($message, $messageType);
                 }
             }
             catch(Exception $e)
             {
-                $message = "A database error ocurred";
+                $message = "Ocurrio un error en la base de datos";
                 $this->homeController->index($message, 0);
             }
         }

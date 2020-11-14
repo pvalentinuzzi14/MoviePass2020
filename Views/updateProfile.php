@@ -14,17 +14,13 @@
                 <input class="form-control" type="text" name="lastName" id="lastName" placeholder="<?php echo $user->getLastName();?>" required></input>
                 </div>
                 </div>
-                <!--<div class="row my-3 mx-1">
-                <div class="col-md">
-                 <input type="file" class="form-control" id="image" name="image" multiple>
-                </div>
-                </div>-->
                 <div class="row my-3">
                 <div class="col-md">
                 <button type="submit" class='btn btn-success  text-light mt-0' value="1">Actualizar</button>
                 </div></div>
     </div>
         </form>
+        <p class="text-light">Si desea modificar Usuario o Contraseña <a class="text-light" href="<?php echo FRONT_ROOT ;?>/User/Contact">contactese</a> con nosotros</p>
     </div>
         
 	</body>

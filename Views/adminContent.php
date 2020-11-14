@@ -12,6 +12,10 @@
         <a class="nav-link" id="showtimes-tab" data-toggle="tab" href="#showtimes" role="tab" aria-controls="showtimes" 
         aria-selected="false">Funciones</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" id="movies-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies" 
+        aria-selected="false">Peliculas</a>
+    </li>
     </ul>
     <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="cinemas" role="tabpanel" aria-labelledby="cinemas-tab">
@@ -22,6 +26,9 @@
     </div>
     <div class="tab-pane fade" id="showtimes" role="tabpanel" aria-labelledby="showtimes-tab">
         <?php require_once("adminShowtimes.php"); ?>
+    </div>
+    <div class="tab-pane fade" id="movies" role="tabpanel" aria-labelledby="movies-tab">
+        <?php require_once("adminMovie.php"); ?>
     </div>
     </div>
 </div>

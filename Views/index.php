@@ -13,7 +13,7 @@
       <h5><?php echo $movies[$i]->getMovie()->getTitle();?></h5>
       <p><?php echo $movies[$i]->getMovie()->getOverview();?></p>
       <a class="btn btn-dark text-light" href="<?php echo $movies[$i]->getMovie()->getTrailer();?>">Ver Trailer</a>
-    </div>
+      <a class="btn btn-dark text-light" href="<?php echo FRONT_ROOT.'/Purchase/selectFunction?id='.$movies[$i]->getMovie()->getIdBd();?>">Comprar Ticket</a></div>
       </div>
     <?php }?>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
