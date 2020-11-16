@@ -267,5 +267,11 @@ class PurchaseController{
     
         }
 
+        public function purchaseList(){
+            $purchases = $this->purchaseDAO->retrievePurchases();
+            $total=0;
+            require_once(VIEWS_PATH."total_stats.php");
+        }
+
 }
 

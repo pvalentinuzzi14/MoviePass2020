@@ -30,6 +30,7 @@
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin">Administrar</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/RefreshMovies">Actualizar Peliculas</a>
+          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Purchase/purchaseList">Stats</a>
           <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
         </div>
       </label> 
