@@ -47,6 +47,9 @@ class Showtimes {
         $showtime->setTicketsSold($row["tickets_sold"]);
         $showtime->setTotalTickets($row["total_tickets"]);
         $showtime->setTicketPrice($row["ticket_price"]);
+        $showtime->setMovie($row["id_movie"]);
+        $showtime->setRoom($row["id_rooms"]);
+
         return $showtime;
     }
 
@@ -199,7 +202,7 @@ class Showtimes {
         try
         {
             $parameters['id'] = $id;
-            $query = " SELECT cxs.cinema_name,cxs.room_name,sh.id,sh.date_showtime,sh.opening_time FROM showtimes sh
+            $query = " SELECT cxs.cinema_name,cxs.room_name,sh.id,sh.date_showtime,sh.opening_time,sh.tickets_sold,sh.total_tickets FROM showtimes sh
             INNER JOIN (SELECT c.*,r.room_name,r.idRooms FROM cinemas c INNER JOIN rooms r ON r.id_cinema=c.idCinemas)cxs ON sh.id_rooms= cxs.idRooms
              WHERE sh.id_movie=:id AND DATEDIFF(sh.date_showtime,CURDATE()-1)>0";
             
@@ -214,6 +217,9 @@ class Showtimes {
                     $showtimeList[$i]['cinema_name']=$resultSet[$i]['cinema_name'];
                     $showtimeList[$i]['date_showtime']=$resultSet[$i]['date_showtime'];
                     $showtimeList[$i]['opening_time']=$resultSet[$i]['opening_time'];
+                    $showtimeList[$i]['tickets_sold']=$resultSet[$i]['tickets_sold'];
+                    $showtimeList[$i]['total_tickets']=$resultSet[$i]['total_tickets'];
+
                 }
             }
         }
@@ -226,7 +232,7 @@ class Showtimes {
 
 
     public function retrieveShowtimesById($id) {
-      
+      $showtime = new M_showtime();
         try
         {
             $parameters['id'] = $id;
