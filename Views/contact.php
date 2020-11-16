@@ -3,7 +3,7 @@
               <h4 class="subTitulo my-3 ">Por consultas o reservas completa tus datos a continuación. En la brevedad nos estaremos comunicando</h4>
                <div class="row-fluid">
                 <div class="col-lg-12">
-                    <form action="sendMail.php" name="sentMessage" id="contactForm" method="post">
+                    <form action="<?php echo FRONT_ROOT.'/User/sendMail' ?>" name="sentMessage" id="contactForm" method="post">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
