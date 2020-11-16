@@ -2,9 +2,23 @@
 
 namespace Controllers;
 
+
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+
+
+// Load Composer's autoloader
+require 'vendor/autoload.php';
+
+
     use DAO\Users as D_user;
     use DAO\UsersRole as D_usersRole;
     use Models\User as M_user;
+
     class UserController{
 
         private $usersDao;
@@ -83,5 +97,60 @@ namespace Controllers;
             require_once(VIEWS_PATH.'/contact.php');
         }
 
+        public function sendMail()
+        {
+            if(isset($_POST))
+            {
+                $email = $_POST['email'];
+                $name = $_POST['name'];
+                $mensaje ="
+                <html> 
+                    <head> 
+                    <title>Correo VIA WEB</title> 
+                    </head> 
+                    <body>
+                    <p> ".$_POST['message']. "</p> 
+                    </body> 
+                </html> 
+                " ; 
+            $mail = new PHPMailer(true);
+    
+    
+            try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;                              
+            $mail->Username = 'utn.moviepass2020@gmail.com';                 
+            $mail->Password = 'moviePass2020';                          
+            $mail->Port =  587;
+            $mail->SMTPSecure = 'tls';
+
+            $mail->CharSet = 'utf-8';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            $mail->setFrom($email,$name);
+            $mail->addAddress('utn.moviepass2020@gmail.com');
+            $mail->addReplyTo($email, $name);
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Consulta web: '.$_POST['name']." - Tel: ".$_POST['telefono'];
+            $mail->Body    = $mensaje;
+            $mail->AltBody = $mensaje;
+            $mail->send();
+            
+            require_once(VIEWS_PATH.'/contact-response.php');
+
+            } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+            }
+    
+        }
     }
 ?>
+
+

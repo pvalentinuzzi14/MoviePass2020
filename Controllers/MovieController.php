@@ -54,7 +54,7 @@ class MovieController{
                     $genres = $this->genres->RetrieveDB();
                     $movies = $this->showtime->retrieveAllbyDate($date);
                     $dates = $this->showtime->getDateAvailable();
-                    require_once(VIEWS_PATH."movies.php");
+                    require_once(VIEWS_PATH."moviesdate.php");
                 }catch(Exception $e){
                     $e->getMessage();
                 }

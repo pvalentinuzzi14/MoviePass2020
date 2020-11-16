@@ -4,6 +4,15 @@ namespace Controllers;
 
 use Exception;
 
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+
+
+// Load Composer's autoloader
+require 'vendor/autoload.php';
+
 /*Alias - Models*/
 use Models\Purchase as M_Purchase;
 use Models\Ticket as M_Ticket;
@@ -109,7 +118,7 @@ class PurchaseController{
         require_once(VIEWS_PATH."confirm_ticket.php");
     }
 
-function createPurchase($totalTickets = null, $total = null, $idUser = null, $idShowtime = null, $discount = 0) {
+    public function createPurchase($totalTickets = null, $total = null, $idUser = null, $idShowtime = null, $discount = 0) {
 
         //For Mercado Pago API
         if($_POST) {
@@ -164,15 +173,14 @@ function createPurchase($totalTickets = null, $total = null, $idUser = null, $id
                     $purchase->setUser($user);
                     $purchase->setPayment($payment);
 
-                    //$idPurchase = $this->purchaseDAO->create($purchase);
-                    require_once(VIEWS_PATH."ticket-view.php");
+                    $idPurchase = $this->purchaseDAO->create($purchase);
+                  
 
                     //Finally, we update the purchased tickets in the function
                     $updatedAmountOfTickets = $showtime->getTicketsSold()+$totalTickets;
                     if($DaoShowtime->updateTicketsSold($showtime->getId(), $updatedAmountOfTickets)) {
-                      /*  $this->mailTicket($purchase->getUser()->getEmail(), $purchase->getUser()->getFirstName(), $purchase->getUser()->getLastName(), $qr, $showtime->getMovie()->getName(), $showtime->getDate(), $showtime->getOpeningTime(), $showtime->getAuditorium()->getMovieTheater()->getName(), $showtime->getAuditorium()->getName());
-                        $message = "Purchase made successfully. Check in the section My purchases or in your email the QR code required to print the tickets in the movie theater";
-                        $this->homeController->index($message, 1);*/
+                        
+                        $this->sendMail($user,$idPurchase,$showtime);
                     }
                     else {
                         $message = "Ocurrio un error en la base de datos";
@@ -196,5 +204,68 @@ function createPurchase($totalTickets = null, $total = null, $idUser = null, $id
         }
     }
 
+   
+        public function sendMail($user,$purchase,$showtime)
+        {
+            if(isset($_POST))
+            {
+                $userEmail = $user->getEmail();
+                $userName = $user->getFirstName();
+                $mensaje ="
+                <html> 
+                    <head> 
+                    <title>Compra Ticket MOVIE PASS  </title> 
+                    </head> 
+                    <body>
+                    <p>Hola {$userName}.
+                    <br> Usted ha realizado con exito la compra para la pelicula {$showtime->getMovie()->getTitle()}, 
+                    para el dia {$showtime->getDate()} en la sala {$showtime->getRoom()->getName()}.
+                    Su numero de compra es X001-000{$purchase}, debera dirigirse a la boleteria del cine 
+                    e indicar el mismo, para el retiro de los comprobantes correspondientes.
+                    </p> 
+                    </body> 
+                </html> 
+                " ; 
+            $mail = new PHPMailer(true);
+    
+    
+            try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;                              
+            $mail->Username = 'utn.moviepass2020@gmail.com';                 
+            $mail->Password = 'moviePass2020';                          
+            $mail->Port =  587;
+            $mail->SMTPSecure = 'tls';
+
+            $mail->CharSet = 'utf-8';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            $mail->setFrom('utn.moviepass2020@gmail.com','MoviePass Ticket');
+            $mail->addAddress($userEmail);
+            //$mail->addReplyTo($email, $name);
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Compra de ticket Movie Pass';
+            $mail->Body    = $mensaje;
+            $mail->AltBody = $mensaje;
+            $mail->send();
+            
+            require_once(VIEWS_PATH."ticket-view.php");
+
+            } catch (Exception $e) {
+           
+                require_once(VIEWS_PATH."error.php");
+
+                // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+            }
+    
+        }
 
 }
+
