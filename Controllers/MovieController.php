@@ -46,7 +46,7 @@ class MovieController{
                 try{
                     $this->Index();
                 }catch(Exception $e){
-
+                    
                     $e->getMessage();
                 }             
             }else{
