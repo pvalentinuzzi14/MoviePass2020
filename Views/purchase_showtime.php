@@ -1,4 +1,6 @@
-<?php //include("header.php");?>
+<?php //include("header.php");
+
+?>
 	<div class="bg-dark container rounded p-3">
     <h2 class="text-light" >Funciones</h2>
         <form  action="<?php echo FRONT_ROOT; ?>/Purchase/getTickets" method="GET"> 
@@ -6,8 +8,13 @@
             <div class="col-md">
                     <select class="form-control" name="id" id="id">
                     <?php foreach($showtime as $value):?>
-                        <option value="<?php echo $value['id'];?>"><?php echo $value['cinema_name']."-".$value['room_name']."-".$value['date_showtime']."-".$value['opening_time'];?></option>  
-                    <?php endforeach;?>                   
+                        <?php if($value['tickets_sold'] >= $value['total_tickets'])
+                        {?>
+                            <option value="<?php echo $value['id'];?>" disabled><?php echo 'TICKETS AGOTADOS      // '.$value['cinema_name']."-".$value['room_name']."-".$value['date_showtime']."-".$value['opening_time'];?></option>  
+                        <?php }else{
+                        ?>
+                        <option value="<?php echo $value['id'];?>" ><?php echo $value['cinema_name']."-".$value['room_name']."-".$value['date_showtime']."-".$value['opening_time'];?></option>  
+                    <?php } endforeach;?>                   
                     </select>                
             </div>
             </div>

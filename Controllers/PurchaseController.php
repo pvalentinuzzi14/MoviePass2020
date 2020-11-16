@@ -11,6 +11,8 @@ use Models\Payment as M_Payment;
 
 /*Alias - DAO*/
 use DAO\Showtimes as D_Showtime;
+use DAO\Movies as D_Movie;
+
 use DAO\Purchases as DAO_Purchase;
 use DAO\Users as D_User;
 
@@ -38,10 +40,19 @@ class PurchaseController{
             {
                 $id = $_GET['id'];
                 $showtime = $D_showtime->retrieveShowtimesByMovieId($id);
+               
+               if(!empty($showtime))
+               {
                 require_once(VIEWS_PATH."purchase_showtime.php");
+               }else{
+                   throw new Exception("Accion no permitida, no existen funciones disponibles para esa pelicula", 1);
+                }
+              
             }catch(Exception $e)
             {
-                $e->getMessage();
+                require_once(VIEWS_PATH."error.php");
+
+               // $e->getMessage();
             }
         }else{
             $userCont = new UserController();
@@ -56,9 +67,26 @@ class PurchaseController{
             try{
                 $id = $_GET['id'];
                 $showtime = $D_showtime->retrieveShowtimesById($id);
-                require_once(VIEWS_PATH."purchase_showtime2.php");
+
+                if($showtime!=null)
+                {
+                    if($showtime->getTicketsSold() < $showtime->getTotalTickets())
+                    {
+                        $movie = new D_Movie();
+                        $MovieModel = $movie->getOne($showtime->getMovie());
+                        require_once(VIEWS_PATH."purchase_showtime2.php");
+                    }else{
+                        throw new Exception("Accion no permitida, no existen tickets disponibles para esa funcion", 1);
+                     }
+                }else{
+                    throw new Exception("Accion no permitida, no existen la funcion ingresada", 1);
+                }
+                             
+
             }catch(Exception $e){
-                $e->getMessage();
+                require_once(VIEWS_PATH."error.php");
+
+                // $e->getMessage();
             }
 
         }else{

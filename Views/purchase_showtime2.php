@@ -1,6 +1,20 @@
 <?php //include("header.php");?>
 	<div class="bg-dark container rounded p-3">
     <h2 class="text-light" >Tickets</h2>
+
+    <div class="row text-light">
+        <div class="col-md">
+<h3>    Pelicula : <?php echo $MovieModel->getTitle(); ?></h3>        
+</div>
+        <div class="col-md">
+<h4> Fecha: <?php echo $showtime->getDate(); ?></h4>
+        </div>
+        <div class="col-md">
+        <h4> Horario: <?php echo $showtime->getOpeningTime(); ?></h4>
+        </div>
+
+
+    </div>
         <form  action="<?php echo FRONT_ROOT; ?>/Purchase/Confirm" method="POST"> 
             <div class="row m-auto mb-4">
             <div class="col-md">
