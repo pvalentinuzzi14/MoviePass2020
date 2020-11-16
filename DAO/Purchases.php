@@ -364,5 +364,38 @@ class Purchases {
 
         return $value;
     }
+
+    public function retrievePurchases(){
+        $purchaseList=array();
+        $query = "SELECT * FROM purchases pu 
+        INNER JOIN(SELECT u.email FROM users u INNER JOIN purchases pu ON pu.id_user = u.idUsers GROUP BY u.email)sub 
+        INNER JOIN (SELECT t.id_showtime,sub_movie.name_movie FROM tickets t INNER JOIN (SELECT m.name_movie FROM movies m INNER JOIN showtimes sh ON m.id_movie=sh.id_movie)sub_movie)subt
+        INNER JOIN payments p ON pu.id_purchase = p.id_purchase GROUP BY pu.id_purchase;";
+        try
+        {
+            $this->connection = Connection::getInstance();
+            $resultSet = $this->connection->execute($query);
+            if(!empty($resultSet)) {
+                foreach ($resultSet as $row) {
+                    $array=array();
+                    $array['id_purchase']=$row['id_purchase'];
+                    $array['purchased_tickets']=$row['purchased_tickets'];
+                    $array['date_purchase']=$row['date_purchase'];
+                    $array['email']=$row['email'];
+                    $array['total']=$row['total'];
+                    $array['name_movie']=$row['name_movie'];
+                    $array['id_showtime']=$row['id_showtime'];
+                    array_push($purchaseList,$array);
+                }
+        }
+    }
+        catch(PDOException $e)
+        {
+            throw $e;
+        }
+
+        return $purchaseList;
+    }
+
 }
 ?>
