@@ -62,174 +62,7 @@ class Purchases {
         return $value;
     }
 
-    public function retrieveByPageAndDate($offset, $no_of_records_per_page, $date, $user) {
-        $purchaseList = array();
-
-        try
-        {
-            $parameters['date'] = $date;
-
-            $query = "SELECT * FROM tickets t
-            INNER JOIN purchases p on p.id_purchase = t.id_purchase
-            INNER JOIN payments on p.id_payment = p.id_payment
-            WHERE p.date_purchase>=:date AND p.id_user=" . $user->getId() . "
-            ORDER BY p.date_purchase";
-           
-            $this->connection = Connection::getInstance();
-
-            $resultSet = $this->connection->execute($query, $parameters);
-
-            if(!empty($resultSet)) {
-
-                $previousPurchase = null;
-    
-                foreach ($resultSet as $row) {
-
-                    //Ticket
-                    $ticket = new Ticket();
-                    $ticket->setId($row["id_ticket"]);
-                    $ticket->setIdPurchase($row["id_purchase"]);
-                    $ticket->setNumber($row["number"]);
-                    $idShowtime = $row["id_showtime"];
-                    //Showtime
-                    $showtimeDAO = new DAO_Showtime();
-                    $showtime = $showtimeDAO->retrieveOne($idShowtime);
-                    $ticket->setShowtime($showtime);
-
-                    if($previousPurchase == null) {
-
-                        $purchase = new M_Purchase();
-                        $purchase->setId($row["id_purchase"]);
-                        $purchase->setTotalTickets($row["purchased_tickets"]);
-                        $purchase->setDate($row["date_purchase"]);
-                        $purchase->setDiscount($row["discount"]);
-                        $idUser = $row["id_user"];
-                        $idPayment = $row["id_payment"];
-                        //User
-                        $userDAO = new DAO_User();
-                        $user = $userDAO->retrieveOne($idUser);
-                        $purchase->setUser($user);
-                        //Payment
-                        $paymentDAO = new D_Payment();
-                        $payment = $paymentDAO->retrieveOne($idPayment);
-                        $purchase->setPayment($payment);
-
-                        $purchase->addTicket($ticket);
-
-                        $previousPurchase = $purchase;
-                    }
-                    else if($previousPurchase != null && $row["id_purchase"] != $previousPurchase->getId()) {
-
-                        array_push($purchaseList, $previousPurchase);
-
-                        $purchase = new M_Purchase();
-                        $purchase->setId($row["id_purchase"]);
-                        $purchase->setTotalTickets($row["purchased_tickets"]);
-                        $purchase->setDate($row["date_purchase"]);
-                        $purchase->setDiscount($row["discount"]);
-                        $idUser = $row["id_user"];
-                        $idPayment = $row["id_payment"];
-                        //User
-                        $userDAO = new DAO_User();
-                        $user = $userDAO->retrieveOne($idUser);
-                        $purchase->setUser($user);
-                        //Payment
-                        $paymentDAO = new D_Payment();
-                        $payment = $paymentDAO->retrieveOne($idPayment);
-                        $purchase->setPayment($payment);
-
-                        $purchase->addTicket($ticket);
-
-                        $previousPurchase = $purchase;
-                    }
-                    else if($previousPurchase != null && $row["id_purchase"] == $previousPurchase->getId()) {
-
-                        $previousPurchase->addTicket($ticket);
-                    }
-                }
-                if(isset($previousPurchase))
-                    array_push($purchaseList, $previousPurchase);
-            }
-        }
-        catch (PDOException $e)
-        {
-            throw $e;
-        }
-
-        return $purchaseList;
-    }
-
-    public function retrieveByPageAndDateNoTickets($offset, $no_of_records_per_page, $actualDate, $user, $filter) {
-        $purchaseList = array();
-
-        try
-        {
-            $parameters['date'] = $actualDate;
-
-            if($filter == "1") { //per date
-                $query = "SELECT * FROM tickets t
-                INNER JOIN purchases p on p.id_purchase = t.id_purchase
-                INNER JOIN payments pa on pa.id_payment = p.id_payment
-                INNER JOIN showtimes s on s.id = t.id_showtime
-                WHERE s.date>=:date AND p.id_user=" . $user->getId() . " GROUP BY p.id_purchase
-                ORDER BY p.date_purchase
-                LIMIT " . $offset . " , " . $no_of_records_per_page;
-            }
-            else if($filter == "0") { //per movie
-                $query = "SELECT * FROM tickets t
-                INNER JOIN purchases p on p.id_purchase = t.id_purchase
-                INNER JOIN payments pa on pa.id_payment = p.id_payment
-                INNER JOIN showtimes s on s.id = t.id_showtime
-                INNER JOIN movies m on m.id_movie = s.id_movie
-                WHERE s.date>=:date AND p.id_user=" . $user->getId() . " GROUP BY p.id_purchase
-                ORDER BY m.name_movie, p.date_purchase
-                LIMIT " . $offset . " , " . $no_of_records_per_page;
-            }
-
-   
-            $this->connection = Connection::getInstance();
-            $resultSet = $this->connection->execute($query, $parameters);
-           
-            if(!empty($resultSet)) {
-                foreach ($resultSet as $row) {
-                //Ticket
-                $ticket = new Ticket();
-                $ticket->setId($row["id_ticket"]);
-                $ticket->setIdPurchase($row["id_purchase"]);
-                $ticket->setNumber($row["number"]);
-                $idShowtime = $row["id_showtime"];
-                //Showtime
-                $showtimeDAO = new DAO_Showtime();
-                $showtime = $showtimeDAO->retrieveOne($idShowtime);
-                $ticket->setShowtime($showtime);
-                $purchase = new M_Purchase();
-                $purchase->setId($row["id_purchase"]);
-                $purchase->setTotalTickets($row["purchased_tickets"]);
-                $purchase->setDate($row["date_purchase"]);
-                $purchase->setDiscount($row["discount"]);
-                $idUser = $row["id_user"];
-                $idPayment = $row["id_payment"];
-                //User
-                $userDAO = new DAO_User();
-                $user = $userDAO->retrieveOne($idUser);
-                $purchase->setUser($user);
-                //Payment
-                $paymentDAO = new D_Payment();
-                $payment = $paymentDAO->retrieveOne($idPayment);
-                $purchase->setPayment($payment);
-                $purchase->addTicket($ticket);
-
-                array_push($purchaseList, $purchase);
-                }
-            }
-        }
-        catch (PDOException $e)
-        {
-            throw $e;
-        }
-
-        return $purchaseList;
-    }
+      
 
     public function retrieveNumberOfRowsByDate($date, $user) {
         $value = 0;
@@ -297,80 +130,19 @@ class Purchases {
         return $purchase;
     }
 
-    public function loadQr($imagetmp, $id) {
-        $parameters['id'] = $id;
-        $parameters['imagetmp'] = $imagetmp;
-        $query = "UPDATE purchases SET qr=:imagetmp WHERE id_purchase=:id";
+    
 
-        $value = 0;
-  
-        try
-        {
-            $this->connection = Connection::getInstance();
-            $value = $this->connection->executeNonQuery($query, $parameters);
-        }
-        catch(PDOException $e)
-        {
-            throw $e;
-        }
-
-        return $value;
-    }
-
-    public function loadTotal($date, $selection, $id) {
-        $value = 0;
-        $parameters['date'] = $date;
-
-        if($selection == "movie") {
-            $query =
-            "SELECT SUM(pa.total) as total
-            FROM purchases p
-            INNER JOIN payments pa on pa.id_payment = p.id_payment
-            WHERE p.date_purchase>=:date AND p.id_purchase in (
-                                                                SELECT t.id_purchase
-                                                                FROM tickets t
-                                                                INNER JOIN showtimes s on s.id = t.id_showtime
-                                                                INNER JOIN movies m on s.id_movie = m.id_movie
-                                                                WHERE m.id_movie=" . $id . "
-                                                                GROUP BY t.id_purchase
-                                                               )";
-        }
-        else if($selection == "movieTheater") {
-            $query =
-            "SELECT SUM(pa.total) as total
-            FROM purchases p
-            INNER JOIN payments pa on pa.id_payment = p.id_payment
-            WHERE p.date_purchase>=:date AND p.id_purchase in (
-                                                                SELECT t.id_purchase
-                                                                FROM tickets t
-                                                                INNER JOIN showtimes s on s.id = t.id_showtime
-                                                                INNER JOIN auditoriums a on s.id_auditorium = a.id
-                                                                INNER JOIN movie_theaters m on a.id_movieTheater = m.id
-                                                                WHERE m.id=" . $id . "
-                                                                GROUP BY t.id_purchase
-                                                               )";
-        }
-
-        try
-        {
-            $this->connection = Connection::getInstance();
-            $resultSet = $this->connection->execute($query, $parameters);
-            $value = $resultSet[0]["total"];
-        }
-        catch(PDOException $e)
-        {
-            throw $e;
-        }
-
-        return $value;
-    }
 
     public function retrievePurchases(){
         $purchaseList=array();
-        $query = "SELECT * FROM purchases pu 
-        INNER JOIN(SELECT u.email FROM users u INNER JOIN purchases pu ON pu.id_user = u.idUsers GROUP BY u.email)sub 
-        INNER JOIN (SELECT t.id_showtime,sub_movie.name_movie FROM tickets t INNER JOIN (SELECT m.name_movie FROM movies m INNER JOIN showtimes sh ON m.id_movie=sh.id_movie)sub_movie)subt
-        INNER JOIN payments p ON pu.id_purchase = p.id_purchase GROUP BY pu.id_purchase;";
+        $query = "SELECT sub4.*,m.`name_movie` FROM movies m INNER JOIN (
+            SELECT sub3.*,sh.id_movie AS 'idMovie' FROM showtimes sh INNER JOIN (
+            SELECT sub2.*,t.id_showtime,COUNT(t.id_purchase) FROM tickets t  INNER JOIN (
+            SELECT sub1.*,u.`email` FROM users u INNER JOIN (SELECT pu.*,py.`total` FROM purchases pu INNER JOIN payments py ON py.`id_purchase`=pu.`id_purchase`) sub1 
+            ON sub1.id_user = u.`idUsers`
+            )sub2 ON sub2.id_purchase = t.id_purchase   GROUP BY t.id_purchase
+            ) sub3 ON sub3.id_showtime = sh.id
+            )sub4 ON m.`id_movie`=sub4.idMovie";
         try
         {
             $this->connection = Connection::getInstance();
@@ -385,6 +157,48 @@ class Purchases {
                     $array['total']=$row['total'];
                     $array['name_movie']=$row['name_movie'];
                     $array['id_showtime']=$row['id_showtime'];
+                    $array['idMovie']=$row['idMovie'];
+
+                    array_push($purchaseList,$array);
+                }
+        }
+    }
+        catch(PDOException $e)
+        {
+            throw $e;
+        }
+
+        return $purchaseList;
+    }
+
+
+    public function retrieveProfits($inicio,$final,$idMovie){
+        
+        if(($inicio!=0)&&($final!=0))
+        {
+           $purchaseList=array();
+            $query = "SELECT sh.*,m.`poster`,SUM(tickets_sold*ticket_price) AS ganancias FROM showtimes sh 
+            INNER JOIN movies m ON m.`id_movie`=sh.id_movie 
+            GROUP BY id_movie,date_showtime HAVING date_showtime<$final AND date_showtime>=$inicio AND id_movie=$idMovie";
+           
+        }else{
+            $purchaseList=array();
+            $query = "SELECT sh.*,m.`poster`,SUM(tickets_sold*ticket_price) AS 'ganancias' FROM showtimes sh 
+            INNER JOIN movies m ON m.`id_movie`=sh.id_movie GROUP BY id_movie,date_showtime 
+            HAVING id_movie=$idMovie";
+           
+        }
+
+       try
+        {
+            $this->connection = Connection::getInstance();
+            $resultSet = $this->connection->execute($query);
+            if(!empty($resultSet)) {
+                foreach ($resultSet as $row) {
+                    $array=array();
+                    $array['poster']=$row['poster'];
+                    $array['idMovie']=$row['id_movie'];
+                    $array['ganancias']=$row['ganancias'];
                     array_push($purchaseList,$array);
                 }
         }
