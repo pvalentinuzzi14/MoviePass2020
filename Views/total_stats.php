@@ -37,7 +37,7 @@
           <tr>
              <td> <?php echo $value["id_purchase"]; ?></td>
              <td> <?php echo $value["purchased_tickets"]; ?> </td>  
-             <td> <?php echo $value["total"]; ?> </td>
+             <td> <?php echo "$".$value["total"]; ?> </td>
              <td> <?php echo $value["date_purchase"];?> </td>
              <td> <?php echo $value["email"];?> </td>
              <td> <?php echo $value["name_movie"];?> </td>

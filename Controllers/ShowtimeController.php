@@ -38,13 +38,15 @@ class ShowtimeController{
                 $showtime->generateClosingTime($this->showtime->retrieveDurationOneMovieFromApi($movieData->getId()));
                 $this->showtime->create($showtime);
             }catch(Exception $e){
-                $e->getMessage();
+                require_once(VIEWS_PATH."error.php");
             }  
  
 
            $adminController = new AdminController();
            $adminController->Index();
         } 
+
+
         public function getAll()
         {
             try{
