@@ -12,8 +12,10 @@
                         {?>
                             <option value="<?php echo $value['id'];?>" disabled><?php echo 'TICKETS AGOTADOS      // '.$value['cinema_name']."-".$value['room_name']."-".$value['date_showtime']."-".$value['opening_time'];?></option>  
                         <?php }else{
+                            $close_time_date=strtotime($value['opening_time']);
+                            
                         ?>
-                        <option value="<?php echo $value['id'];?>" ><?php echo $value['cinema_name']."-".$value['room_name']."-".$value['date_showtime']."-".$value['opening_time'];?></option>  
+                        <option value="<?php echo $value['id'];?>" ><?php echo $value['cinema_name']."-".$value['room_name']."-".date('d/m/y',strtotime($value['date_showtime']))."-".date("h:i A", $close_time_date);;?></option>  
                     <?php } endforeach;?>                   
                     </select>                
             </div>

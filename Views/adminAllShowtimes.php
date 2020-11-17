@@ -40,7 +40,7 @@
           foreach ($showtimeList as $value):?>
           <tr>
              <td> <?php echo $value->getId(); ?></td>
-             <td> <?php echo $value->getdate(); ?> </td>  
+             <td> <?php echo date('d/m/y',strtotime($value->getdate())); ?> </td>  
              <td> <?php 
              $open_time_date=strtotime($value->getOpeningTime());
              echo date("h:i A", $open_time_date);
