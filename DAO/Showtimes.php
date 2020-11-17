@@ -5,7 +5,8 @@ use Models\Showtime as M_showtime;
 use DAO\Rooms as D_Rooms;
 use DAO\Movies as D_Movies;
 use DAO\Connection as Connection;
-use \PDOException as PDOException;
+use Exception;
+use PDOException as PDOException;
 
 class Showtimes {
 
@@ -27,14 +28,44 @@ class Showtimes {
             $parameters["ticketPrice"] = $showtime->getTicketPrice();
 
             $this->connection = Connection::getInstance();
+            if($this->controlTimeRoom($showtime)==true){
+                $value = $this->connection->executeNonQuery($query, $parameters);
+            }else{
+                throw new Exception("Sala ocupada",1);
+            }
+            
+        }
+        catch (PDOException $e)
+        {
+            require_once(VIEWS_PATH."error.php");
+        }
+        return $value;
+    }
 
-            $value = $this->connection->executeNonQuery($query, $parameters);
+    public function controlTimeRoom($showtime){
+        $parameters['idRoom'] = $showtime->getRoom()->getId();
+        $parameters['date_showtime'] = $showtime->getDate();
+        try
+        {
+            $query = "SELECT * FROM showtimes sh WHERE sh.`id_rooms`= :idRoom AND sh.date_showtime = :date_showtime";
+
+            $this->connection = Connection::getInstance();
+
+            $resultSet = $this->connection->execute($query,$parameters);
+            if(!empty($resultSet)) {
+                foreach ($resultSet as $row):
+                   if(($showtime->getOpeningTime()>=$row['opening_time'])&&($showtime->getOpeningTime()<$row['closing_time'])){
+                    return false;
+                   } 
+                endforeach;
+                }else{
+                    return true;
+                }
         }
         catch (PDOException $e)
         {
             throw $e;
         }
-        return $value;
     }
 
     private function read($row) {

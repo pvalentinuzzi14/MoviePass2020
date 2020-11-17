@@ -2,12 +2,12 @@
 
 namespace Controllers;
 
-    use DAO\Cinemas as Cinemas;
-    use Models\Cinema as Cinema;
-    use Controllers\CinemaController as CinemaCont;
-    use Controllers\RoomController as RoomCont;
-    use Controllers\ShowtimeController as ShowTimeCont;
-    use DAO\Movies as Movies;
+use DAO\Cinemas as Cinemas;
+use Models\Cinema as Cinema;
+use Controllers\CinemaController as CinemaCont;
+use Controllers\RoomController as RoomCont;
+use Controllers\ShowtimeController as ShowTimeCont;
+use DAO\Movies as Movies;
 use Exception;
 use Models\Movie as Movie;
 use PDOException;
@@ -21,7 +21,7 @@ class AdminController{
 
         public function Index()
         {
-            if(isset($_SESSION['userID']))
+            if(isset($_SESSION['userID']) && $_SESSION['userRole']==1)
             {
                 try{
                     $roomController = new RoomCont();
