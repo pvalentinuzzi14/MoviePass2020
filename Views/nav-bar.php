@@ -16,36 +16,88 @@
 
       
       </li>
+    </ul>
 
+
+    <div class="m-auto d-none d-md-block">
+        <form class="form-inline my-0 my-lg-0">
+        <?php if(!isset($_SESSION['userName'])){ 
+          echo"<a class='dropdown-item text-light item' href=" .FRONT_ROOT. "/login/Index>LOG IN</a>";
+        }else if($_SESSION['userRole']==1){?>
+          <label class="nav-item  dropright">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <?php echo $_SESSION['userName'];?>
+            </a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin">Administrar</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/RefreshMovies">Actualizar Peliculas</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Purchase/purchaseList">Ventas</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
+            </div>
+          </label> 
+        <?php }else{?>
+          <label class="nav-item dropright">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <?php echo $_SESSION['userName'];?>
+            </a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie">Comprar Entradas</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
+            </div>
+        </label> 
+          <?php }?>
+        </form>
     </div>
+
+    <div class="m-auto d-block d-md-none">
     <form class="form-inline my-0 my-lg-0">
-    <?php if(!isset($_SESSION['userName'])){ 
-      echo"<a class='dropdown-item text-light item' href=" .FRONT_ROOT. "/login/Index>LOG IN</a>";
-    }else if($_SESSION['userRole']==1){?>
-      <label class="nav-item dropleft">
-        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <?php echo $_SESSION['userName'];?>
-        </a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin">Administrar</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/RefreshMovies">Actualizar Peliculas</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Purchase/purchaseList">Stats</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
-        </div>
-      </label> 
-    <?php }else{?>
-      <label class="nav-item dropleft">
-        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <?php echo $_SESSION['userName'];?>
-        </a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie">Comprar Entradas</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
-          <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
-        </div>
-    </label> 
-      <?php }?>
-    </form>
+        <?php if(!isset($_SESSION['userName'])){ 
+          echo"<a class='dropdown-item text-light item' href=" .FRONT_ROOT. "/login/Index>LOG IN</a>";
+        }else if($_SESSION['userRole']==1){?>
+          <label class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <?php echo $_SESSION['userName'];?>
+            </a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Admin">Administrar</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie/RefreshMovies">Actualizar Peliculas</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Purchase/purchaseList">Ventas</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
+            </div>
+          </label> 
+        <?php }else{?>
+          <label class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <?php echo $_SESSION['userName'];?>
+            </a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/Movie">Comprar Entradas</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/update">Modificar Perfil</a>
+              <a class="dropdown-item text-light item" href="<?php echo FRONT_ROOT; ?>/User/logout">Cerrar Sesión</a>
+            </div>
+        </label> 
+          <?php }?>
+        </form>
+  </div>
+
+   
+  </div>
+
+  
+ 
+
+
+
+
+ 
+    
   </div>
 </nav>
+
+
+
+
+  
