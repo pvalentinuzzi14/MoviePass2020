@@ -179,7 +179,7 @@ class Purchases {
            $purchaseList=array();
             $query = "SELECT sh.*,m.`poster`,SUM(tickets_sold*ticket_price) AS ganancias FROM showtimes sh 
             INNER JOIN movies m ON m.`id_movie`=sh.id_movie 
-            GROUP BY id_movie,date_showtime HAVING date_showtime<$final AND date_showtime>=$inicio AND id_movie=$idMovie";
+            GROUP BY id_movie,date_showtime HAVING date_showtime<='$final' AND date_showtime>='$inicio' AND id_movie=$idMovie";
            
         }else{
             $purchaseList=array();

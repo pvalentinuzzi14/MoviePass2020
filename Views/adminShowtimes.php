@@ -44,7 +44,7 @@
           foreach ($showtimeList as $value):?>
           <tr>
              <td> <?php echo $value->getId(); ?></td>
-             <td> <?php echo $value->getdate(); ?> </td>  
+             <td> <?php echo date('d/m/y',strtotime($value->getdate())); ?> </td>  
              <td> <?php 
              $open_time_date=strtotime($value->getOpeningTime());
              echo date("h:i A", $open_time_date);
@@ -64,15 +64,6 @@
                   <input type="hidden" name="deleteID" value='<?php echo $value->getId(); ?>'>
                   <button type="submit" class='btn btn-danger text-light mt-0' value="1"> 
                   <span><i class="fa fa-times-circle"></i></span>   
-
-                </button>
-              </form> 
-            </td>
-            <td>
-              <form  action="<?php echo FRONT_ROOT ;?>/showTime/Stats" method="POST"> 
-                  <input type="hidden" name="searchId" value='<?php echo $value->getId(); ?>'>
-                  <button type="submit" class='btn btn-primary text-light mt-0' value="1"> 
-                  <span><i class="fa fa-search"></i></span>   
 
                 </button>
               </form> 

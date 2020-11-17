@@ -10,7 +10,7 @@
     </form>
 
   
-<div class="row">
+<div class="row text-center my-5">
 <?php if(!empty($show))
     { ?>
       <div class="col-md-4">
@@ -19,8 +19,8 @@
         echo $show[0]['poster']; ?>" width="200px" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
       </h1>
     </div>
-    <div class="col">
-      <h1>GANANCIAS  A LA FECHA</h1>
+    <div class="col text-center my-5">
+      <h1>GANANCIAS A LA FECHA</h1>
       <h2><?php
       foreach ($show as $value) {
         $gananciasMovie += $value['ganancias'];
